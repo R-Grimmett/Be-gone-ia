@@ -18,10 +18,10 @@
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">
             <a href="index.html" class="logo" id="top">BeGONEia</a>
-            <button type="button" id="menu-button">
+            <button type="button" id="menu-button" onclick="menuToggle()">
                 <i class="fa fa-bars" aria-label="Menu Button"></i>
             </button>
-            <ul>
+            <ul id="navigationLinks">
                 <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                 <li><a href="#">Diagnositic Quiz</a></li>
                 <li><a href="#">Plant Database</a></li>
@@ -31,8 +31,14 @@
     </header>
     <main>
         <div id="Hero">
-            <h1>Looking for solutions for your poorly plant?</h1>
+            <h1>Temporary Hero Name</h1>
         </div>
+        <h1>Temp H1</h1>
+        <h2>Temp H2</h2>
+        <h3>Temp H3</h3>
+        <p>
+            Temp body text.
+        </p>
     </main>
 
     <footer>
@@ -41,7 +47,6 @@
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 Back to Top
             </a><br>
-            <p>All media created by Rachael Grimmett.</p>
         </div>
         <ul>
             <li><a href="#"><i class="fa fa-facebook-square" aria-label="Facebook"></i></a></li>
@@ -51,5 +56,12 @@
             <li><a href="#"><i class="fa fa-youtube-square" aria-label="YouTube"></i></a></li>
         </ul>
     </footer>
+    <script>
+        function menuToggle() {
+            var x = document.getElementById("navigationLinks");
+            if (x.style.display === "block") { x.style.display = "none"; }
+            else { x.style.display = "block"; }
+        }
+    </script>
 </body>
 </html>

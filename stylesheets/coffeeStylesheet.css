@@ -44,6 +44,7 @@ body {
     font-family: var(--atkinsonHyperlegible);
     font-size: 1.5rem;
     color: var(--offBlack);
+    background-color: var(--offWhite);
 }
 
 
@@ -77,7 +78,8 @@ h1 {
     margin-bottom: 2rem;
 }
 
-h2 {
+h2,
+h3 {
     font-family: var(--gamjaFlower);
 }
 
@@ -89,7 +91,7 @@ h3 {
 
 /* HEADER */
 header {
-    background: var(--deepOlive);
+    background: var(--warmBrown);
     z-index: 1;
 }
 
@@ -121,16 +123,16 @@ header {
         header nav ul a:hover,
         header nav ul a:focus {
             color: var(--offBlack);
-            background-color: var(--terracotta);
-            border-left: 10px solid var(--terracotta);
-            border-right: 10px solid var(--terracotta);
-            box-shadow: 0px 5px 5px var(--terracotta);
+            background-color: var(--salmon);
+            border-left: 10px solid var(--salmon);
+            border-right: 10px solid var(--salmon);
+            box-shadow: 0px 5px 5px var(--salmon);
         }
 
 /* Class to denote on the navigation bar which is the current page or section */
 .active {
     font-weight: 700;
-    background-color: var(--mutedGreen);
+    background-color: var(--terracotta);
     transition: 0.5s;
     color: var(--offBlack);
 }
@@ -156,17 +158,14 @@ header {
     transition: 0.5s;
 }
 
-    #menu-button:hover,
-    #menu-button:focus {
-        color: var(--offBlack);
-        background-color: var(--terracotta);
-        text-shadow: none;
-    }
+#navigationLinks {
+    display:none;
+}
 
 /* BREADCRUMBS */
 .breadcrumb {
     color: var(--offBlack);
-    background-color: var(--mutedGreen);
+    background-color: var(--salmon);
     font-size: 1rem;
 }
 
@@ -201,16 +200,6 @@ header {
             margin: 0.25rem;
         }
 
-        .breadcrumb li:hover,
-        .breadcrumb li:focus {
-            font-weight: bold;
-            font-size: 1.5rem;
-            background-color: var(--terracotta);
-            border-left: 15px solid var(--terracotta);
-            border-right: 15px solid var(--terracotta);
-            box-shadow: 0px 5px 5px var(--terracotta);
-        }
-
 #skip a {
     position: absolute;
     left: -1000px;
@@ -218,7 +207,7 @@ header {
     width: 1px;
     height: 1px;
     overflow: hidden;
-    background-color: var(--deepOlive);
+    background-color: var(--warmBrown);
     color: var(--offWhite);
     padding: 0.5rem;
     margin-left: 10vw;
@@ -235,7 +224,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: var(--deepOlive);
+    background: var(--warmBrown);
     text-align: center;
     padding: 5%;
     font-style: italic;
@@ -362,7 +351,7 @@ main {
 
         .mason-gallery img:hover,
         .mason-gallery img:focus {
-            background-color: var(--terracotta);
+            background-color: var(--salmon);
         }
 
 /* MEDIA QUERIES */
@@ -373,12 +362,12 @@ main {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        background-color: var(--mutedGreen);
+        background-color: var(--terracotta);
     }
 
         header nav ul a {
             padding: 10px 30px;
-            background-color: var(--deepOlive);
+            background-color: var(--warmBrown);
         }
 
     header .logo {
@@ -436,38 +425,6 @@ main {
         padding-top: 25vh;
     }
 
-    .cards {
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-    }
-
-        .cards h2 {
-            font-size: 3rem;
-        }
-
-    .destination {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-        .destination img {
-            max-width: 200px;
-            height: 200px;
-            margin-top: 25%;
-        }
-
-    .alternate {
-        flex-direction: row-reverse;
-    }
-
-    #information .button-link {
-        max-width: 500px;
-        text-align: center;
-        margin: auto;
-        margin-bottom: 50px;
-    }
-
-
     .mason-gallery img {
         max-width: 60vw;
         height: 300px;
@@ -503,16 +460,6 @@ main {
     .hero h1 {
         font-size: 5rem;
         max-width: 400px;
-    }
-
-    .cards article {
-        width: 500px;
-    }
-
-    .destination img {
-        max-width: 350px;
-        height: 350px;
-        margin-top: 0%;
     }
 
     .mason-gallery a img {
