@@ -1,11 +1,3 @@
-//import coffeeTheme from './modules/surveyTheme.js';
-//import surveyJson from './modules/surveyContent.js';
-//console.log(coffeeTheme);
-
-//const survey = new Survey.Model(surveyJson);
-
-//survey.applyTheme(coffeeTheme);
-
 const surveyJson = {
     "title": "Help My Plant!",
     "pages": [
