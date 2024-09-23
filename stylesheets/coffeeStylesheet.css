@@ -306,20 +306,34 @@ main {
 /* .HERO STYLING  */
 /* Class used for the focal image on index.html */
 .hero {
-    background-image: url(#);
+    background-image: url(/images/heroBackground.jpg);
     background-size: cover;
     background-position: center center;
     min-height: 50vh;
-    padding-top: 15vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
-    .hero h1 {
+    .hero h1, .hero h2 {
         max-width: 300px;
-        font-size: 4rem;
-        border: 0.5rem solid;
-        border-color: var(--offWhite);
+        color: var(--offWhite);
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .hero h1{
+        font-size: 3.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero a {
+        border-radius: 10px;
+        background-color: var(--offWhite);
+        color: var(--deepOlive);
+        padding: 1rem;
     }
 
 /* Class used to organize a gallery of images on the pages for each individual location. */
