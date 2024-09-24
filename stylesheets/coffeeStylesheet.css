@@ -35,6 +35,13 @@ body {
     color: var(--offBlack);
     background-color: var(--offWhite);
 }
+/* Helper class for sizing content on screens*/
+.wrapper {
+    /* TODO: Adjust these for final version */
+    margin: auto;
+    max-width: 700px; /* 700px would be the size for changing to tablet, we're focusing on mobile for now */
+    background-color: var(--offBlack);
+}
 
 
 /* Ensure everything is a block for viewing on a mobile as a stacked set of content */
@@ -131,10 +138,11 @@ header {
     font-family: var(--titleFont);
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 1.5rem;
+    font-size: 3rem;
     transition: 0.5s;
     text-decoration: none;
     padding: 1rem 1.5rem;
+    text-shadow: -0.2rem 0.1rem 0px var(--terracotta);
 }
 
 #menu-button {
@@ -143,8 +151,15 @@ header {
     color: var(--offWhite);
     background: none;
     border-radius: 50%;
-    padding: 10px 16px;
+    margin-left: 3rem;
+    margin-right: 3rem;
     transition: 0.5s;
+}
+
+#menu-button:hover {
+    background: var(--offWhite);
+    color: var(--warmBrown);
+    text-shadow: -0.2rem 0.1rem 0px var(--terracotta);
 }
 
 #navigationLinks {
@@ -246,12 +261,6 @@ main {
     background-color: var(--offWhite);
 }
 
-/* Class to contain content on bigger screens. */
-.wrapper {
-    margin: auto;
-    max-width: 1200px;
-}
-
 /* Helper class to allow entire sections to act as a link. */
 .stretch-link:after {
     content: "";
@@ -306,6 +315,10 @@ main {
 /* .HERO STYLING  */
 /* Class used for the focal image on index.html */
 .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     background-image: url(/images/heroBackground.jpg);
     background-size: cover;
     background-position: center center;
@@ -319,6 +332,11 @@ main {
         color: var(--offWhite);
         margin-left: auto;
         margin-right: auto;
+        /* Simulating a stroke with text-shadow to have it appear outside the text. */
+        text-shadow: 2px 2px 0px var(--deepOlive),
+                     -2px 2px 0px var(--deepOlive),
+                     2px -2px 0px var(--deepOlive),
+                     -2px -2px 0px var(--deepOlive);
     }
 
     .hero h1{
@@ -334,6 +352,7 @@ main {
         background-color: var(--offWhite);
         color: var(--deepOlive);
         padding: 1rem;
+        margin-top: 1vh;
     }
 
 /* Class used to organize a gallery of images on the pages for each individual location. */
@@ -374,7 +393,7 @@ main {
         }
 
     header .logo {
-        font-size: 2.5rem;
+        font-size: 4rem;
     }
 
     #menu-button {
