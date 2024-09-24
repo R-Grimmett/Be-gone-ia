@@ -141,7 +141,7 @@ header {
     right: 0;
     bottom: 0;
     background: var(--overlayBackground);
-    background-image: url(https://r-grimmett.github.io/Be-gone-ia/images/leaf-background.svg);
+    background-image: url(images/background-leaf.svg);
     background-size: 20%;
     z-index: 2; /* Ensuring that the overlay is OVER the content */
 }
@@ -352,7 +352,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-image: url(https://r-grimmett.github.io/Be-gone-ia/images/heroBackground.jpg);
+    background-image: url(images/background-hero.jpg);
     background-size: cover;
     background-position: center center;
     min-height: 50vh;
