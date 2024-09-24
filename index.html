@@ -16,6 +16,21 @@
 </head>
 <body>
 <div class="wrapper">
+    <div id="overlayMenu">
+        <button type="button" id="close-button" onclick="menuToggle()">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <ul class="navigation-links">
+            <li class="active"><a href="index.html"  aria-current="page">
+                <i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="diagnosis-quiz.html">
+                <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
+            <li><a href="plant-database.html">
+                <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
+            <li><a href="ailment-database.html">
+                <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
+        </ul>
+    </div>
     <header>
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">
@@ -23,12 +38,6 @@
             <button type="button" id="menu-button" onclick="menuToggle()">
                 <i class="fa-solid fa-bars" aria-label="Menu Button"></i>
             </button>
-            <ul id="navigationLinks">
-                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-                <li><a href="diagnosis-quiz.html">Help My Plant</a></li>
-                <li><a href="plant-database.html">Plant Database</a></li>
-                <li><a href="ailment-database.html">Ailment Database</a></li>
-            </ul>
         </nav>
     </header>
     <main id="main-content">
@@ -51,7 +60,7 @@
     </footer>
     <script>
         function menuToggle() {
-            var x = document.getElementById("navigationLinks");
+            var x = document.getElementById("overlayMenu");
             if (x.style.display === "block") { x.style.display = "none"; }
             else { x.style.display = "block"; }
         }

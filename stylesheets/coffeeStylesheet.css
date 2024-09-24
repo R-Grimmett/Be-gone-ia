@@ -16,6 +16,7 @@
     --terracotta: #BF4904;
     --warmBrown: #5C2513;
     --offBlack: #121206;
+    --overlayBackground: rgba(18, 18, 6, 0.5);
     /* Font Variables*/
     --titleFont: "Gamja Flower", sans-serif;
     --headerFont: "Mali", cursive;
@@ -99,40 +100,6 @@ header {
         color: var(--offWhite);
     }
 
-        header nav ul {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            padding: 0%;
-        }
-
-        header nav li a {
-            display: block;
-            text-decoration: none;
-            color: var(--offWhite);
-            text-align: center;
-            padding: 0.5rem;
-            transition: 0.5s;
-        }
-
-        header nav ul a:hover,
-        header nav ul a:focus {
-            color: var(--offBlack);
-            background-color: var(--salmon);
-            border-left: 10px solid var(--salmon);
-            border-right: 10px solid var(--salmon);
-            box-shadow: 0px 5px 5px var(--salmon);
-        }
-
-/* Class to denote on the navigation bar which is the current page or section */
-.active {
-    font-weight: 700;
-    background-color: var(--terracotta);
-    transition: 0.5s;
-    color: var(--offBlack);
-}
-
 .logo {
     color: var(--offWhite);
     font-family: var(--titleFont);
@@ -151,8 +118,8 @@ header {
     color: var(--offWhite);
     background: none;
     border-radius: 50%;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    padding: 1rem 1.5rem;
+    margin: 0.5rem 1.5rem;
     transition: 0.5s;
 }
 
@@ -160,10 +127,76 @@ header {
     background: var(--offWhite);
     color: var(--warmBrown);
     text-shadow: -0.2rem 0.1rem 0px var(--terracotta);
+    border-radius: 15px;
+}
+/* MENU OVERLAY */
+/* Class to denote on the navigation bar which is the current page or section */
+#overlayMenu {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlayBackground);
+    background-image: url(/images/leaf-background.svg);
+    background-size: 20%;
+    z-index: 2; /* Ensuring that the overlay is OVER the content */
 }
 
-#navigationLinks {
-    display:none;
+    #overlayMenu ul{
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #overlayMenu li {
+        font-size: 2rem;
+        background: var(--deepOlive);
+        border: solid var(--mutedGreen);
+        border-width: 0.25rem 0 0.25rem 0.25rem;
+        border-radius: 2.5rem 0 0 2.5rem;
+        box-shadow: -0.5vw 1vh 0 var(--mutedGreen);
+        display: block;
+        padding: 1rem 1rem 1rem 5vw;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-left: 20vw;
+    }
+
+    #overlayMenu a {
+        text-decoration: none;
+        color: var(--offWhite);
+    }
+
+    #overlayMenu .active {
+        background: var(--mutedGreen);
+        border: solid var(--deepOlive);
+        border-width: 0.25rem 0 0.25rem 0.25rem;
+        box-shadow: -0.5vw 1vh 0 var(--deepOlive);
+    }
+
+    #overlayMenu .active a {
+        text-shadow: 1px 1px 0 var(--deepOlive),
+                     -1px 1px 0 var(--deepOlive),
+                     1px -1px 0 var(--deepOlive),
+                     -1px -1px 0 var(--deepOlive);
+    }
+
+#overlayMenu #close-button {
+    font-size: 4rem;
+    border: none;
+    color: var(--offWhite);
+    border-radius: 15%;
+    margin-left: 75vw;
+    margin-top: 3vh;
+    transition: 0.5s;
+    background: var(--offBlack);
 }
 
 /* BREADCRUMBS */
@@ -353,6 +386,7 @@ main {
         color: var(--deepOlive);
         padding: 1rem;
         margin-top: 1vh;
+        text-decoration: none;
     }
 
 /* Class used to organize a gallery of images on the pages for each individual location. */
@@ -376,117 +410,118 @@ main {
             background-color: var(--salmon);
         }
 
-/* MEDIA QUERIES */
-/* Tablet media query */
-@media (min-width: 700px) {
-    header nav ul {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        background-color: var(--terracotta);
-    }
+/* TODO: Restore these for final release */
+/*!* MEDIA QUERIES *!*/
+/*!* Tablet media query *!*/
+/*@media (min-width: 700px) {*/
+/*    header nav ul {*/
+/*        flex-grow: 1;*/
+/*        display: flex;*/
+/*        flex-direction: row;*/
+/*        justify-content: flex-end;*/
+/*        background-color: var(--terracotta);*/
+/*    }*/
 
-        header nav ul a {
-            padding: 10px 30px;
-            background-color: var(--warmBrown);
-        }
+/*        header nav ul a {*/
+/*            padding: 10px 30px;*/
+/*            background-color: var(--warmBrown);*/
+/*        }*/
 
-    header .logo {
-        font-size: 4rem;
-    }
+/*    header .logo {*/
+/*        font-size: 4rem;*/
+/*    }*/
 
-    #menu-button {
-        display: none;
-    }
+/*    #menu-button {*/
+/*        display: none;*/
+/*    }*/
 
-    footer {
-        flex-direction: row;
-        justify-content: space-around;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
+/*    footer {*/
+/*        flex-direction: row;*/
+/*        justify-content: space-around;*/
+/*        padding-top: 1rem;*/
+/*        padding-bottom: 1rem;*/
+/*    }*/
 
-        footer ul {
-            margin: 2%;
-        }
+/*        footer ul {*/
+/*            margin: 2%;*/
+/*        }*/
 
-        footer a,
-        footer a i {
-            color: var(--offWhite);
-            padding: 2%;
-            transition: 0.5s;
-            vertical-align: middle;
-        }
+/*        footer a,*/
+/*        footer a i {*/
+/*            color: var(--offWhite);*/
+/*            padding: 2%;*/
+/*            transition: 0.5s;*/
+/*            vertical-align: middle;*/
+/*        }*/
 
-            footer a:hover,
-            footer a:focus,
-            footer a i:hover,
-            footer a i:focus {
-                color: var(--offWhite);
-                font-size: 2.5rem;
-                text-shadow: 1px 1px 0px var(--offBlack);
-            }
+/*            footer a:hover,*/
+/*            footer a:focus,*/
+/*            footer a i:hover,*/
+/*            footer a i:focus {*/
+/*                color: var(--offWhite);*/
+/*                font-size: 2.5rem;*/
+/*                text-shadow: 1px 1px 0px var(--offBlack);*/
+/*            }*/
 
-    .mobile-hide {
-        display: block;
-    }
+/*    .mobile-hide {*/
+/*        display: block;*/
+/*    }*/
 
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        background-color: var(--offWhite);
-        justify-content: center;
-    }
+/*    .flex-container {*/
+/*        display: flex;*/
+/*        flex-wrap: wrap;*/
+/*        background-color: var(--offWhite);*/
+/*        justify-content: center;*/
+/*    }*/
 
-    .content {
-        min-width: 60%;
-    }
+/*    .content {*/
+/*        min-width: 60%;*/
+/*    }*/
 
-    .hero {
-        padding-top: 25vh;
-    }
+/*    .hero {*/
+/*        padding-top: 25vh;*/
+/*    }*/
 
-    .mason-gallery img {
-        max-width: 60vw;
-        height: 300px;
-        object-fit: cover;
-    }
-}
+/*    .mason-gallery img {*/
+/*        max-width: 60vw;*/
+/*        height: 300px;*/
+/*        object-fit: cover;*/
+/*    }*/
+/*}*/
 
-/* Desktop media query */
-@media (min-width: 1200px) {
-    header nav ul {
-        padding-right: 10%;
-    }
+/*!* Desktop media query *!*/
+/*@media (min-width: 1200px) {*/
+/*    header nav ul {*/
+/*        padding-right: 10%;*/
+/*    }*/
 
-    header .logo {
-        padding-left: 10%;
-        font-size: 3.5rem;
-    }
+/*    header .logo {*/
+/*        padding-left: 10%;*/
+/*        font-size: 3.5rem;*/
+/*    }*/
 
-    footer {
-        justify-content: center;
-    }
+/*    footer {*/
+/*        justify-content: center;*/
+/*    }*/
 
-    .wrapper {
-        background-color: var(--offWhite);
-        padding: 30px 60px;
-    }
+/*    .wrapper {*/
+/*        background-color: var(--offWhite);*/
+/*        padding: 30px 60px;*/
+/*    }*/
 
-    #header_banner h1 {
-        font-size: 4rem;
-        padding-left: 12vw;
-    }
+/*    #header_banner h1 {*/
+/*        font-size: 4rem;*/
+/*        padding-left: 12vw;*/
+/*    }*/
 
-    .hero h1 {
-        font-size: 5rem;
-        max-width: 400px;
-    }
+/*    .hero h1 {*/
+/*        font-size: 5rem;*/
+/*        max-width: 400px;*/
+/*    }*/
 
-    .mason-gallery a img {
-        width: 500px;
-        max-height: 400px;
-        object-fit: cover;
-    }
-}
+/*    .mason-gallery a img {*/
+/*        width: 500px;*/
+/*        max-height: 400px;*/
+/*        object-fit: cover;*/
+/*    }*/
+/*}*/
