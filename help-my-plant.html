@@ -7,8 +7,8 @@
     <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="coffeeStylesheet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style-coffee.css" />
+    <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
     <!-- SurveyJS imports -->
     <link href="https://unpkg.com/survey-core/defaultV2.min.css" type="text/css" rel="stylesheet">
@@ -17,10 +17,26 @@
 
     <script type="text/javascript" src="javascript/diagnosisMain.js"></script>
 
-    <title>BeGONEia - Plant Diagnosis</title>
+    <title>BeGONEia - Help My Plant!</title>
 
 </head>
 <body>
+<div class="wrapper">
+    <div id="overlayMenu">
+        <button type="button" id="close-button" onclick="menuToggle()">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <ul class="navigation-links">
+            <li><a href="index.html"  aria-current="page">
+                <i class="fa-solid fa-house"></i> Home</a></li>
+            <li class="active"><a href="help-my-plant.html">
+                <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
+            <li><a href="plant-database.html">
+                <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
+            <li><a href="ailment-database.html">
+                <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
+        </ul>
+    </div>
     <header>
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">
@@ -28,18 +44,16 @@
             <button type="button" id="menu-button" onclick="menuToggle()">
                 <i class="fa fa-bars" aria-label="Menu Button"></i>
             </button>
-            <ul id="navigationLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="diagnosis-quiz.html" class="active" aria-current="page">Diagnositic Quiz</a></li>
-                <li><a href="plant-database.html">Plant Database</a></li>
-                <li><a href="ailment-database.html">Ailment Database</a></li>
-            </ul>
         </nav>
     </header>
     <main>
-        <h1>Temp H1</h1>
-        <h2>Temp H2</h2>
-        <h3>Temp H3</h3>
+        <section id="quiz-hero">
+            <h1>Help My Plant!</h1>
+        </section>
+        <section class="content" id="main-content">
+            <p>The following is a work in progress. The order and content of the questions are subject to change.</p>
+        </section>
+
         <div id="surveyContainer"></div>
     </main>
 
@@ -50,20 +64,14 @@
                 Back to Top
             </a><br>
         </div>
-        <ul>
-            <li><a href="#"><i class="fa fa-facebook-square" aria-label="Facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter-square" aria-label="Twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-tumblr-square" aria-label="Tumblr"></i></a></li>
-            <li><a href="#"><i class="fa fa-pinterest-square" aria-label="Pinterest"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube-square" aria-label="YouTube"></i></a></li>
-        </ul>
     </footer>
     <script>
         function menuToggle() {
-            var x = document.getElementById("navigationLinks");
+            var x = document.getElementById("overlayMenu");
             if (x.style.display === "block") { x.style.display = "none"; }
             else { x.style.display = "block"; }
         }
     </script>
+</div>
 </body>
 </html>

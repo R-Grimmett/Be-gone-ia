@@ -16,7 +16,7 @@
     --terracotta: #BF4904;
     --warmBrown: #5C2513;
     --offBlack: #121206;
-    --overlayBackground: rgba(18, 18, 6, 0.5);
+    --overlayBackground: rgba(18, 18, 6, 0.8);
     /* Font Variables*/
     --titleFont: "Gamja Flower", sans-serif;
     --headerFont: "Mali", cursive;
@@ -66,7 +66,7 @@ h1,
 h2 {
     text-align: center;
     color: var(--warmBrown);
-    font-size: 3rem;
+    font-size: 4rem;
     margin-top: 1rem;
 }
 
@@ -156,7 +156,7 @@ header {
     }
 
     #overlayMenu li {
-        font-size: 2rem;
+        font-size: 1.5rem;
         background: var(--deepOlive);
         border: solid var(--mutedGreen);
         border-width: 0.25rem 0 0.25rem 0.25rem;
@@ -167,6 +167,13 @@ header {
         margin-top: 1rem;
         margin-bottom: 1rem;
         margin-left: 20vw;
+        transition: 0.5s;
+    }
+    #overlayMenu li:hover {
+        font-size: 2rem;
+        background: var(--warmBrown);
+        border: solid var(--terracotta);
+        box-shadow: -0.5vw 1vh 0 var(--terracotta);
     }
 
     #overlayMenu a {
@@ -188,16 +195,22 @@ header {
                      -1px -1px 0 var(--deepOlive);
     }
 
-#overlayMenu #close-button {
-    font-size: 4rem;
-    border: none;
-    color: var(--offWhite);
-    border-radius: 15%;
-    margin-left: 75vw;
-    margin-top: 3vh;
-    transition: 0.5s;
-    background: var(--offBlack);
-}
+    #overlayMenu #close-button {
+        font-size: 4rem;
+        border: none;
+        color: var(--offWhite);
+        border-radius: 15%;
+        margin-left: 75vw;
+        margin-top: 3vh;
+        transition: 0.5s;
+        background-color: transparent;
+    }
+    #overlayMenu #close-button:hover {
+        font-size: 5rem;
+        color: var(--terracotta);
+        text-shadow: -0.2rem 0.1rem 0px var(--warmBrown);
+        border-radius: 15px;
+    }
 
 /* BREADCRUMBS */
 .breadcrumb {
@@ -388,6 +401,23 @@ main {
         margin-top: 1vh;
         text-decoration: none;
     }
+
+/* Class used for the focal styling on help-my-plant.html */
+#quiz-hero {
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+    background-image: url(images/gradient-orange.jpg);
+    background-size: cover;
+    margin-bottom: 5vh;
+}
+
+#quiz-hero h1 {
+    color: var(--offWhite);
+    text-shadow: 1px 1px 0 var(--warmBrown),
+                 -1px -1px 0 var(--warmBrown),
+                 -1px 1px 0 var(--warmBrown),
+                 1px -1px 0 var(--warmBrown);
+}
 
 /* Class used to organize a gallery of images on the pages for each individual location. */
 .mason-gallery {
