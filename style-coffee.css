@@ -26,8 +26,8 @@
 
 /*Setting default styles for ease of editing*/
 * {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -110,7 +110,7 @@ header {
     transition: 0.5s;
     text-decoration: none;
     padding: 1rem 1.5rem;
-    text-shadow: -0.2rem 0.1rem 0px var(--terracotta);
+    text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
 }
 
 #menu-button {
@@ -127,7 +127,7 @@ header {
 #menu-button:hover {
     background: var(--offWhite);
     color: var(--warmBrown);
-    text-shadow: -0.2rem 0.1rem 0px var(--terracotta);
+    text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
     border-radius: 15px;
 }
 /* MENU OVERLAY */
@@ -209,7 +209,7 @@ header {
     #overlayMenu #close-button:hover {
         font-size: 5rem;
         color: var(--terracotta);
-        text-shadow: -0.2rem 0.1rem 0px var(--warmBrown);
+        text-shadow: -0.2rem 0.1rem 0 var(--warmBrown);
         border-radius: 15px;
     }
 
@@ -225,7 +225,7 @@ header {
         font-family: var(--bodyFont);
         font-size: 1rem;
         text-align: left;
-        margin-top: 0%;
+        margin-top: 0;
     }
 
     .breadcrumb ul {
@@ -324,7 +324,7 @@ main {
 }
 
 .content {
-    flex: 1 1 0%;
+    flex: 1 1 0;
     background: var(--offWhite);
 }
 
@@ -380,10 +380,10 @@ main {
         margin-left: auto;
         margin-right: auto;
         /* Simulating a stroke with text-shadow to have it appear outside the text. */
-        text-shadow: 2px 2px 0px var(--deepOlive),
-                     -2px 2px 0px var(--deepOlive),
-                     2px -2px 0px var(--deepOlive),
-                     -2px -2px 0px var(--deepOlive);
+        text-shadow: 2px 2px 0 var(--deepOlive),
+                     -2px 2px 0 var(--deepOlive),
+                     2px -2px 0 var(--deepOlive),
+                     -2px -2px 0 var(--deepOlive);
     }
 
     .hero h1{
