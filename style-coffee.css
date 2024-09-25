@@ -12,6 +12,7 @@
     --deepOlive: #435229;
     --mutedGreen: #898C37;
     --offWhite: #E5DDD2;
+    --overlayWhite: rgba(229, 221, 210, 0.5);
     --salmon: #F2AE72;
     --terracotta: #BF4904;
     --warmBrown: #5C2513;
@@ -66,7 +67,7 @@ h1,
 h2 {
     text-align: center;
     color: var(--warmBrown);
-    font-size: 4rem;
+    font-size: 3rem;
     margin-top: 1rem;
 }
 
@@ -409,6 +410,9 @@ main {
     background-image: url(images/gradient-orange.jpg);
     background-size: cover;
     margin-bottom: 5vh;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 #quiz-hero h1 {
@@ -417,6 +421,13 @@ main {
                  -1px -1px 0 var(--warmBrown),
                  -1px 1px 0 var(--warmBrown),
                  1px -1px 0 var(--warmBrown);
+}
+
+#quiz-hero p {
+    background-color: var(--overlayWhite);
+    padding: 1vw;
+    border-radius: 10px;
+    text-align: center;
 }
 
 /* Class used to organize a gallery of images on the pages for each individual location. */

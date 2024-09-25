@@ -8,12 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style-coffee.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
     <title>BeGONEia - Plant Database</title>
 
 </head>
 <body>
+<div class="wrapper">
+    <div id="overlayMenu">
+        <button type="button" id="close-button" onclick="menuToggle()">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <ul class="navigation-links">
+            <li><a href="index.html"  aria-current="page">
+                <i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="help-my-plant.html">
+                <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
+            <li class="active"><a href="plant-database.html">
+                <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
+            <li><a href="problem-categories.html">
+                <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
+        </ul>
+    </div>
     <header>
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">
@@ -21,12 +37,6 @@
             <button type="button" id="menu-button" onclick="menuToggle()">
                 <i class="fa fa-bars" aria-label="Menu Button"></i>
             </button>
-            <ul id="navigationLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="help-my-plant.html">Diagnositic Quiz</a></li>
-                <li><a href="plant-database.html" class="active" aria-current="page">Plant Database</a></li>
-                <li><a href="ailment-database.html">Ailment Database</a></li>
-            </ul>
         </nav>
     </header>
     <main>
@@ -45,20 +55,14 @@
                 Back to Top
             </a><br>
         </div>
-        <ul>
-            <li><a href="#"><i class="fa fa-facebook-square" aria-label="Facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter-square" aria-label="Twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-tumblr-square" aria-label="Tumblr"></i></a></li>
-            <li><a href="#"><i class="fa fa-pinterest-square" aria-label="Pinterest"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube-square" aria-label="YouTube"></i></a></li>
-        </ul>
     </footer>
     <script>
         function menuToggle() {
-            var x = document.getElementById("navigationLinks");
+            var x = document.getElementById("overlayMenu");
             if (x.style.display === "block") { x.style.display = "none"; }
             else { x.style.display = "block"; }
         }
     </script>
+</div>
 </body>
 </html>
