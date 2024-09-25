@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -7,17 +8,10 @@
     <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style-coffee.css" />
+    <link rel="stylesheet" href="../css/style-coffee.css" />
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
-    <!-- SurveyJS imports -->
-    <link href="https://unpkg.com/survey-core/defaultV2.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/survey-core/survey.core.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/survey-js-ui/survey-js-ui.min.js"></script>
-
-    <script type="text/javascript" src="javascript/diagnosisMain.js"></script>
-
-    <title>BeGONEia - Help My Plant!</title>
+    <title>BeGONEia</title>
 
 </head>
 <body>
@@ -27,9 +21,9 @@
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
         <ul class="navigation-links">
-            <li><a href="index.html"  aria-current="page">
+            <li class="active"><a href="index.html"  aria-current="page">
                 <i class="fa-solid fa-house"></i> Home</a></li>
-            <li class="active"><a href="help-my-plant.html">
+            <li><a href="help-my-plant.html">
                 <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
             <li><a href="plant-database.html">
                 <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
@@ -42,22 +36,24 @@
         <nav aria-label="Main">
             <a href="index.html" class="logo" id="top">BeGONEia</a>
             <button type="button" id="menu-button" onclick="menuToggle()">
-                <i class="fa fa-bars" aria-label="Menu Button"></i>
+                <i class="fa-solid fa-bars" aria-label="Menu Button"></i>
             </button>
         </nav>
     </header>
-    <main>
-        <section id="quiz-hero">
-            <h1 id="main-content">Help My Plant!</h1>
-            <p>The following is a work in progress. The order and content of the questions are subject to change.</p>
+    <main id="main-content">
+        <section class="hero">
+            <h1>Wondering What's Affecting Your Houseplant?</h1>
+            <h2>Answer our diagnostic questions and find out today!</h2>
+            <a href="help-my-plant.html">
+                Take Me There
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
         </section>
-        <div id="surveyContainer"></div>
     </main>
-
     <footer>
         <div>
             <a href="#top">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
                 Back to Top
             </a><br>
         </div>

@@ -1,0 +1,19 @@
+{
+  "name": "be-gone-ia",
+  "version": "1.0.0",
+  "description": "Houseplant Diagnosis Website and Utility",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Rachael Grimmett",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "uuid": "^10.0.0"
+  }
+}

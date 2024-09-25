@@ -142,7 +142,7 @@ header {
     right: 0;
     bottom: 0;
     background: var(--overlayBackground);
-    background-image: url(images/background-leaf.svg);
+    background-image: url(../img/background/background-leaf.svg);
     background-size: 20%;
     z-index: 2; /* Ensuring that the overlay is OVER the content */
 }
@@ -366,7 +366,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-image: url(images/background-hero.jpg);
+    background-image: url(../img/background/background-hero.jpg);
     background-size: cover;
     background-position: center center;
     min-height: 50vh;
@@ -407,7 +407,7 @@ main {
 #quiz-hero {
     padding-top: 10vh;
     padding-bottom: 5vh;
-    background-image: url(images/gradient-orange.jpg);
+    background-image: url(../img/background/gradient-orange.jpg);
     background-size: cover;
     margin-bottom: 5vh;
     border-radius: 0 0 10px 10px;
@@ -430,7 +430,7 @@ main {
     text-align: center;
 }
 
-/* Class used to organize a gallery of images on the pages for each individual location. */
+/* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {
     display: flex;
     justify-content: center;
