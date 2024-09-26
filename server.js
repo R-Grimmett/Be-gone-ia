@@ -1,13 +1,21 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
 const corsOptions = require("./config/corsOptions");
 
+const mongoose = require('mongoose');
+const connectDB = require('./config/dbCon');
+
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3000;
+
+// connect to mongoDB
+connectDB();
 
 // custom middleware logger
 app.use(logger);
@@ -37,4 +45,7 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+mongoose.connection.once('open', () => {
+    console.log('MongoDB connection established');
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+});
