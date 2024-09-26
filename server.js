@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+const corsOptions = require("./config/corsOptions");
 
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
@@ -11,19 +12,6 @@ const PORT = process.env.PORT || 3000;
 // custom middleware logger
 app.use(logger);
 
-// Cross-Origin Resource Sharing
-// TODO: Remove dev whitelist options for release
-const whitelist = ['https://www.SITENAME.com', 'http://127.0.0.1:5500', 'http://localhost:3000'];
-const corsOptions = {
-    origin: (origin, callback) => {
-        if(whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error(`Origin not allowed by CORS: ${origin}`));
-        }
-    },
-    optionsSuccessStatus: 200
-}
 app.use(cors(corsOptions));
 
 // Middleware for handling specific types of data
