@@ -10,12 +10,12 @@ router.get('^/$|/help-my-plant(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'help-my-plant.html'));
 });
 
-router.get('^/$|/plant(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'plant.html'));
+router.get('^/$|/plant-database(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'plant-database.html'));
 });
 
 router.get('^/$|/problem-database(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'plant.html'));
+    res.sendFile(path.join(__dirname, '..', 'views', 'problem-database.html'));
 });
 
 module.exports = router;

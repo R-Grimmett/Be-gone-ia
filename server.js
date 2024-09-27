@@ -27,14 +27,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Serve Static Files
-app.use('/problem-database', express.static(path.join(__dirname, '/public')));
 app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
+app.use('/problems', express.static(path.join(__dirname, '/public')));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 
 // Routing
-app.use('/problems', require('./routes/problems'));
 app.use('/', require('./routes/root'));
+app.use('/problems', require('./routes/problems'));
+
 
 app.all('*', (req, res) => {
     res.status(404);
