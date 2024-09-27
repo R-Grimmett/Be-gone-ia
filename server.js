@@ -28,6 +28,7 @@ app.use(express.json());
 
 // Serve Static Files
 app.use('/problem-database', express.static(path.join(__dirname, '/public')));
+app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 
