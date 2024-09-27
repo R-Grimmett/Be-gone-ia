@@ -42,7 +42,7 @@ body {
     /* TODO: Adjust these for final version */
     margin: auto;
     max-width: 700px; /* 700px would be the size for changing to tablet, we're focusing on mobile for now */
-    background-color: var(--offBlack);
+    background-color: var(--offWhite);
 }
 
 
@@ -444,26 +444,26 @@ main {
     flex-direction: column;
 }
 
-#quiz-hero h1 {
-    color: var(--offWhite);
-    text-shadow: 1px 1px 0 var(--warmBrown),
-                 -1px -1px 0 var(--warmBrown),
-                 -1px 1px 0 var(--warmBrown),
-                 1px -1px 0 var(--warmBrown);
-}
+    #quiz-hero h1 {
+        color: var(--offWhite);
+        text-shadow: 1px 1px 0 var(--warmBrown),
+                     -1px -1px 0 var(--warmBrown),
+                     -1px 1px 0 var(--warmBrown),
+                     1px -1px 0 var(--warmBrown);
+    }
 
-#quiz-hero p {
-    background-color: var(--overlayWhite);
-    padding: 1vw;
-    border-radius: 10px;
-    text-align: center;
-}
+    #quiz-hero p {
+        background-color: var(--overlayWhite);
+        padding: 1vw;
+        border-radius: 10px;
+        text-align: center;
+    }
 
-/* Class used for the hero styling on the database pages */
-
+/* ----- DATABASE SPECIFIC STYLING -----  */
+/* ID used for the hero styling on the database pages */
 #database-hero {
-    padding-top: 10vh;
-    padding-bottom: 5vh;
+    padding-top: 5vh;
+    padding-bottom: 2vh;
     background-image: url(../img/background/gradient-green.jpg);
     background-size: cover;
     border-radius: 0 0 10px 10px;
@@ -471,28 +471,54 @@ main {
     flex-direction: column;
 }
 
-#database-hero h1 {
-    font-size: 5rem;
-    color: var(--offWhite);
-    text-shadow: 1px 1px 0 var(--deepOlive),
-    -1px -1px 0 var(--deepOlive),
-    -1px 1px 0 var(--deepOlive),
-    1px -1px 0 var(--deepOlive);
-}
+    #database-hero h1 {
+        padding-top: 2vh;
+        font-size: 5rem;
+        color: var(--offWhite);
+        text-shadow: 1px 1px 0 var(--deepOlive),
+        -1px -1px 0 var(--deepOlive),
+        -1px 1px 0 var(--deepOlive),
+        1px -1px 0 var(--deepOlive);
+    }
 
-#database-hero p {
-    background-color: var(--overlayWhite);
-    padding: 1vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    border-radius: 10px;
-    text-align: center;
-}
+    #database-hero p {
+        background-color: var(--overlayWhite);
+        padding: 1vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        border-radius: 10px;
+        text-align: center;
+    }
 
-#database-hero .back a {
-    color: var(--offWhite);
-    background-color: var(--deepOlive);
-    border: 5px solid var(--mutedGreen);
+    #database-hero .back {
+        font-size: 1rem;
+        color: var(--offWhite);
+        background-color: var(--deepOlive);
+        border: 5px solid var(--mutedGreen);
+        box-shadow: -5px 5px 0 var(--mutedGreen);
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin-left: 1rem;
+        margin-right: auto;
+        text-decoration: none;
+        transition: 0.5s
+    }
+
+        #database-hero .back:hover {
+            font-size: 1.5rem;
+            border-color: var(--offWhite);
+            box-shadow: -5px 5px 0 var(--offWhite);
+        }
+
+/* ID used for the div holding the database results */
+#database-results {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 1vh;
+    padding: 1vh;
+    background-color: var(--mutedGreen);
     border-radius: 10px;
 }
 

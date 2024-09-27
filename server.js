@@ -26,16 +26,13 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Serve Static Files
-app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
-app.use('/problems', express.static(path.join(__dirname, '/public')));
+// TODO: figure out why subdirrectories aren't working for loading views
 app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/problems', express.static(path.join(__dirname, '/public')));
+app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
 
-
-// Routing
 app.use('/', require('./routes/root'));
 app.use('/problems', require('./routes/problems'));
-
 
 app.all('*', (req, res) => {
     res.status(404);
