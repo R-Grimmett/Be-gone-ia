@@ -14,8 +14,8 @@ router.get('^/$|/plant(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'plant.html'));
 });
 
-router.get('^/$|/problems(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'problems.html'));
+router.get('^/$|/problem-database(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'plant.html'));
 });
 
 module.exports = router;
