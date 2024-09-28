@@ -17,7 +17,11 @@ function loadAll() {
             for(obj in dbPlants.response) {
                 const stringData = JSON.stringify(dbPlants.response[obj]);
                 const data = JSON.parse(stringData);
-                addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`);
+                if(data.common[0] !== undefined && data.common[0] !== "") {
+                    addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`);
+                } else {
+                    addPlantEntry(data.imgSrc, null,`${data.genus} ${data.species}`);
+                }
             }
         }
         else if(dbPlants.status === 200 && dbPlants.response.length === 0) { dbNotice(`<h2>Sorry!</h2><p>We couldn't find any plants.</p>`); }
@@ -25,10 +29,14 @@ function loadAll() {
     }
 }
 
+function loadSearch() {
+    const dbPlants = new XMLHttpRequest();
+}
+
 function addPlantEntry(imgSrc, commonName, botanicalName) {
     let img, name;
     let databaseResults = document.getElementById(parentDivName);
-    let plantEntry = document.createElement("div");
+    let plantEntry = document.createElement("li");
     plantEntry.classList.add('db-entry');
 
     if(imgSrc != null && imgSrc !== "") { img = `<img src=${imgSrc}>`; }
@@ -44,8 +52,10 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
 
 function dbNotice(message) {
     let databaseResults = document.getElementById(parentDivName);
-    let nothingFound = document.createElement("div");
+    let nothingFound = document.createElement("li");
     nothingFound.classList.add('db-notice');
     nothingFound.innerHTML = message;
     databaseResults.append(nothingFound);
 }
+
+function showFilters() {}

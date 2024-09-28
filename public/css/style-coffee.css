@@ -510,7 +510,41 @@ main {
             box-shadow: -5px 5px 0 var(--offWhite);
         }
 
-/* ID used for the div holding the database results */
+/* Styling the search and filter bars */
+.db-search {
+    display: flex;
+    flex-direction: column;
+}
+.db-search section {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    background-color: white;
+    border: 5px solid var(--mutedGreen);
+    box-shadow: -5px 8px 0 var(--deepOlive);
+    border-radius: 15px;
+}
+.db-search label {
+    display: flex;
+    flex-grow: 1;
+}
+
+.db-search label input {
+    border: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--deepOlive);
+}
+
+.db-search button {
+    background-color: white;
+    border: 0 none;
+    font-size: 2rem;
+    color: var(--deepOlive);
+}
+
+/* ID used for the ul holding the database results */
 #database-results {
     min-height: 50vh;
     display: flex;
@@ -533,6 +567,7 @@ main {
     box-shadow: -5px 3px 0 var(--terracotta);
     margin: 0.5rem;
     padding: 0.5rem;
+    list-style: none;
 }
 
     .db-entry img {
@@ -567,6 +602,24 @@ main {
         margin-bottom: auto;
         margin-left: 0.5rem;
         margin-right: 1rem;
+    }
+
+.db-notice {
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--deepOlive);
+    border-radius: 10px;
+    color: var(--offWhite);
+    text-align: center;
+}
+
+    .db-notice h2 {
+        color: var(--offWhite);
+    }
+
+    .db-notice p {
+        font-style: italic;
     }
 
 /* Class used to organize a gallery of img on the pages for each individual location. */
