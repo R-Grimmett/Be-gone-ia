@@ -1,0 +1,43 @@
+### GET request
+GET http://localhost:3000/plants
+
+### POST request
+POST http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{ "family": "Araceae",
+  "genus": "Monstera",
+  "species": "deliciosa",
+  "common": ["Swiss Cheese Plant", "Fruit Salad Plant", "Ceriman"]
+}
+
+### PUT request
+PUT http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f756622d158ddbe8849c42",
+  "genus": "test"
+}
+
+### DELETE request
+DELETE http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f756622d158ddbe8849c42"
+}
+
+### GET a single Plant
+GET http://localhost:3000/plants/66f756622d158ddbe8849c42
+Accept: application/json
+Content-Type: application/json
+
+{
+  "_id": "66f756622d158ddbe8849c42"
+}
+
+###

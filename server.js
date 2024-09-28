@@ -28,11 +28,12 @@ app.use(express.json());
 
 // TODO: figure out why subdirrectories aren't working for loading views
 app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/plants', express.static(path.join(__dirname, '/public')));
 app.use('/problems', express.static(path.join(__dirname, '/public')));
 app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
 
 app.use('/', require('./routes/root'));
-app.use('/problems', require('./routes/problems'));
+app.use('/plants', require('./routes/api/plants'));
 
 app.all('*', (req, res) => {
     res.status(404);

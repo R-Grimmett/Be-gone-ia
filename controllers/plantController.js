@@ -1,7 +1,7 @@
 const Plant = require('../model/Plants');
 
 const createPlant = async (req, res) => {
-    if (!req.body?.genus || !req.body?.species) {
+    if (!req?.body?.genus || !req?.body?.species) {
         return res.status(400).json({ 'message' : 'Plant Genus and Species are required.'});
     }
 
