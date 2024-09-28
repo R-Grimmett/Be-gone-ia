@@ -6,10 +6,19 @@ POST http://localhost:3000/plants
 Accept: application/json
 Content-Type: application/json
 
-{ "family": "Araceae",
+{
+  "imgSrc": "img/PlantDB/monstera-deliciosa.jpg",
+  "family": "Araceae",
   "genus": "Monstera",
   "species": "deliciosa",
-  "common": ["Swiss Cheese Plant", "Fruit Salad Plant", "Ceriman"]
+  "common": ["Swiss Cheese Plant", "Fruit Salad Plant", "Ceriman"],
+  "water": "0",
+  "light": "0",
+  "humidity": "0",
+  "tempLow": "0",
+  "tempHigh": "0",
+  "tags": ["testing"],
+  "text": "Photo by Huy Phan: https://www.pexels.com/photo/close-up-of-green-leaf-2947106/"
 }
 
 ### PUT request
@@ -28,7 +37,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": "66f756622d158ddbe8849c42"
+  "id": "66f79b75af3163d38c11f84e"
 }
 
 ### GET a single Plant

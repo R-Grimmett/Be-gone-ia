@@ -7,10 +7,21 @@ const createPlant = async (req, res) => {
 
     try {
         const result = await Plant.create({
+            imgSrc: req.body.imgSrc,
+
             family: req.body.family,
             genus: req.body.genus,
             species: req.body.species,
-            common: req.body.common
+            common: req.body.common,
+
+            water: req.body.water,
+            light: req.body.light,
+            humidity: req.body.humidity,
+            tempLow: req.body.tempLow,
+            tempHigh: req.body.tempHigh,
+
+            tags: req.body.tags,
+            text: req.body.text
         });
         res.status(201).json(result);
     } catch (err) {
@@ -39,10 +50,21 @@ const updatePlant = async (req, res) => {
         return res.status(204).json({ 'message': `Plant ${req.body.id} has no matches.` });
     }
 
+    if(req.body?.imgSrc) plant.imgSrc = req.body.imgSrc;
+
     if(req.body?.family) plant.family = req.body.family;
     if(req.body?.genus) plant.genus = req.body.genus;
     if(req.body?.species) plant.species = req.body.species;
     if(req.body?.common) plant.common = req.body.common;
+
+    if(req.body?.water) plant.water = req.body.water;
+    if(req.body?.light) plant.light = req.body.light;
+    if(req.body?.humidity) plant.humidity = req.body.humidity;
+    if(req.body?.tempLow) plant.tempLow = req.body.tempLow;
+    if(req.body?.tempHigh) plant.tempHigh = req.body.tempHigh;
+
+    if(req.body?.tags) plant.tags = req.body.tags;
+    if(req.body?.text) plant.text = req.body.text;
 
     const result = await plant.save();
     res.json(result);
