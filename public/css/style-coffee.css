@@ -42,7 +42,7 @@ body {
     /* TODO: Adjust these for final version */
     margin: auto;
     max-width: 700px; /* 700px would be the size for changing to tablet, we're focusing on mobile for now */
-    background-color: var(--offBlack);
+    background-color: var(--offWhite);
 }
 
 
@@ -142,11 +142,10 @@ header {
     right: 0;
     bottom: 0;
     background: var(--overlayBackground);
-    background-image: url(images/background-leaf.svg);
+    background-image: url(../img/background/background-leaf.svg);
     background-size: 20%;
     z-index: 2; /* Ensuring that the overlay is OVER the content */
 }
-
     #overlayMenu ul{
         padding-top: 10vh;
         padding-bottom: 10vh;
@@ -155,7 +154,6 @@ header {
         flex-direction: column;
         justify-content: space-evenly;
     }
-
     #overlayMenu li {
         font-size: 1.5rem;
         background: var(--deepOlive);
@@ -176,26 +174,22 @@ header {
         border: solid var(--terracotta);
         box-shadow: -0.5vw 1vh 0 var(--terracotta);
     }
-
     #overlayMenu a {
         text-decoration: none;
         color: var(--offWhite);
     }
-
     #overlayMenu .active {
         background: var(--mutedGreen);
         border: solid var(--deepOlive);
         border-width: 0.25rem 0 0.25rem 0.25rem;
         box-shadow: -0.5vw 1vh 0 var(--deepOlive);
     }
-
     #overlayMenu .active a {
         text-shadow: 1px 1px 0 var(--deepOlive),
                      -1px 1px 0 var(--deepOlive),
                      1px -1px 0 var(--deepOlive),
                      -1px -1px 0 var(--deepOlive);
     }
-
     #overlayMenu #close-button {
         font-size: 4rem;
         border: none;
@@ -306,6 +300,7 @@ footer {
 /* MAIN CONTENT CSS */
 main {
     background-color: var(--offWhite);
+    /*background-image: url(../img/background/autumn.svg);*/
 }
 
 /* Helper class to allow entire sections to act as a link. */
@@ -348,6 +343,40 @@ main {
                 font-weight: bold;
             }
 
+/* Category Selection Class */
+.categories ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem;
+    min-height: 50vh;
+}
+
+    .categories li {
+        list-style: none;
+        background-color: var(--mutedGreen);
+        border: 5px solid var(--deepOlive);
+        border-radius: 10px;
+        box-shadow: -5px 8px 0 var(--deepOlive);
+        margin: 1rem;
+        transition: 0.5s;
+    }
+        .categories li:hover {
+            background-color: var(--deepOlive);
+            border: 5px solid var(--mutedGreen);
+            box-shadow: -5px 8px 0 var(--mutedGreen);
+        }
+
+    .categories a {
+        text-decoration: none;
+        padding: 0.5rem;
+    }
+
+        .categories a h2 {
+            color: var(--offWhite);
+            -webkit-text-stroke: 2px var(--deepOlive);
+        }
+
 /* Class used to restrict the size of specific elements */
 .sidebar {
     flex: 0 1 350px;
@@ -360,13 +389,13 @@ main {
     }
 
 /* .HERO STYLING  */
-/* Class used for the focal image on index.html */
+/* Class used for the focal image on plant.html */
 .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-image: url(images/background-hero.jpg);
+    background-image: url(../img/background/background-hero.jpg);
     background-size: cover;
     background-position: center center;
     min-height: 50vh;
@@ -407,7 +436,7 @@ main {
 #quiz-hero {
     padding-top: 10vh;
     padding-bottom: 5vh;
-    background-image: url(images/gradient-orange.jpg);
+    background-image: url(../img/background/gradient-orange.jpg);
     background-size: cover;
     margin-bottom: 5vh;
     border-radius: 0 0 10px 10px;
@@ -415,22 +444,185 @@ main {
     flex-direction: column;
 }
 
-#quiz-hero h1 {
-    color: var(--offWhite);
-    text-shadow: 1px 1px 0 var(--warmBrown),
-                 -1px -1px 0 var(--warmBrown),
-                 -1px 1px 0 var(--warmBrown),
-                 1px -1px 0 var(--warmBrown);
+    #quiz-hero h1 {
+        color: var(--offWhite);
+        text-shadow: 1px 1px 0 var(--warmBrown),
+                     -1px -1px 0 var(--warmBrown),
+                     -1px 1px 0 var(--warmBrown),
+                     1px -1px 0 var(--warmBrown);
+    }
+
+    #quiz-hero p {
+        background-color: var(--overlayWhite);
+        padding: 1vw;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+/* ----- DATABASE SPECIFIC STYLING -----  */
+/* ID used for the hero styling on the database pages */
+#database-hero {
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+    background-image: url(../img/background/gradient-green.jpg);
+    background-size: cover;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-#quiz-hero p {
-    background-color: var(--overlayWhite);
-    padding: 1vw;
+    #database-hero h1 {
+        padding-top: 2vh;
+        font-size: 5rem;
+        color: var(--offWhite);
+        text-shadow: 1px 1px 0 var(--deepOlive),
+        -1px -1px 0 var(--deepOlive),
+        -1px 1px 0 var(--deepOlive),
+        1px -1px 0 var(--deepOlive);
+    }
+
+    #database-hero p {
+        background-color: var(--overlayWhite);
+        padding: 1vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    #database-hero .back {
+        font-size: 1rem;
+        color: var(--offWhite);
+        background-color: var(--deepOlive);
+        border: 5px solid var(--mutedGreen);
+        box-shadow: -5px 5px 0 var(--mutedGreen);
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin-left: 1rem;
+        margin-right: auto;
+        text-decoration: none;
+        transition: 0.5s
+    }
+
+        #database-hero .back:hover {
+            font-size: 1.5rem;
+            border-color: var(--offWhite);
+            box-shadow: -5px 5px 0 var(--offWhite);
+        }
+
+/* Styling the search and filter bars */
+.db-search {
+    display: flex;
+    flex-direction: column;
+}
+.db-search section {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    background-color: white;
+    border: 5px solid var(--mutedGreen);
+    box-shadow: -5px 8px 0 var(--deepOlive);
+    border-radius: 15px;
+}
+.db-search label {
+    display: flex;
+    flex-grow: 1;
+}
+
+.db-search label input {
+    border: none;
+    flex-grow: 1;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--deepOlive);
+}
+
+.db-search button {
+    background-color: white;
+    border: 0 none;
+    font-size: 2rem;
+    color: var(--deepOlive);
+}
+
+/* ID used for the ul holding the database results */
+#database-results {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 1vh;
+    padding: 1vh;
+    background-color: var(--mutedGreen);
     border-radius: 10px;
+}
+
+.db-entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-content: space-evenly;
+    background-color: var(--offWhite);
+    border-radius: 10px;
+    border: 5px solid var(--salmon);
+    box-shadow: -5px 3px 0 var(--terracotta);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    list-style: none;
+}
+
+    .db-entry img {
+        max-width: 15vh;
+        max-height: 15vh;
+        border-radius: 10px;
+        border: 5px solid var(--salmon);
+        margin: 1rem;
+    }
+
+    .db-entry div {
+        display: flex;
+        flex-grow: 1;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 0.5rem;
+    }
+
+    .db-entry h2 {
+        font-size: 2rem;
+    }
+
+    .db-entry p {
+        font-style: italic;
+    }
+
+    .db-entry i {
+        color: var(--terracotta);
+        font-size: 3rem;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 0.5rem;
+        margin-right: 1rem;
+    }
+
+.db-notice {
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--deepOlive);
+    border-radius: 10px;
+    color: var(--offWhite);
     text-align: center;
 }
 
-/* Class used to organize a gallery of images on the pages for each individual location. */
+    .db-notice h2 {
+        color: var(--offWhite);
+    }
+
+    .db-notice p {
+        font-style: italic;
+    }
+
+/* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {
     display: flex;
     justify-content: center;

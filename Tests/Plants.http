@@ -1,0 +1,52 @@
+### GET request
+GET http://localhost:3000/plants
+
+### POST request
+POST http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{
+  "imgSrc": "",
+  "family": "Araceae",
+  "genus": "Epipremnum",
+  "species": "aureum",
+  "common": ["Devil's Ivy", "Golden Pothos", "Silver Vine", "Scindapsus", "Ceylon Creeper"],
+  "water": "0",
+  "light": "0",
+  "humidity": "0",
+  "tempLow": "0",
+  "tempHigh": "0",
+  "tags": ["testing"],
+  "text": ""
+}
+
+### PUT request
+PUT http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f756622d158ddbe8849c42",
+  "genus": "test"
+}
+
+### DELETE request
+DELETE http://localhost:3000/plants
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f79b75af3163d38c11f84e"
+}
+
+### GET a single Plant
+GET http://localhost:3000/plants/66f756622d158ddbe8849c42
+Accept: application/json
+Content-Type: application/json
+
+{
+  "_id": "66f756622d158ddbe8849c42"
+}
+
+###

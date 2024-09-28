@@ -7,10 +7,17 @@
     <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style-coffee.css" />
+    <link rel="stylesheet" href="css/style-coffee.css" />
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
-    <title>BeGONEia - Problem Categories</title>
+    <!-- SurveyJS imports -->
+    <link href="https://unpkg.com/survey-core/defaultV2.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/survey-core/survey.core.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/survey-js-ui/survey-js-ui.min.js"></script>
+
+    <script type="text/javascript" src="./controllers/diagnosisController.js"></script>
+
+    <title>BeGONEia - Help My Plant!</title>
 
 </head>
 <body>
@@ -20,13 +27,13 @@
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
         <ul class="navigation-links">
-            <li><a href="index.html"  aria-current="page">
+            <li><a href="index.html" aria-current="page">
                 <i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="help-my-plant.html">
+            <li class="active"><a href="help-my-plant.html">
                 <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
             <li><a href="plant-database.html">
                 <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
-            <li class="active"><a href="problem-categories.html">
+            <li><a href="problem-database.html">
                 <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
         </ul>
     </div>
@@ -40,15 +47,11 @@
         </nav>
     </header>
     <main>
-        <div id="Hero">
-            <h1>Temporary Hero Name</h1>
-        </div>
-        <h1>Temp H1</h1>
-        <h2>Temp H2</h2>
-        <h3>Temp H3</h3>
-        <p>
-            Temp body text.
-        </p>
+        <section id="quiz-hero">
+            <h1 id="main-content">Help My Plant!</h1>
+            <p>The following is a work in progress. The order and content of the questions are subject to change.</p>
+        </section>
+        <div id="surveyContainer"></div>
     </main>
 
     <footer>

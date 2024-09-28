@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -7,10 +8,10 @@
     <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style-coffee.css" />
+    <link rel="stylesheet" href="css/style-coffee.css" />
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
-    <title>BeGONEia - Plant Database</title>
+    <title>BeGONEia</title>
 
 </head>
 <body>
@@ -20,13 +21,13 @@
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
         <ul class="navigation-links">
-            <li><a href="index.html"  aria-current="page">
+            <li class="active"><a href="index.html"  aria-current="page">
                 <i class="fa-solid fa-house"></i> Home</a></li>
             <li><a href="help-my-plant.html">
                 <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
-            <li class="active"><a href="plant-database.html">
+            <li><a href="plant-database.html">
                 <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
-            <li><a href="problem-categories.html">
+            <li><a href="problem-database.html">
                 <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
         </ul>
     </div>
@@ -35,23 +36,24 @@
         <nav aria-label="Main">
             <a href="index.html" class="logo" id="top">BeGONEia</a>
             <button type="button" id="menu-button" onclick="menuToggle()">
-                <i class="fa fa-bars" aria-label="Menu Button"></i>
+                <i class="fa-solid fa-bars" aria-label="Menu Button"></i>
             </button>
         </nav>
     </header>
-    <main>
-        <h1>Temp H1</h1>
-        <h2>Temp H2</h2>
-        <h3>Temp H3</h3>
-        <p>
-            Temp body text.
-        </p>
+    <main id="main-content">
+        <section class="hero">
+            <h1>Wondering What's Affecting Your Houseplant?</h1>
+            <h2>Answer our diagnostic questions and find out today!</h2>
+            <a href="help-my-plant.html">
+                Take Me There
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </section>
     </main>
-
     <footer>
         <div>
             <a href="#top">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
                 Back to Top
             </a><br>
         </div>

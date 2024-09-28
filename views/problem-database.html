@@ -7,17 +7,10 @@
     <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style-coffee.css" />
+    <link rel="stylesheet" href="css/style-coffee.css" />
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
-    <!-- SurveyJS imports -->
-    <link href="https://unpkg.com/survey-core/defaultV2.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/survey-core/survey.core.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/survey-js-ui/survey-js-ui.min.js"></script>
-
-    <script type="text/javascript" src="javascript/diagnosisMain.js"></script>
-
-    <title>BeGONEia - Help My Plant!</title>
+    <title>BeGONEia - Problem Categories</title>
 
 </head>
 <body>
@@ -27,13 +20,13 @@
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
         <ul class="navigation-links">
-            <li><a href="index.html"  aria-current="page">
+            <li><a href="index.html" aria-current="page">
                 <i class="fa-solid fa-house"></i> Home</a></li>
-            <li class="active"><a href="help-my-plant.html">
+            <li><a href="help-my-plant.html">
                 <i class="fa-solid fa-plant-wilt"></i> Help My Plant</a></li>
             <li><a href="plant-database.html">
                 <i class="fa-solid fa-leaf"></i> Plant Database</a></li>
-            <li><a href="problem-categories.html">
+            <li class="active"><a href="problem-database.html">
                 <i class="fa-solid fa-bug"></i> Ailment Database</a></li>
         </ul>
     </div>
@@ -47,13 +40,21 @@
         </nav>
     </header>
     <main>
-        <section id="quiz-hero">
-            <h1 id="main-content">Help My Plant!</h1>
-            <p>The following is a work in progress. The order and content of the questions are subject to change.</p>
+        <div id="database-hero">
+            <h1>Problem Database</h1>
+            <p>Please select a category to search, or you can continue to search all pests and diseases.</p>
+        </div>
+        <section class="categories" id="main-content">
+            <ul>
+                <li><a href="all-database.html"><h2><i class="fa-solid fa-bug"></i>
+                    All Plant Problems</h2></a></li>
+                <li><a href="disease-database.html"><h2><i class="fa-solid fa-virus"></i>
+                    Disease Database</h2></a></li>
+                <li><a href="pest-database.html"><h2><i class="fa-solid fa-bugs"></i>
+                    Pest Database</h2></a></li>
+            </ul>
         </section>
-        <div id="surveyContainer"></div>
     </main>
-
     <footer>
         <div>
             <a href="#top">
