@@ -7,18 +7,18 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "imgSrc": "img/PlantDB/monstera-deliciosa.jpg",
+  "imgSrc": "",
   "family": "Araceae",
-  "genus": "Monstera",
-  "species": "deliciosa",
-  "common": ["Swiss Cheese Plant", "Fruit Salad Plant", "Ceriman"],
+  "genus": "Epipremnum",
+  "species": "aureum",
+  "common": ["Devil's Ivy", "Golden Pothos", "Silver Vine", "Scindapsus", "Ceylon Creeper"],
   "water": "0",
   "light": "0",
   "humidity": "0",
   "tempLow": "0",
   "tempHigh": "0",
   "tags": ["testing"],
-  "text": "Photo by Huy Phan: https://www.pexels.com/photo/close-up-of-green-leaf-2947106/"
+  "text": ""
 }
 
 ### PUT request
