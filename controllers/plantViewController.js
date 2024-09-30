@@ -51,7 +51,7 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
     let plantEntry = document.createElement("li");
     plantEntry.classList.add('db-entry');
 
-    if(imgSrc != null && imgSrc !== "") { img = `<img src=${imgSrc}>`; }
+    if(imgSrc != null && imgSrc !== "") { img = `<img src=${imgSrc} alt='Image of ${botanicalName}.'>`; }
     else { img = `<i class="fa-solid fa-seedling"></i>`; }
 
     if(commonName != null && commonName !== "") { name = `<div><h2>${commonName}</h2><p>${botanicalName}</p></div>`; }
