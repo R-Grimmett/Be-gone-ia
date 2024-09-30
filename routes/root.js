@@ -30,4 +30,8 @@ router.get('/pest-database(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'pest-database.html'));
 });
 
+router.get('/about(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'about.html'));
+});
+
 module.exports = router;

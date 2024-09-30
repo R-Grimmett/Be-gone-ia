@@ -67,13 +67,17 @@ h1,
 h2 {
     text-align: center;
     color: var(--warmBrown);
-    font-size: 3rem;
     margin-top: 1rem;
 }
 
 h1 {
     font-family: var(--titleFont);
     margin-bottom: 2rem;
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
 }
 
 h2,
@@ -533,10 +537,15 @@ main {
     border: none;
     flex-grow: 1;
     font-size: 1rem;
-    font-style: italic;
     color: var(--deepOlive);
 }
-
+    .db-search label input:focus {
+        outline: none;
+    }
+    .db-search section:focus {
+        border: 5px solid var(--terracotta);
+        box-shadow: -5px 8px 0 var(--warmBrown);
+    }
 .db-search button {
     background-color: white;
     border: 0 none;
@@ -621,6 +630,20 @@ main {
     .db-notice p {
         font-style: italic;
     }
+
+/* ABOUT PAGE STYLING */
+#reference {
+    display: flex;
+    flex-direction: column;
+}
+
+#reference p {
+    font-style: italic;
+    background-color: var(--salmon);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem;
+}
 
 /* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {

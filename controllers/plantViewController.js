@@ -7,30 +7,42 @@ if(document.readyState === 'loading') {
 
 function ready() { loadAll(); }
 
+function loadEntries(dbPlants) {
+    if(dbPlants.status === 200 && dbPlants.response.length > 0) {
+        for(obj in dbPlants.response) {
+            const stringData = JSON.stringify(dbPlants.response[obj]);
+            const data = JSON.parse(stringData);
+            if(data.common[0] !== undefined && data.common[0] !== "") {
+                addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`);
+            } else {
+                addPlantEntry(data.imgSrc, null,`${data.genus} ${data.species}`);
+            }
+        }
+    }
+    else if(dbPlants.status === 200 && dbPlants.response.length === 0) { dbNotice(`<h2>Sorry!</h2><p>We couldn't find any plants.</p>`); }
+    else { dbNotice(`<h2>Sorry!</h2><p>We ran into an error with the database.</p>`); }
+}
+
 function loadAll() {
+    clearEntries();
     const dbPlants = new XMLHttpRequest();
     dbPlants.open("GET", `http://localhost:3000/plants`);
     dbPlants.send();
     dbPlants.responseType = "json";
-    dbPlants.onload = () => {
-        if(dbPlants.status === 200 && dbPlants.response.length > 0) {
-            for(obj in dbPlants.response) {
-                const stringData = JSON.stringify(dbPlants.response[obj]);
-                const data = JSON.parse(stringData);
-                if(data.common[0] !== undefined && data.common[0] !== "") {
-                    addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`);
-                } else {
-                    addPlantEntry(data.imgSrc, null,`${data.genus} ${data.species}`);
-                }
-            }
-        }
-        else if(dbPlants.status === 200 && dbPlants.response.length === 0) { dbNotice(`<h2>Sorry!</h2><p>We couldn't find any plants.</p>`); }
-        else { dbNotice(`<h2>Sorry!</h2><p>We ran into an error with the database.</p>`); }
-    }
+    dbPlants.onload = () => { loadEntries(dbPlants); }
 }
 
 function loadSearch() {
-    const dbPlants = new XMLHttpRequest();
+    clearEntries();
+    const searchText = document.getElementById("search").value;
+    if(searchText === "") { loadAll(); }
+    else {
+        let dbPlants = new XMLHttpRequest();
+        dbPlants.open("GET", `http://localhost:3000/plants/search/${searchText}`);
+        dbPlants.send();
+        dbPlants.responseType = "json";
+        dbPlants.onload = () => { loadEntries(dbPlants); }
+    }
 }
 
 function addPlantEntry(imgSrc, commonName, botanicalName) {
@@ -48,6 +60,11 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
     plantEntry.innerHTML = `${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
 
     databaseResults.append(plantEntry);
+}
+
+function clearEntries() {
+    const databaseResults = document.getElementById(parentDivName);
+    databaseResults.innerHTML = "";
 }
 
 function dbNotice(message) {

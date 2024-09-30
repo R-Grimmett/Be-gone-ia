@@ -41,12 +41,17 @@ Content-Type: application/json
 }
 
 ### GET a single Plant
-GET http://localhost:3000/plants/66f756622d158ddbe8849c42
+GET http://localhost:3000/plants/id/66f756622d158ddbe8849c42
 Accept: application/json
 Content-Type: application/json
 
 {
   "_id": "66f756622d158ddbe8849c42"
 }
+
+### GET a plant search
+GET http://localhost:3000/plants/search
+Accept: application/json
+Content-Type: application/json
 
 ###

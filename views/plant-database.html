@@ -13,6 +13,11 @@
     <script src="./controllers/plantViewController.js" async></script>
     <script src="./controllers/menuController.js" async></script>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
     <title>BeGONEia - Plant Database</title>
 
 </head>
@@ -33,20 +38,20 @@
                 <h1>Plant Database</h1>
             </div>
             <section class='content' id="main-content">
-                <form class="db-search">
+                <section class="db-search">
                     <section>
                         <label for="search">
                             <input type="text" placeholder="Search for a plant by its name..." id="search">
                         </label>
-                        <button type="submit" onclick="loadSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button onclick="loadSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </section>
                     <section>
                         <label for="filter">
                             <input type="text" placeholder="Filters you add will appear here." id="filter">
                         </label>
-                        <button onclick="showFilters"><i class="fa-solid fa-filter"></i></button>
+                        <button onclick="showFilters()"><i class="fa-solid fa-filter"></i></button>
                     </section>
-                </form>
+                </section>
 
                 <ul id="database-results"></ul>
             </section>
@@ -56,7 +61,7 @@
                 <a href="#top">
                     <i class="fa fa-arrow-up" aria-hidden="true"></i>
                     Back to Top
-                </a><br>
+                </a>
             </div>
         </footer>
     </div>
