@@ -7,18 +7,18 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "imgSrc": "",
-  "family": "Araceae",
-  "genus": "Epipremnum",
-  "species": "aureum",
-  "common": ["Devil's Ivy", "Golden Pothos", "Silver Vine", "Scindapsus", "Ceylon Creeper"],
+  "imgSrc": "https://commons.wikimedia.org/wiki/File:Oxalis_triangularis6.jpg",
+  "family": "Oxalidaceae",
+  "genus": "Oxalis",
+  "species": "triangularis",
+  "common": ["False Shamrock", "Purple Shamrock Plant", "Love Plant"],
   "water": "0",
   "light": "0",
   "humidity": "0",
   "tempLow": "0",
   "tempHigh": "0",
   "tags": ["testing"],
-  "text": ""
+  "text": "KENPEI, CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>, via Wikimedia Commons"
 }
 
 ### PUT request
@@ -27,8 +27,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": "66f756622d158ddbe8849c42",
-  "genus": "test"
+  "id": "66f8a8e0f921bc1e21e7d264",
+  "family": "Araceae",
+  "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/6/62/Money_Plant_%28Epipremnum_aureum%29_4.jpg",
+  "text": "Mokkie, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons"
 }
 
 ### DELETE request

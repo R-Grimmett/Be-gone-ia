@@ -1,11 +1,25 @@
 let menu;
-const close = `<button type="button" id="close-button" onclick="toggleMenu()"><i class="fa-solid fa-circle-xmark"></i></button>`;
+const close = `<button type="button" class="close-button" onclick="toggleMenu()"><i class="fa-solid fa-circle-xmark"></i></button>`;
 
 if(document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialise);
-} else { initialise(); }
+    document.addEventListener('DOMContentLoaded', init);
+} else { init(); }
 
-function initialise() {
+function init() {
+    createMenuOverlay();
+
+    footer = document.getElementById("footer");
+    footer.innerHTML = `<div>
+                            <ul class="socials">
+                                <li><a href="https://github.com/R-Grimmett/Be-gone-ia"><i class="fa-brands fa-github"></i></a></li>
+                            </ul>
+                            <a href="about.html">All attribution and references can be found on our 
+                                <i class="fa-solid fa-question" aria-hidden="true"></i> About page.</a>
+                        </div>
+                        <a href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Back to Top</a>`;
+}
+
+function createMenuOverlay() {
     const location = document.URL;
     menu = document.getElementById("overlayMenu");
     menu.innerHTML = close;
@@ -62,7 +76,6 @@ function initialise() {
     navigation.append(problem);
     navigation.append(about);
     menu.append(navigation);
-
 }
 
 function toggleMenu() {

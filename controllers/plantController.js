@@ -1,4 +1,5 @@
 const Plant = require('../model/Plants');
+const dbController = require('./dbController');
 
 const createPlant = async (req, res) => {
     if (!req?.body?.genus || !req?.body?.species) {
@@ -23,6 +24,7 @@ const createPlant = async (req, res) => {
             tags: req.body.tags,
             text: req.body.text
         });
+        if(req.body.family !== undefined && req.body.family !== "") await dbController.populateFamily(req.body.family);
         res.status(201).json(result);
     } catch (err) {
         console.error(err);
@@ -67,6 +69,8 @@ const updatePlant = async (req, res) => {
     if(req.body?.text) plant.text = req.body.text;
 
     const result = await plant.save();
+    console.log(req.body.family);
+    if(req.body.family !== undefined && req.body.family !== "") await dbController.populateFamily(req.body.family);
     res.json(result);
 }
 
