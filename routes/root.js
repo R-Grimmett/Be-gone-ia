@@ -34,4 +34,8 @@ router.get('/about(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'about.html'));
 });
 
+router.get('/view-plant(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'plant-view.html'));
+});
+
 module.exports = router;

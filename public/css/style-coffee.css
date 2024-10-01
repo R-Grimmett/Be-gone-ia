@@ -95,7 +95,7 @@ h3 {
 /* HEADER */
 header {
     background: var(--warmBrown);
-    z-index: 1;
+    z-index: 5;
 }
 
     header nav {
@@ -508,6 +508,16 @@ main {
     background-color: var(--deepOlive);
     color: white;
     padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#filters li button:hover {
+    transition: 0.3s;
+    text-shadow: none;
+    background-color: var(--warmBrown);
+    border: 3px solid var(--salmon);
+    box-shadow: -1px 3px 0 var(--salmon);
 }
 
 #filter-none {
@@ -591,6 +601,109 @@ main {
         font-style: italic;
     }
 
+
+/* ----- ITEM VIEW PAGES ----- */
+#plant-img {
+    max-height: 60vh;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 10px 10px;
+    border-bottom: 10px solid var(--deepOlive);
+}
+
+#view-hero {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 15vh;
+}
+
+    #view-hero a {
+        text-decoration: none;
+        color: var(--offWhite);
+        background-color: var(--deepOlive);
+        border: 5px solid var(--mutedGreen);
+        border-radius: 10px;
+        padding: 5%;
+        max-width: 50vw;
+        font-size: 1rem;
+        margin-bottom: 20vh;
+        margin-left: 5%;
+    }
+
+    #view-hero h1, #view-hero p {
+        color: var(--offWhite);
+        margin: 0;
+        width: 100vw;
+    }
+
+    #view-hero h1 {
+        font-size: 3rem;
+        background-color: var(--overlayOlive);
+        text-shadow: 2px 2px 0 var(--deepOlive);
+    }
+
+    #view-hero p {
+        padding: 0.5rem 1rem;
+        font-style: italic;
+        background-color: var(--deepOlive);
+    }
+
+.plant-stats {
+    margin: 10% 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    background-color: var(--salmon);
+    padding: 5%;
+    border: 10px solid var(--terracotta);
+    border-radius: 10px;
+    box-shadow: -8px 8px 0 var(--warmBrown);
+}
+
+    .plant-stats li {
+        list-style: none;
+        text-align: center;
+        background-color: var(--offWhite);
+        border-radius: 10px;
+        border: 5px solid var(--terracotta);
+        width: 40%;
+        margin: 2.5%;
+        font-size: 1rem;
+        padding: 1rem 0.5rem;
+        box-shadow: 3px -3px 0 var(--terracotta);
+    }
+
+    .plant-stats li i {
+        font-size: 3rem;
+        color: var(--warmBrown);
+    }
+
+#allCommon {
+    border-radius: 10px;
+    border: 5px solid var(--terracotta);
+    box-shadow: -3px 5px 0 var(--warmBrown);
+    margin: 5% 0;
+    padding: 5%;
+}
+
+    #allCommon li {
+        margin-left: 5%;
+    }
+
+    #allCommon .li-header {
+        list-style: none;
+        color: var(--warmBrown);
+    }
+
+#plant-info {
+    border-radius: 10px;
+    border: 5px solid var(--terracotta);
+    box-shadow: -3px 5px 0 var(--warmBrown);
+    padding: 2%;
+}
 /* ABOUT PAGE STYLING */
 #reference {
     display: flex;

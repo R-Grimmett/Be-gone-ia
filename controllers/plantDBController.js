@@ -41,7 +41,8 @@ function loadAll() {
 function loadSearch() {
     clearEntries();
     const searchText = document.getElementById("search").value;
-    if(searchText === "") { loadAll(); }
+    const filterBar = document.getElementById("filters");
+    if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
     else {
         let dbPlants = new XMLHttpRequest();
         dbPlants.open("GET", `http://localhost:3000/plants/search/${searchText}`);
@@ -90,20 +91,23 @@ function toggleFilters() {
 }
 
 function clearFilters() {
-    const filterBar =document.getElementById("filters");
+    const filterBar = document.getElementById("filters");
     filterBar.innerHTML = `<li id="filter-none">Filters ...</li>`;
 }
 
 function removeFilter(filterName) {
-
+    document.getElementById(filterName).remove();
+    if (document.getElementById("filters").innerHTML.length === 0) {
+        clearFilters();
+    }
 }
 
 function setFilters() {
     let inner = ``;
     const filterBar = document.getElementById("filters");
     if(document.getElementById("family").value !== 'null' && document.getElementById("family").value !== "") {
-        inner += `<li><button onclick="removeFilter('family')">
-            ${document.getElementById("family").value}</button></li>`;
+        inner += `<li id="familyFilter"><button onclick="removeFilter('familyFilter')" value="${document.getElementById("family")}">
+            ${document.getElementById("family").value} <i class="fa-solid fa-xmark"></i></button></li>`;
     }
 
     if (inner === "") { clearFilters(); }
