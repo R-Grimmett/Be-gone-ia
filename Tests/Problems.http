@@ -1,0 +1,51 @@
+### GET request
+GET http://localhost:3000/problems
+
+### POST request
+POST http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "imgSrc": "",
+  "common": [""],
+  "scientific": "",
+  "category": "",
+  "leafTags": [""],
+  "flowerTags": [""],
+  "stemTags": [""],
+  "rootTags": [""],
+  "wholeTags": [""],
+  "growthTags": [""],
+  "treatment": "",
+  "information": ""
+}
+
+### PUT request
+PUT http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f8a8e0f921bc1e21e7d264"
+}
+
+### DELETE request
+DELETE http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f79b75af3163d38c11f84e"
+}
+
+### GET a single Problem
+GET http://localhost:3000/problems/id/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "_id": "66f756622d158ddbe8849c42"
+}
+
+###
