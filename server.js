@@ -34,6 +34,7 @@ app.use('/controllers', express.static(path.join(__dirname, '/controllers')));
 
 app.use('/', require('./routes/root'));
 app.use('/plants', require('./routes/api/plants'));
+app.use('/problems', require('./routes/api/problems'));
 app.use('/db', require('./routes/api/db'));
 
 app.all('*', (req, res) => {

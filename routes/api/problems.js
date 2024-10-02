@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const controller = require("../../controllers/problemController");
 
-const debug = (req, res, next) => {
-    console.log('accessed');
-    next();
-}
+router.route('/')
+    .get(controller.getAllProblems)
+    .post(controller.createProblem)
+    .put(controller.updateProblem)
+    .delete(controller.deleteProblem);
+
+router.route('/id/:id')
+    .get(controller.getProblem);
 
 module.exports = router;
