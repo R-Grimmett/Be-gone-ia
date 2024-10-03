@@ -22,6 +22,10 @@ router.get('/all-database(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'all-database.html'));
 });
 
+router.get('/care-database(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'care-database.html'));
+});
+
 router.get('/disease-database(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'disease-database.html'));
 });

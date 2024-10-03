@@ -12,4 +12,7 @@ router.route('/')
 router.route('/id/:id')
     .get(controller.getProblem);
 
+router.route('/:category')
+    .get(controller.getAllCategory);
+
 module.exports = router;

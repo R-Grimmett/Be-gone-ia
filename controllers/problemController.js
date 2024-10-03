@@ -45,7 +45,7 @@ const updateProblem = async (req, res) => {
         return res.status(400).json({ 'message': 'Problem ID is required.'});
     }
 
-    const problem = await Plant.findOne({ _id: req.body.id }).exec();
+    const problem = await Problem.findOne({ _id: req.body.id }).exec();
     if (!problem) {
         return res.status(204).json({ 'message': `Problem ${req.body.id} has no matches.` });
     }
@@ -71,8 +71,14 @@ const updateProblem = async (req, res) => {
 }
 
 const getAllProblems = async (req, res) => {
-    const problems = await Plant.find();
-    if (!problems) return res.status(204).json({ 'message': 'No plants found.'});
+    const problems = await Problem.find();
+    if (!problems) return res.status(204).json({ 'message': 'No problems found.'});
+    res.json(problems);
+}
+
+const getAllCategory = async (req, res) => {
+    const problems = await Problem.find().where({ category: req.params.category }).exec();
+    if(!problems) { return res.status(204).json({ 'message': 'No problems found in the specified category.'}); }
     res.json(problems);
 }
 
@@ -92,5 +98,6 @@ module.exports =    {
     deleteProblem,
     updateProblem,
     getAllProblems,
+    getAllCategory,
     getProblem
 }

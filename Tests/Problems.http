@@ -1,5 +1,7 @@
 ### GET request
 GET http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
 
 ### POST request
 POST http://localhost:3000/problems
@@ -8,17 +10,17 @@ Content-Type: application/json
 
 {
   "imgSrc": "",
-  "common": [""],
+  "common": ["Underwatering"],
   "scientific": "",
-  "category": "",
-  "leafTags": [""],
-  "flowerTags": [""],
+  "category": "care",
+  "leafTags": ["leaf-brown", "leaf-yellow", "leaf-red", "curled"],
+  "flowerTags": ["drop"],
   "stemTags": [""],
   "rootTags": [""],
-  "wholeTags": [""],
-  "growthTags": [""],
-  "treatment": "",
-  "information": ""
+  "wholeTags": ["wilt"],
+  "growthTags": ["slow"],
+  "treatment": "<ul><li>There are a few methods for helping a severly underwatered plant.</li><li>Firstly, you should confirm that the plant isn't rootbound, as this can affect the plant's ability to take in both water and nutrients.</li><li>For very dry compost, you can place the plant in a shallow dish of water and wait until the top of the compost is glistening with water - this allows the compost to gradually remoisten with a lower risk of waterlogging the plant.</li><li>Of course, the easiest is to water your plant and give it a good drink.</li></ul>",
+  "information": "Underwatering can affect all plants, regardless of how little water they appear to need. Yes, even the cacti and other plants adapted to arid environments."
 }
 
 ### PUT request
@@ -36,7 +38,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": "66f79b75af3163d38c11f84e"
+  "id": "66fe3533ad28d4f96257b3cf"
 }
 
 ### GET a single Problem
@@ -47,5 +49,10 @@ Content-Type: application/json
 {
   "_id": "66f756622d158ddbe8849c42"
 }
+
+### GET all category
+GET http://localhost:3000/problems/pest
+Accept: application/json
+Content-Type: application/json
 
 ###
