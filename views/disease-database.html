@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="author" content="Rachael Grimmett">
+    <meta name="description" content="Plant diagnosis hub for all the house plants you may own.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style-coffee.css" />
+    <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
+
+    <script src="./controllers/navigationController.js" async></script>
+    <script src="./controllers/dbViewController.js" type="module"></script>
+    <script src="./controllers/problemDBController.js" type="module" async></script>
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
+    <title>BeGONEia - Disease Database</title>
+
+</head>
+<body>
+<div class="wrapper">
+    <div id="overlayMenu"></div>
+    <header>
+        <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
+        <nav aria-label="Main">
+            <a href="index.html" class="logo" id="top">BeGONEia</a>
+            <button type="button" id="menu-button" onclick="toggleMenu()">
+                <i class="fa fa-bars" aria-label="Menu Button"></i>
+            </button>
+        </nav>
+    </header>
+    <main>
+        <div id="database-hero">
+            <a class='back' href="problem-database.html"><i class="fa-solid fa-arrow-left"></i> Back to Category
+                Selection</a>
+            <h1>Disease Database</h1>
+        </div>
+        <section class='content' id="main-content">
+            <section class="db-search">
+                <section>
+                    <label for="search">
+                        <input type="text" placeholder="Search for a problem..." id="search">
+                    </label>
+                    <button onclick="loadSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </section>
+                <section>
+                    <ul id="filters"></ul>
+                    <button onclick="toggleFilters()"><i class="fa-solid fa-filter"></i></button>
+                </section>
+            </section>
+            <ul id="database-results"></ul>
+        </section>
+    </main>
+    <footer id="footer"></footer>
+</div>
+</body>
+</html>

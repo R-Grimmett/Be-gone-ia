@@ -8,11 +8,11 @@ const surveyJson = {
             "elements": [
                 {
                     "type": "panel",
-                    "name": "CommonName",
+                    "name": "common-panel",
                     "elements": [
                         {
                             "type": "boolean",
-                            "name": "Know Common Name",
+                            "name": "common-know",
                             "title": "Do you know the Common Name of the Plant?\n",
                             "isRequired": true,
                             "labelTrue": "Yes",
@@ -21,34 +21,34 @@ const surveyJson = {
                         },
                         {
                             "type": "text",
-                            "name": "What Common Name",
-                            "visibleIf": "{Know Common Name} = true",
+                            "name": "common-name",
+                            "visibleIf": "{common-know} = true",
                             "title": "What is the Common Name of the Plant?",
                             "hideNumber": true,
-                            "requiredIf": "{Know Common Name} = true",
+                            "requiredIf": "{common-know} = true",
                             "placeholder": "Enter the Common Name here:"
                         }
                     ]
                 },
                 {
                     "type": "panel",
-                    "name": "question3",
+                    "name": "botanical-panel",
                     "elements": [
                         {
                             "type": "boolean",
-                            "name": "Know Botanical Name",
+                            "name": "botanical-know",
                             "title": "Do You Know the Botanical Name of the Plant?",
                             "isRequired": true,
                             "swapOrder": true
                         },
                         {
                             "type": "multipletext",
-                            "name": "What Botanical Name",
-                            "visibleIf": "{Know Botanical Name} = true",
+                            "name": "botanical-name",
+                            "visibleIf": "{botanical-know} = true",
                             "title": "What is the Botanical Name of the Plant?",
                             "description": "Enter the Genus or the Genus and Species Name.",
                             "hideNumber": true,
-                            "requiredIf": "{Know Botanical Name} = true",
+                            "requiredIf": "{botanical-know} = true",
                             "items": [
                                 {
                                     "name": "text1",
@@ -65,9 +65,9 @@ const surveyJson = {
                 {
                     "type": "dropdown",
                     "name": "What Kind or Plant is it?",
-                    "visibleIf": "{Know Botanical Name} = false and {Know Common Name} = false",
+                    "visibleIf": "{botanical-know} = false and {common-know} = false",
                     "title": "What kind of Plant is it?",
-                    "requiredIf": "{Know Botanical Name} = false and {Know Common Name} = false",
+                    "requiredIf": "{botanical-know} = false and {common-know} = false",
                     "choices": [
                         {
                             "value": "Item 1",
@@ -101,22 +101,22 @@ const surveyJson = {
                 },
                 {
                     "type": "panel",
-                    "name": "panel1",
+                    "name": "age-panel",
                     "elements": [
                         {
                             "type": "boolean",
-                            "name": "Know old?",
+                            "name": "age-know",
                             "title": "Do you know how old the plant is?\n",
                             "isRequired": true,
                             "swapOrder": true
                         },
                         {
                             "type": "text",
-                            "name": "How old",
-                            "visibleIf": "{Know old?} = true",
+                            "name": "age",
+                            "visibleIf": "{age-know} = true",
                             "title": "How old is the plant in years?",
                             "hideNumber": true,
-                            "requiredIf": "{Know old?} = true",
+                            "requiredIf": "{age-know} = true",
                             "inputType": "number",
                             "min": 0
                         }
@@ -161,7 +161,7 @@ const surveyJson = {
                     "elements": [
                         {
                             "type": "checkbox",
-                            "name": "symptoms",
+                            "name": "symptom",
                             "title": "What parts of the plant are affected?",
                             "isRequired": true,
                             "choices": [
@@ -170,20 +170,250 @@ const surveyJson = {
                                     "text": "Leaves"
                                 },
                                 {
+                                    "value": "flower",
+                                    "text": "Flowers"
+                                },
+                                {
                                     "value": "stem",
                                     "text": "Stems"
                                 },
                                 {
-                                    "value": "growth",
-                                    "text": "New Growth or Overall Growth of the Plant"
-                                },
-                                {
-                                    "value": "base",
-                                    "text": "Base of the Plant"
-                                },
-                                {
                                     "value": "root",
                                     "text": "Roots"
+                                },
+                                {
+                                    "value": "growth",
+                                    "text": "New growth or overall growth of the plant"
+                                },
+                                {
+                                    "value": "whole",
+                                    "text": "Symptoms are covering the entire plant"
+                                }
+                            ],
+                            "minSelectedChoices": 1
+                        },
+                        {
+                            "type": "checkbox",
+                            "name": "symptom-leaf",
+                            "state": "expanded",
+                            "visibleIf": "{symptom} contains 'leaf'",
+                            "title": "What do the symptoms on the plant's leaves look like?\n",
+                            "description": "Select all that match",
+                            "hideNumber": true,
+                            "requiredIf": "{symptom} contains 'leaf'",
+                            "choices": [
+                                {
+                                    "value": "blotch-brown",
+                                    "text": "Brown blotches on the leaves"
+                                },
+                                {
+                                    "value": "blotch-downy",
+                                    "text": "Purple or green blotches on the leaves"
+                                },
+                                {
+                                    "value": "blotch-yellow",
+                                    "text": "Yellow blotches on the leaves"
+                                },
+                                {
+                                    "value": "curled",
+                                    "text": "Distorted or curled leaves"
+                                },
+                                {
+                                    "value": "dropped",
+                                    "text": "Leaves are being dropped"
+                                },
+                                {
+                                    "value": "growth-mold",
+                                    "text": "Mold-like growth on the undersides of leaves"
+                                },
+                                {
+                                    "value": "growth-rust",
+                                    "text": "Rust coloured pustules on the undersides of leaves"
+                                },
+                                {
+                                    "value": "insect",
+                                    "text": "Insects are visible on the leaves"
+                                },
+                                {
+                                    "value": "leaf-black",
+                                    "text": "Leaves are black"
+                                },
+                                {
+                                    "value": "leaf-brown",
+                                    "text": "Leaves are brown"
+                                },
+                                {
+                                    "value": "leaf-mottled",
+                                    "text": "Leaves are mottled"
+                                },
+                                {
+                                    "value": "leaf-pale",
+                                    "text": "Leaves are pale or desaturated in colour"
+                                },
+                                {
+                                    "value": "leaf-red",
+                                    "text": "Leaves are red in colour"
+                                },
+                                {
+                                    "value": "leaf-silvery",
+                                    "text": "Leaves are silvery, or have silvery tracks or spots on them"
+                                },
+                                {
+                                    "value": "leaf-skeleton",
+                                    "text": "Leaves are turning skeletal"
+                                },
+                                {
+                                    "value": "leaf-translucent",
+                                    "text": "Leaves are translucent"
+                                },
+                                {
+                                    "value": "mosaic",
+                                    "text": "Mosaic pattern on the leaves"
+                                },
+                                {
+                                    "value": "mold-grey",
+                                    "text": "Fuzzy grey mold on the leaves"
+                                },
+                                {
+                                    "value": "mush",
+                                    "text": "Leaves are turning mushy in spots or blotches"
+                                },
+                                {
+                                    "value": "notch",
+                                    "text": "Notches are missing from the edges of leaves"
+                                },
+                                {
+                                    "value": "odema",
+                                    "text": "Small bumps are forming on the leaves"
+                                },
+                                {
+                                    "value": "ring",
+                                    "text": "Ring patterns on the leaves"
+                                },
+                                {
+                                    "value": "scab",
+                                    "text": "Light brown patches or raised scabs of a light brown colour"
+                                },
+                                {
+                                    "value": "scale",
+                                    "text": "Small, hard, white bumps or shells"
+                                },
+                                {
+                                    "value": "scorch",
+                                    "text": "Leaves have portions of brown or black that appear similar to a burn"
+                                },
+                                {
+                                    "value": "speck",
+                                    "text": "Yellowish swelling or specks on the undersides of leaves"
+                                },
+                                {
+                                    "value": "spot-brown",
+                                    "text": "Black or brown spots on the leaves"
+                                },
+                                {
+                                    "value": "spot-black",
+                                    "text": "Tiny black spots on the leaves"
+                                },
+                                {
+                                    "value": "streak-pale",
+                                    "text": "Pale green or yellow streaks throughout the leaves"
+                                },
+                                {
+                                    "value": "substance-fluffy",
+                                    "text": "White, fluffy substance on the leaves"
+                                },
+                                {
+                                    "value": "substance-mold",
+                                    "text": "Fuzzy grey mold on the leaves"
+                                },
+                                {
+                                    "value": "substance-sticky",
+                                    "text": "Sticky substance on the leaves"
+                                },
+                                {
+                                    "value": "substance-web",
+                                    "text": "Small silvery webs on the leaves of the plant"
+                                },
+                                {
+                                    "value": "substance-white",
+                                    "text": "White powdery substance on the leaves"
+                                }
+                            ],
+                            "minSelectedChoices": 1
+                        },
+                        {
+                            "type": "dropdown",
+                            "name": "leaf-insect",
+                            "state": "expanded",
+                            "visibleIf": "{symptom-leaf} contains 'insect'",
+                            "title": "We saw you mentioned seeing insects on the leaves, do they look like any of the following?",
+                            "hideNumber": true,
+                            "requiredIf": "{symptom-leaf} contains 'insect'",
+                            "choices": [
+                                {
+                                    "value": "aphid",
+                                    "text": "Small insects, black or green in colour, about 1-7mm in length"
+                                },
+                                {
+                                    "value": "pale-green",
+                                    "text": "Small pale green insects about 3mm in length that fly small distances when disturbed."
+                                },
+                                {
+                                    "value": "cloud",
+                                    "text": "Clouds of insects flying around the plant"
+                                },
+                                {
+                                    "value": "night",
+                                    "text": "Small insects that only appear at night"
+                                },
+                                {
+                                    "value": "black",
+                                    "text": "Small black insects"
+                                },
+                                {
+                                    "value": "other",
+                                    "text": "They look like something else"
+                                }
+                            ],
+                            "choicesOrder": "asc"
+                        },
+                        {
+                            "type": "checkbox",
+                            "name": "symptom-flower",
+                            "state": "expanded",
+                            "visibleIf": "{symptom} contains 'flower'",
+                            "title": "What do the symptoms affecting the plant's flowers look like?",
+                            "description": "Select all that match",
+                            "hideNumber": true,
+                            "requiredIf": "{symptom} contains 'flower'",
+                            "choices": [
+                                {
+                                    "value": "black",
+                                    "text": "Flower buds are black"
+                                },
+                                {
+                                    "value": "drop",
+                                    "text": "Flower bugs are dropping before they flower"
+                                },
+                                {
+                                    "value": "none",
+                                    "text": "No flowers are forming"
+                                },
+                                {
+                                    "value": "pale",
+                                    "text": "New flowers are pale or desaturated"
+                                },
+                                {
+                                    "value": "substance-sticky",
+                                    "text": "Flowers have a sticky substance on them"
+                                },
+                                {
+                                    "value": "substance-white",
+                                    "text": "Flowers have a white, powdery substance on them"
+                                },
+                                {
+                                    "value": "white",
+                                    "text": "Flowers have white or pale streaks in them"
                                 }
                             ],
                             "choicesOrder": "asc",
@@ -191,207 +421,175 @@ const surveyJson = {
                         },
                         {
                             "type": "checkbox",
-                            "name": "Leaf Symptoms",
+                            "name": "symptom-stem",
                             "state": "expanded",
-                            "visibleIf": "{symptoms} contains 'leaf'",
-                            "title": "What do the symptoms on the plant's leaves look like?\n",
+                            "visibleIf": "{symptom} contains 'stem'",
+                            "title": "What do the Symptoms on the Plant's Stem Look Like?",
                             "hideNumber": true,
-                            "requiredIf": "{symptoms} contains 'leaf'",
+                            "requiredIf": "{symptom} contains 'stem'",
                             "choices": [
                                 {
-                                    "value": "yellow",
-                                    "text": "Yellowing or Yellow Blotches"
+                                    "value": "black",
+                                    "text": "Stem tips are black"
                                 },
                                 {
-                                    "value": "brown",
-                                    "text": "Leaves are Turning Brown"
+                                    "value": "etiolated",
+                                    "text": "Stems are etiolated, lopsided, or 'stretched out'"
                                 },
                                 {
-                                    "value": "pinpoint",
-                                    "text": "Tiny White or Yellow Pinpoint Marks on the Edges"
+                                    "value": "insect",
+                                    "text": "Clusters of insects around 1-7mm in length"
                                 },
                                 {
-                                    "value": "white",
-                                    "text": "Leaves that look almost entirely White or Silvery"
+                                    "value": "mark-brown",
+                                    "text": "Brown marks on the stems"
                                 },
                                 {
-                                    "value": "mottled",
-                                    "text": "Mottled effect on the Leaves"
-                                },
-                                {
-                                    "value": "blackSpots",
-                                    "text": "Black Spots on the Leaves"
-                                },
-                                {
-                                    "value": "rust",
-                                    "text": "Rust-Coloured Patches on the Leaves"
-                                },
-                                {
-                                    "value": "sticky",
-                                    "text": "Sticky Substances on the Leaves"
-                                },
-                                {
-                                    "value": "whitePowder",
-                                    "text": "White Powdery Substance on the Leaves"
-                                },
-                                {
-                                    "value": "blackPowder",
-                                    "text": "Black Powdery Substance on the Leaves"
-                                },
-                                {
-                                    "value": "fineWebs",
-                                    "text": "Fine Silvery Webs covering Leaves"
+                                    "value": "mark-wet",
+                                    "text": "Stems have brown patches with a wet appearance to them"
                                 },
                                 {
                                     "value": "scale",
-                                    "text": "Small Ovals scattered across Leaves"
+                                    "text": "Small, hard bumps or scales on the stems"
                                 },
                                 {
-                                    "value": "distorted",
-                                    "text": "Leaf shape is Distorted"
+                                    "value": "scorch",
+                                    "text": "Stems have burn marks or pale brown patches"
                                 },
                                 {
-                                    "value": "drop",
-                                    "text": "Leaves are Dropping"
+                                    "value": "substance-fluffy",
+                                    "text": "Stems have a white, fluffy substance on them"
+                                },
+                                {
+                                    "value": "substance-sticky",
+                                    "text": "There is a sticky substance on the stems"
+                                },
+                                {
+                                    "value": "substance-web",
+                                    "text": "Silky webs are present on the stems"
                                 }
                             ],
                             "minSelectedChoices": 1
                         },
                         {
                             "type": "checkbox",
-                            "name": "stem",
+                            "name": "symptom-root",
                             "state": "expanded",
-                            "visibleIf": "{symptoms} contains 'stem'",
-                            "title": "What do the Symptoms on the Plant's Stem Look Like?",
+                            "visibleIf": "{symptom} contains 'root'",
+                            "title": "What do the symptoms affecting the roots of the plant look like?",
+                            "description": "Select all that match",
                             "hideNumber": true,
-                            "requiredIf": "{symptoms} contains 'stem'",
+                            "requiredIf": "{symptom} contains 'root'",
                             "choices": [
                                 {
-                                    "value": "moist",
-                                    "text": "Moist or Wilting Areas Within a Stem"
-                                },
-                                {
-                                    "value": "fall",
-                                    "text": "Stem is Falling Over"
-                                },
-                                {
-                                    "value": "sticky",
-                                    "text": "Sticky Substance on the Stem"
-                                },
-                                {
-                                    "value": "whitePowder",
-                                    "text": "White Powdery substance on the Stem"
-                                },
-                                {
-                                    "value": "blackPowder",
-                                    "text": "Black Powdery substance on the Stem"
-                                },
-                                {
-                                    "value": "web",
-                                    "text": "Fine Silvery Webs covering the Stem"
-                                },
-                                {
-                                    "value": "oval",
-                                    "text": "Small Ovals scattered across the Stem"
-                                },
-                                {
-                                    "value": "lump",
-                                    "text": "Lumpy or Bumpy Clusters of Oval Shells"
+                                    "value": "rot",
+                                    "text": "Roots are mushy, dark brown, or black"
                                 },
                                 {
                                     "value": "insect",
-                                    "text": "Visible Clusters of Insects or Bugs"
+                                    "text": "Small insects during the day"
+                                },
+                                {
+                                    "value": "maggot",
+                                    "text": "Small white larvae can be seen in the soil"
+                                },
+                                {
+                                    "value": "aphid",
+                                    "text": "Small black or green bugs in the soil"
+                                },
+                                {
+                                    "value": "wool",
+                                    "text": "White woolly clumps next to or on the roots"
+                                },
+                                {
+                                    "value": "grub",
+                                    "text": "Roots are damages, or there are white grubs with brown heads in the soil"
                                 }
                             ],
                             "minSelectedChoices": 1
                         },
                         {
                             "type": "checkbox",
-                            "name": "growth",
+                            "name": "symptom-growth",
                             "state": "expanded",
-                            "visibleIf": "{symptoms} contains 'growth'",
-                            "title": "What do the Symptoms Affecting the Plant's New or Overall Growth Look Like?",
+                            "visibleIf": "{symptom} contains 'growth'",
+                            "title": "What do the symptoms affecting the plant's new or overall growth look like?",
+                            "description": "Select all that match",
                             "hideNumber": true,
-                            "requiredIf": "{symptoms} contains 'growth'",
+                            "requiredIf": "{symptom} contains 'growth'",
                             "choices": [
-                                {
-                                    "value": "deformed",
-                                    "text": "New Growth of the Plant is Deformed"
-                                },
-                                {
-                                    "value": "distorted",
-                                    "text": "New Growth of the Plant is Distorted"
-                                },
                                 {
                                     "value": "slow",
-                                    "text": "Slow to No New Growth of the Plant"
+                                    "text": "New growth is slow or stunted"
                                 },
                                 {
-                                    "value": "sticky",
-                                    "text": "Sticky Substance present on New Growth"
+                                    "value": "etiolated",
+                                    "text": "New growth is etiolated, lopsided, or 'stretched out'"
                                 },
                                 {
-                                    "value": "whitePowder",
-                                    "text": "White Powdery Substance on New Growth of the Plant"
+                                    "value": "fast",
+                                    "text": "New growth is rapid, and is softer than usual"
                                 },
                                 {
-                                    "value": "blackPowder",
-                                    "text": "Black Powdery Substance on New Growth of the Plant"
-                                },
+                                    "value": "distorted",
+                                    "text": "New growth is distorted"
+                                }
+                            ],
+                            "choicesOrder": "asc",
+                            "minSelectedChoices": 1
+                        },
+                        {
+                            "type": "checkbox",
+                            "name": "symptom-whole",
+                            "state": "expanded",
+                            "visibleIf": "{symptom} contains 'whole'",
+                            "title": "What do the symptoms affecting the whole plant look like?",
+                            "description": "Select all that match",
+                            "hideNumber": true,
+                            "requiredIf": "{symptom} contains 'whole'",
+                            "choices": [
                                 {
-                                    "value": "web",
-                                    "text": "Fine Silvery Webs Covering New Leaves"
+                                    "value": "collapsed",
+                                    "text": "The plant has collapsed"
                                 },
                                 {
                                     "value": "insect",
-                                    "text": "Visible Clusters of Insects or Bugs present on New Growth"
+                                    "text": "Fly-like insects are flying around the plant"
+                                },
+                                {
+                                    "value": "mark-brown",
+                                    "text": "Brown marks are visible on the entirety of the plant"
+                                },
+                                {
+                                    "value": "mark-white",
+                                    "text": "There are white spots all over the plant"
+                                },
+                                {
+                                    "value": "mush",
+                                    "text": "Mushy patches are present all over the plant, particularly towards the base or crown of the plant"
+                                },
+                                {
+                                    "value": "no-water",
+                                    "text": "The plant is wilting and is not recovering after being watered"
+                                },
+                                {
+                                    "value": "odor",
+                                    "text": "There is a pungent scent coming from the plant"
+                                },
+                                {
+                                    "value": "wilt",
+                                    "text": "The plant is wilting "
                                 }
-                            ]
-                        },
-                        {
-                            "type": "checkbox",
-                            "name": "base",
-                            "state": "expanded",
-                            "visibleIf": "{symptoms} contains 'base'",
-                            "title": "What do the Symptoms Affecting the Base of the Plant Look Like?",
-                            "hideNumber": true,
-                            "requiredIf": "{symptoms} contains 'base'",
-                            "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
-                            ]
-                        },
-                        {
-                            "type": "checkbox",
-                            "name": "root",
-                            "state": "expanded",
-                            "visibleIf": "{symptoms} contains 'root'",
-                            "title": "What do the Symptoms Affecting the Roots of the Plant Look Like?",
-                            "hideNumber": true,
-                            "requiredIf": "{symptoms} contains 'root'",
-                            "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
-                            ]
+                            ],
+                            "choicesOrder": "random",
+                            "minSelectedChoices": 1
                         }
                     ]
                 },
                 {
-                    "type": "rating",
-                    "name": "affectedPortion",
-                    "title": "On a Scale of 1 to 10, how much of the Plant is Affected?\n",
-                    "description": "Where 1 is 'Very Little or Almost Not Affected'\nand 10 is 'The Whole Plant",
-                    "isRequired": true,
-                    "rateCount": 10,
-                    "rateMax": 10,
-                    "displayMode": "buttons"
-                },
-                {
                     "type": "radiogroup",
-                    "name": "whereSymptomsStart",
-                    "title": "Where did the Symptoms First Appear on the Plant?",
+                    "name": "symptom-init",
+                    "title": "Where did the symptoms first appear on the plant/",
                     "choices": [
                         {
                             "value": "leaf",
@@ -421,15 +619,8 @@ const surveyJson = {
                 },
                 {
                     "type": "boolean",
-                    "name": "symptomPattern",
-                    "title": "Is there a Pattern to the Parts of the Plant that are Affected?",
-                    "isRequired": true,
-                    "swapOrder": true
-                },
-                {
-                    "type": "boolean",
-                    "name": "nearbyPlants",
-                    "title": "Are other Nearby Plants also affected?",
+                    "name": "near",
+                    "title": "Are other nearby plants also affected?",
                     "isRequired": true,
                     "swapOrder": true
                 }
@@ -442,94 +633,114 @@ const surveyJson = {
             "elements": [
                 {
                     "type": "panel",
-                    "name": "waterPanel",
+                    "name": "water-panel",
                     "elements": [
                         {
                             "type": "dropdown",
-                            "name": "waterFrequency",
-                            "title": "How often do you Water the Plant?",
+                            "name": "water-frequency",
+                            "title": "How often do you water your plant?",
                             "isRequired": true,
                             "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
-                            ]
-                        },
-                        {
-                            "type": "dropdown",
-                            "name": "waterAmount",
-                            "title": "When you Water, approximately how much Water do you Give the Plant?",
-                            "isRequired": true,
-                            "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
-                            ]
-                        },
-                        {
-                            "type": "radiogroup",
-                            "name": "waterStyle",
-                            "title": "How do you Water the Plant?",
-                            "isRequired": true,
-                            "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
+                                {
+                                    "value": "often",
+                                    "text": "More than once a day"
+                                },
+                                {
+                                    "value": "daily",
+                                    "text": "Once a day"
+                                },
+                                {
+                                    "value": "few-day",
+                                    "text": "Once every few days"
+                                },
+                                {
+                                    "value": "week",
+                                    "text": "Once a week"
+                                },
+                                {
+                                    "value": "fortnight",
+                                    "text": "Once a fortnight"
+                                },
+                                {
+                                    "value": "month",
+                                    "text": "Once a month"
+                                },
+                                {
+                                    "value": "little",
+                                    "text": "Les than once a month"
+                                }
                             ]
                         }
                     ]
                 },
                 {
                     "type": "panel",
-                    "name": "mulchPanel",
+                    "name": "mulch-panel",
                     "elements": [
                         {
                             "type": "boolean",
-                            "name": "mulchPresent",
-                            "title": "Is there Mulch around the Plant?",
+                            "name": "mulch",
+                            "title": "Is there mulch around the plant?",
                             "isRequired": true,
                             "swapOrder": true
                         },
                         {
                             "type": "boolean",
-                            "name": "mulchMoist",
-                            "visibleIf": "{mulchPresent} = true",
-                            "title": "Is the soil underneath the Mulch Moist?",
+                            "name": "mulch-moist",
+                            "visibleIf": "{mulch} = true",
+                            "title": "Is the soil underneath the mulch moist?",
                             "hideNumber": true,
-                            "requiredIf": "{mulchPresent} = true",
+                            "requiredIf": "{mulch} = true",
                             "swapOrder": true
                         }
                     ]
                 },
                 {
                     "type": "panel",
-                    "name": "fertiliserPanel",
+                    "name": "fertiliser-panel",
                     "elements": [
                         {
                             "type": "boolean",
                             "name": "fertilise",
-                            "title": "Do you Fertilise the Plant?",
+                            "title": "Do you fertilise the plant?",
                             "swapOrder": true
                         },
                         {
-                            "type": "text",
-                            "name": "question1",
-                            "visibleIf": "{fertilise} = true",
-                            "title": "What kind of Fertiliser do you use?",
-                            "hideNumber": true,
-                            "requiredIf": "{fertilise} = true"
-                        },
-                        {
                             "type": "dropdown",
-                            "name": "question2",
+                            "name": "fertilise-frequency",
                             "visibleIf": "{fertilise} = true",
                             "title": "How Often do you Fertilise the Plant?",
                             "hideNumber": true,
                             "requiredIf": "{fertilise} = true",
                             "choices": [
-                                "Item 1",
-                                "Item 2",
-                                "Item 3"
+                                {
+                                    "value": "often",
+                                    "text": "More than once a week"
+                                },
+                                {
+                                    "value": "week",
+                                    "text": "Once a week"
+                                },
+                                {
+                                    "value": "fortnight",
+                                    "text": "Once a fortnight"
+                                },
+                                {
+                                    "value": "month",
+                                    "text": "Once a month"
+                                },
+                                {
+                                    "value": "month-two",
+                                    "text": "Once every two months"
+                                },
+                                {
+                                    "value": "quarter",
+                                    "text": "Once every three months"
+                                },
+                                {
+                                    "value": "half",
+                                    "text": "Less than once every three months"
+                                }
                             ]
                         }
                     ]
@@ -537,7 +748,7 @@ const surveyJson = {
                 {
                     "type": "radiogroup",
                     "name": "light",
-                    "title": "What Light Conditions is the Plant in?",
+                    "title": "What light conditions is the plant in?",
                     "choices": [
                         {
                             "value": "full",
@@ -576,10 +787,8 @@ const surveyJson = {
             ]
         }
     ],
-
     "showTitle": false,
     "showPageNumbers": true
-
 };
 
 const survey = new Survey.Model(surveyJson);
