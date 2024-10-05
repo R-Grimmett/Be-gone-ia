@@ -12,6 +12,9 @@ router.route('/')
 router.route('/id/:id')
     .get(controller.getProblem);
 
+router.route('/search/:searchTerm')
+    .get(controller.searchProblem);
+
 router.route('/:category')
     .get(controller.getAllCategory);
 

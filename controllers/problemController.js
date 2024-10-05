@@ -1,4 +1,5 @@
 const Problem = require('../model/Problems.js');
+const splitter = new RegExp(/%/, 'g');
 
 const createProblem = async (req, res) => {
     if (!req?.body?.common || !req?.body?.category || !req?.body?.treatment) {
@@ -71,13 +72,13 @@ const updateProblem = async (req, res) => {
 }
 
 const getAllProblems = async (req, res) => {
-    const problems = await Problem.find();
+    const problems = await Problem.find().sort({common: 1});
     if (!problems) return res.status(204).json({ 'message': 'No problems found.'});
     res.json(problems);
 }
 
 const getAllCategory = async (req, res) => {
-    const problems = await Problem.find().where({ category: req.params.category }).exec();
+    const problems = await Problem.find().where({ category: req.params.category }).sort({common: 1}).exec();
     if(!problems) { return res.status(204).json({ 'message': 'No problems found in the specified category.'}); }
     res.json(problems);
 }
@@ -93,11 +94,29 @@ const getProblem = async (req, res) => {
     res.json(problem);
 }
 
+const searchProblem = async (req, res) => {
+    if(!req.params?.searchTerm) return res.status(400).json({ 'message' : 'A query is required.'});
+    console.log(req.params.searchTerm);
+    const terms = req.params.searchTerm.split(splitter);
+    let problems;
+    if(terms[0] === 'all') {
+        problems = await Problem.find()
+            .or([{common: new RegExp(terms[1], 'i')}, {scientific: new RegExp(terms[1], 'i')}]);
+    } else {
+        problems = await Problem.find().where({ category: terms[0] })
+            .or([{common: new RegExp(terms[1], 'i')}, {scientific: new RegExp(terms[1], 'i')}]);
+    }
+
+    if(!problems) return res.status(204).json({ 'message': 'No problems found matching search'});
+    res.json(problems);
+}
+
 module.exports =    {
     createProblem,
     deleteProblem,
     updateProblem,
     getAllProblems,
     getAllCategory,
-    getProblem
+    getProblem,
+    searchProblem
 }

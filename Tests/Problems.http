@@ -9,18 +9,18 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/8/88/Aphids_May_2010-2.jpg",
-  "common": ["Aphids", "Greenfly", "Blackfly", "Whitefly"],
-  "scientific": "Aphididae Species",
-  "category": "pest",
-  "leafTags": ["insect (pale-green)", "substance-sticky", "curled"],
-  "flowerTags": ["substance-sticky"],
-  "stemTags": ["substance-sticky"],
+  "imgSrc": "",
+  "common": ["Corky Scab"],
+  "scientific": "",
+  "category": "disease",
+  "leafTags": ["scab"],
+  "flowerTags": [""],
+  "stemTags": [""],
   "rootTags": [""],
   "wholeTags": [""],
-  "growthTags": ["slow"],
-  "treatment": "<ul><li>Aphids tend to be on stems, flowerbuds, and the undersides of leaves. Wear plastic gloves then give them a light squeeze and wipe them off the plant to remove them.</li><li>Biological control can work in some cases.</li><li>Spraying with diluted neem oil or horticultural soap after the above process can help kill any remaining aphids, though this is not necessary.</li><li>It can be a good idea to remove parts of the plant with dense populations, or bin the plant entirely if it is heavily infested.</li></ul>",
-  "information": "There are over 5000 different species of aphids across the world, and they are typically 1-7mm in length. They gather predominately on the tips of the stems and new growth of the plant.<br>All life stages of the Aphid secrete honeydew, a sticky substance which can lead to Sooty Mould.<br><br>Image from:<a href='https://commons.wikimedia.org/wiki/File:Aphids_May_2010-2.jpg' class='reference'>Alvesgaspar. (2010). Aphids May 2010-2.jpg [Photograph]. Wikimedia Commons. https://commons.wikimedia.org/wiki/File:Aphids_May_2010-2.jpg"
+  "growthTags": [""],
+  "treatment": "<ul><li>These scabs are not fatal, but rather an indication that the affected cactus is suffering from poor conditions.</li><li>Reduce watering and feeding, and increase the air circulation to reduce hummidity.</li></ul>",
+  "information": "These light brown scabs tend to appear on the surface of cacti. While they will not dirrectly damage the plant, they can be an indicator of a plant that is either overfed, overwatered, too humid, or all three."
 }
 
 ### PUT request
@@ -52,6 +52,13 @@ Content-Type: application/json
 
 ### GET all category
 GET http://localhost:3000/problems/pest
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### GET search
+GET http://localhost:3000/problems/search/all%25spot
 Accept: application/json
 Content-Type: application/json
 
