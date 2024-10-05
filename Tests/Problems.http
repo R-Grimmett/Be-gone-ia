@@ -1,0 +1,65 @@
+### GET request
+GET http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+### POST request
+POST http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "imgSrc": "",
+  "common": ["Corky Scab"],
+  "scientific": "",
+  "category": "disease",
+  "leafTags": ["scab"],
+  "flowerTags": [""],
+  "stemTags": [""],
+  "rootTags": [""],
+  "wholeTags": [""],
+  "growthTags": [""],
+  "treatment": "<ul><li>These scabs are not fatal, but rather an indication that the affected cactus is suffering from poor conditions.</li><li>Reduce watering and feeding, and increase the air circulation to reduce hummidity.</li></ul>",
+  "information": "These light brown scabs tend to appear on the surface of cacti. While they will not dirrectly damage the plant, they can be an indicator of a plant that is either overfed, overwatered, too humid, or all three."
+}
+
+### PUT request
+PUT http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66f8a8e0f921bc1e21e7d264"
+}
+
+### DELETE request
+DELETE http://localhost:3000/problems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "66fe3533ad28d4f96257b3cf"
+}
+
+### GET a single Problem
+GET http://localhost:3000/problems/id/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "_id": "66f756622d158ddbe8849c42"
+}
+
+### GET all category
+GET http://localhost:3000/problems/pest
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### GET search
+GET http://localhost:3000/problems/search/all%25spot
+Accept: application/json
+Content-Type: application/json
+
+###

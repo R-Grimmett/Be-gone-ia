@@ -1,4 +1,5 @@
 const Plant = require('../model/Plants');
+const dbController = require('./dbController');
 
 const createPlant = async (req, res) => {
     if (!req?.body?.genus || !req?.body?.species) {
@@ -23,6 +24,7 @@ const createPlant = async (req, res) => {
             tags: req.body.tags,
             text: req.body.text
         });
+        if(req.body.family !== undefined && req.body.family !== "") await dbController.populateFamily(req.body.family);
         res.status(201).json(result);
     } catch (err) {
         console.error(err);
@@ -67,6 +69,8 @@ const updatePlant = async (req, res) => {
     if(req.body?.text) plant.text = req.body.text;
 
     const result = await plant.save();
+    console.log(req.body.family);
+    if(req.body.family !== undefined && req.body.family !== "") await dbController.populateFamily(req.body.family);
     res.json(result);
 }
 
@@ -87,8 +91,19 @@ const getPlant = async (req, res) => {
     res.json(plant);
 }
 
+const searchPlant = async (req, res) => {
+    if (!req?.params?.name) return res.status(400).json({ 'message': 'A query is required.'});
+    const searchTerm = req.params.name;
+    const plants = await Plant.find().or([{genus: new RegExp(searchTerm, 'i')},
+        {species: new RegExp(searchTerm, 'i')},
+        {common: new RegExp(searchTerm, 'i')}]);
+    if (!plants) return res.status(204).json({ 'message': 'No plants found.'});
+    res.json(plants);
+}
+
 module.exports =    {createPlant,
                     deletePlant,
                     updatePlant,
                     getAllPlants,
-                    getPlant}
+                    getPlant,
+                    searchPlantName: searchPlant}

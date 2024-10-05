@@ -10,6 +10,7 @@
 :root {
     /* Colour Variables */
     --deepOlive: #435229;
+    --overlayOlive: rgba(67, 82, 41, 0.6);
     --mutedGreen: #898C37;
     --offWhite: #E5DDD2;
     --overlayWhite: rgba(229, 221, 210, 0.5);
@@ -67,13 +68,17 @@ h1,
 h2 {
     text-align: center;
     color: var(--warmBrown);
-    font-size: 3rem;
     margin-top: 1rem;
 }
 
 h1 {
     font-family: var(--titleFont);
     margin-bottom: 2rem;
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
 }
 
 h2,
@@ -90,7 +95,7 @@ h3 {
 /* HEADER */
 header {
     background: var(--warmBrown);
-    z-index: 1;
+    z-index: 5;
 }
 
     header nav {
@@ -130,82 +135,6 @@ header {
     text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
     border-radius: 15px;
 }
-/* MENU OVERLAY */
-/* Class to denote on the navigation bar which is the current page or section */
-#overlayMenu {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--overlayBackground);
-    background-image: url(../img/background/background-leaf.svg);
-    background-size: 20%;
-    z-index: 2; /* Ensuring that the overlay is OVER the content */
-}
-    #overlayMenu ul{
-        padding-top: 10vh;
-        padding-bottom: 10vh;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-    #overlayMenu li {
-        font-size: 1.5rem;
-        background: var(--deepOlive);
-        border: solid var(--mutedGreen);
-        border-width: 0.25rem 0 0.25rem 0.25rem;
-        border-radius: 2.5rem 0 0 2.5rem;
-        box-shadow: -0.5vw 1vh 0 var(--mutedGreen);
-        display: block;
-        padding: 1rem 1rem 1rem 5vw;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        margin-left: 20vw;
-        transition: 0.5s;
-    }
-    #overlayMenu li:hover {
-        font-size: 2rem;
-        background: var(--warmBrown);
-        border: solid var(--terracotta);
-        box-shadow: -0.5vw 1vh 0 var(--terracotta);
-    }
-    #overlayMenu a {
-        text-decoration: none;
-        color: var(--offWhite);
-    }
-    #overlayMenu .active {
-        background: var(--mutedGreen);
-        border: solid var(--deepOlive);
-        border-width: 0.25rem 0 0.25rem 0.25rem;
-        box-shadow: -0.5vw 1vh 0 var(--deepOlive);
-    }
-    #overlayMenu .active a {
-        text-shadow: 1px 1px 0 var(--deepOlive),
-                     -1px 1px 0 var(--deepOlive),
-                     1px -1px 0 var(--deepOlive),
-                     -1px -1px 0 var(--deepOlive);
-    }
-    #overlayMenu #close-button {
-        font-size: 4rem;
-        border: none;
-        color: var(--offWhite);
-        border-radius: 15%;
-        margin-left: 75vw;
-        margin-top: 3vh;
-        transition: 0.5s;
-        background-color: transparent;
-    }
-    #overlayMenu #close-button:hover {
-        font-size: 5rem;
-        color: var(--terracotta);
-        text-shadow: -0.2rem 0.1rem 0 var(--warmBrown);
-        border-radius: 15px;
-    }
 
 /* BREADCRUMBS */
 .breadcrumb {
@@ -271,13 +200,24 @@ footer {
     justify-content: space-around;
     background: var(--warmBrown);
     text-align: center;
-    padding: 5%;
+    padding: 5% 13%;
     font-style: italic;
-    color: var(--offWhite);
+    font-size: 1rem;
 }
 
     footer a {
         color: var(--offWhite);
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+    footer a:hover {
+        font-size: 1.5rem;
+    }
+
+    footer div {
+        display: block;
+        margin: 1rem;
     }
 
     footer ul {
@@ -288,14 +228,14 @@ footer {
         justify-content: center;
     }
 
-        footer ul li {
-            margin: 2%;
-        }
+        footer ul li { margin: 2%; }
 
-    footer section {
-        display: flex;
-        flex-direction: column;
-    }
+        footer ul li a { color: var(--salmon); }
+
+        footer ul li a:hover {
+            font-size: 2.5rem;
+            color: var(--offWhite);
+        }
 
 /* MAIN CONTENT CSS */
 main {
@@ -514,15 +454,16 @@ main {
 .db-search {
     display: flex;
     flex-direction: column;
+    padding: 0;
 }
 .db-search section {
     display: flex;
     flex-direction: row;
-    margin: 0.5rem;
     background-color: white;
     border: 5px solid var(--mutedGreen);
     box-shadow: -5px 8px 0 var(--deepOlive);
     border-radius: 15px;
+    margin: 2%
 }
 .db-search label {
     display: flex;
@@ -533,15 +474,55 @@ main {
     border: none;
     flex-grow: 1;
     font-size: 1rem;
-    font-style: italic;
     color: var(--deepOlive);
 }
+    .db-search label input:focus {
+        outline: none;
+    }
 
 .db-search button {
     background-color: white;
     border: 0 none;
     font-size: 2rem;
     color: var(--deepOlive);
+}
+
+.db-search button:hover {
+    color: var(--warmBrown);
+    text-shadow: -2px 2px 0 var(--salmon);
+}
+
+#filters {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#filters li {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#filters li button {
+    font-size: 1rem;
+    background-color: var(--deepOlive);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#filters li button:hover {
+    transition: 0.3s;
+    text-shadow: none;
+    background-color: var(--warmBrown);
+    border: 3px solid var(--salmon);
+    box-shadow: -1px 3px 0 var(--salmon);
+}
+
+#filter-none {
+    font-size: 1rem;
+    color: var(--overlayOlive);
 }
 
 /* ID used for the ul holding the database results */
@@ -559,7 +540,8 @@ main {
 .db-entry {
     display: flex;
     flex-direction: row;
-    justify-content: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
     align-content: space-evenly;
     background-color: var(--offWhite);
     border-radius: 10px;
@@ -587,21 +569,18 @@ main {
         margin: 0.5rem;
     }
 
-    .db-entry h2 {
-        font-size: 2rem;
-    }
+    .db-entry h2 { font-size: 1.5rem; }
 
     .db-entry p {
         font-style: italic;
+        font-size: 1.2rem;
     }
 
     .db-entry i {
         color: var(--terracotta);
         font-size: 3rem;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 0.5rem;
-        margin-right: 1rem;
+        margin: auto 1rem auto 0.5rem;
+        justify-self: right;
     }
 
 .db-notice {
@@ -621,6 +600,123 @@ main {
     .db-notice p {
         font-style: italic;
     }
+
+
+/* ----- ITEM VIEW PAGES ----- */
+#plant-img {
+    max-height: 60vh;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 10px 10px;
+    border-bottom: 10px solid var(--deepOlive);
+}
+
+#view-hero {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 15vh;
+}
+
+    #view-hero a {
+        text-decoration: none;
+        color: var(--offWhite);
+        background-color: var(--deepOlive);
+        border: 5px solid var(--mutedGreen);
+        border-radius: 10px;
+        padding: 5%;
+        max-width: 50vw;
+        font-size: 1rem;
+        margin-bottom: 20vh;
+        margin-left: 5%;
+    }
+
+    #view-hero h1, #view-hero p {
+        color: var(--offWhite);
+        margin: 0;
+        width: 100vw;
+    }
+
+    #view-hero h1 {
+        font-size: 3rem;
+        background-color: var(--overlayOlive);
+        text-shadow: 2px 2px 0 var(--deepOlive);
+    }
+
+    #view-hero p {
+        padding: 0.5rem 1rem;
+        font-style: italic;
+        background-color: var(--deepOlive);
+    }
+
+.plant-stats {
+    margin: 10% 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    background-color: var(--salmon);
+    padding: 5%;
+    border: 10px solid var(--terracotta);
+    border-radius: 10px;
+    box-shadow: -8px 8px 0 var(--warmBrown);
+}
+
+    .plant-stats li {
+        list-style: none;
+        text-align: center;
+        background-color: var(--offWhite);
+        border-radius: 10px;
+        border: 5px solid var(--terracotta);
+        width: 40%;
+        margin: 2.5%;
+        font-size: 1rem;
+        padding: 1rem 0.5rem;
+        box-shadow: 3px -3px 0 var(--terracotta);
+    }
+
+    .plant-stats li i {
+        font-size: 3rem;
+        color: var(--warmBrown);
+    }
+
+#allCommon {
+    border-radius: 10px;
+    border: 5px solid var(--terracotta);
+    box-shadow: -3px 5px 0 var(--warmBrown);
+    margin: 5% 0;
+    padding: 5%;
+}
+
+    #allCommon li {
+        margin-left: 5%;
+    }
+
+    #allCommon .li-header {
+        list-style: none;
+        color: var(--warmBrown);
+    }
+
+#plant-info {
+    border-radius: 10px;
+    border: 5px solid var(--terracotta);
+    box-shadow: -3px 5px 0 var(--warmBrown);
+    padding: 2%;
+}
+/* ABOUT PAGE STYLING */
+#reference {
+    display: flex;
+    flex-direction: column;
+}
+
+#reference p {
+    font-style: italic;
+    background-color: var(--salmon);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem;
+}
 
 /* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {
@@ -642,6 +738,134 @@ main {
         .mason-gallery img:focus {
             background-color: var(--salmon);
         }
+
+/* ----- OVERLAYS ----- */
+#overlayMenu, #filters-overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlayBackground);
+    background-image: url(../img/background/background-leaf.svg);
+    background-size: 100px;
+    z-index: 2; /* Ensuring that the overlay is OVER the content */
+}
+#overlayMenu .close-button, #filters-overlay .close-button {
+    font-size: 4rem;
+    border: none;
+    color: var(--offWhite);
+    border-radius: 15%;
+    margin-left: 75vw;
+    margin-top: 3vh;
+    transition: 0.5s;
+    background-color: transparent;
+}
+#overlayMenu .close-button:hover, #filters-overlay .close-button:hover {
+    font-size: 5rem;
+    color: var(--terracotta);
+    text-shadow: -0.2rem 0.1rem 0 var(--warmBrown);
+    border-radius: 15px;
+}
+#overlayMenu ul, #filters-overlay ul {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* Overlay navigation */
+#overlayMenu li {
+    font-size: 1.5rem;
+    background: var(--deepOlive);
+    border: solid var(--mutedGreen);
+    border-width: 0.25rem 0 0.25rem 0.25rem;
+    border-radius: 2.5rem 0 0 2.5rem;
+    box-shadow: -0.5vw 1vh 0 var(--mutedGreen),
+    0.5vw 1vh 0 var(--mutedGreen);
+    display: block;
+    padding: 1rem 1rem 1rem 5vw;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 20vw;
+    transition: 0.5s;
+}
+#overlayMenu li:hover {
+    font-size: 2rem;
+    background: var(--warmBrown);
+    border: solid var(--terracotta);
+    border-width: 0.25rem 0 0.25rem 0.25rem;
+    box-shadow: -0.5vw 1vh 0 var(--terracotta),
+    0.5vw 1vh 0 var(--terracotta);
+}
+#overlayMenu a {
+    text-decoration: none;
+    color: var(--offWhite);
+}
+#overlayMenu .active {
+    background: var(--mutedGreen);
+    border: solid var(--deepOlive);
+    border-width: 0.25rem 0 0.25rem 0.25rem;
+    box-shadow: -0.5vw 1vh 0 var(--deepOlive),
+    0.5vw 1vh 0 var(--deepOlive);
+}
+#overlayMenu .active a {
+    text-shadow: 1px 1px 0 var(--deepOlive),
+    -1px 1px 0 var(--deepOlive),
+    1px -1px 0 var(--deepOlive),
+    -1px -1px 0 var(--deepOlive);
+}
+
+/* Overlay Filters */
+#filters-overlay li{
+    margin: 0.5rem 5vw;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--deepOlive);
+    color: var(--offWhite);
+    border-radius: 10px;
+    border: 5px solid var(--mutedGreen);
+    box-shadow: -3px 4px 0 var(--mutedGreen);
+}
+
+#filters-overlay label {
+    font-family: var(--headerFont);
+    font-size: 1.7rem;
+    margin: 0.5rem auto;
+}
+#filters-overlay select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    cursor: pointer;
+    font-family: var(--bodyFont);
+    font-size: 1.5rem;
+    color: var(--offBlack);
+    border: none;
+}
+#filters-overlay .select {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+#filters-overlay .select::after {
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--deepOlive);
+    content: '\2935';
+    pointer-events: none;
+    position: absolute;
+    top: -35%;
+    right: 0;
+    bottom: 0;
+    padding-right: 1rem;
+}
 
 /* TODO: Restore these for final release */
 /*!* MEDIA QUERIES *!*/

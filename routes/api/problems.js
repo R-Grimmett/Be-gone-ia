@@ -1,26 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const controller = require("../../controllers/problemController");
 
-const debug = (req, res, next) => {
-    console.log('accessed');
-    next();
-}
-router.get('/problems/all-database(.html)?', (req, res) => {
-    console.log('accessed');
-    res.sendFile(path.join(__dirname, '..', 'views', 'problems', 'all-database.html'));
-});
+router.route('/')
+    .get(controller.getAllProblems)
+    .post(controller.createProblem)
+    .put(controller.updateProblem)
+    .delete(controller.deleteProblem);
 
-router.get('^/problems/help-my-plant(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'help-my-plant.html'));
-});
+router.route('/id/:id')
+    .get(controller.getProblem);
 
-router.get('^/$|/plant-database(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'plant-database.html'));
-});
+router.route('/search/:searchTerm')
+    .get(controller.searchProblem);
 
-router.get('^/$|/problem-database(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'problem-database.html'));
-});
+router.route('/:category')
+    .get(controller.getAllCategory);
 
 module.exports = router;
