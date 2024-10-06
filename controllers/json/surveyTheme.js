@@ -114,7 +114,7 @@ const coffeeTheme = {
         "descriptionPositionX": "center"
     },
     "headerView": "basic"
-}
+};
 
 const tropicalTheme = {
     "themeName": "coffee",
@@ -232,6 +232,4 @@ const tropicalTheme = {
         "descriptionPositionX": "center"
     },
     "headerView": "basic"
-}
-
-export { coffeeTheme, tropicalTheme};
+};

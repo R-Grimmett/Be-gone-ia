@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 
 ### GET a single Plant
-GET http://localhost:3000/plants/id/66f756622d158ddbe8849c42
+GET http://localhost:3000/plants/id/66fa4961a8f6f95cf46019d8
 Accept: application/json
 Content-Type: application/json
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 }
 
 ### GET a plant search
-GET http://localhost:3000/plants/search
+GET http://localhost:3000/plants/search/common=swiss%20cheese%25botanical=monstera
 Accept: application/json
 Content-Type: application/json
 
