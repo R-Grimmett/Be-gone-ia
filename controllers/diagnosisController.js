@@ -9,22 +9,12 @@ survey.onComplete.add((sender, options) => {
 
 document.addEventListener("DOMContentLoaded", function () { survey.render(document.getElementById("surveyContainer")); });
 
-function toggleLoad() {
-    let loadingDiv = document.getElementById("loading");
-    if(loadingDiv.style.display === "none") {
-        loadingDiv.style.display = "block";
-    } else {
-        loadingDiv.style.display = "none";
-        loadingDiv.innerHTML = '';
-    }
-}
-
 function calculatePlant(result) {
     let dbPlantRequest = new XMLHttpRequest();
 
     if (result.commonKnow === true || result.botanicalKnow === true) {
         const commonName = result.commonKnow ? result.commonName.replace(/\s/g, "%20") : '';
-        const botanicalName = result.botanicalKnow ? `${result.botanicalName.genus}_${result.botanicalName.species}` : '';
+        let botanicalName = result.botanicalKnow ? `${result.botanicalName.genus !== undefined ? result.botanicalName.genus : ''}%20${result.botanicalName.species !== undefined ? result.botanicalName.species : ''}` : '';
         dbPlantRequest.open("GET", `http://localhost:3000/plants/search/common=${commonName}%25botanical=${botanicalName}`);
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
@@ -70,7 +60,8 @@ function displayResult(plantData, problemData) {
     // else { img = `<img src="./img/background/background-hero.jpg" alt="Image of foliage.">`; }
     //TODO re-add images based on the plant. Not sure why its not working.
     resultHero.classList.add('result-hero');
-    resultHero.innerHTML = `<div><h2>Your Plant is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
+    resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
+        is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
 
     let resultInformation = document.createElement("div");
     resultInformation.classList.add('result-information');

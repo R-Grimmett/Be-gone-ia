@@ -52,7 +52,7 @@ Content-Type: application/json
 }
 
 ### GET a plant search
-GET http://localhost:3000/plants/search/common=swiss%20cheese%25botanical=monstera
+GET http://localhost:3000/plants/search/common=%25botanical=monstera%20
 Accept: application/json
 Content-Type: application/json
 

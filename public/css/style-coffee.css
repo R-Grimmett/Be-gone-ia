@@ -484,12 +484,6 @@ main {
         transition: 0.5s;
     }
 
-#loading {
-        background-color: var(--salmon);
-        display: none;
-        padding: 10%;
-}
-
 /* ----- DATABASE SPECIFIC STYLING ----- */
 /* ID used for the hero styling on the database pages */
 #database-hero {

@@ -40,10 +40,12 @@ function loadAll() {
 
 function loadSearch() {
     clearEntries();
-    const searchText = document.getElementById("search").value;
+    const searchValue = document.getElementById("search").value;
     const filterBar = document.getElementById("filters");
-    if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
+    if(searchValue === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
     else {
+        const plantName = searchValue !== "" ? searchValue.replace(/\s/g, "%20") : '';
+        const searchText = `common=${plantName}%25botanical=${plantName}`;
         let dbPlants = new XMLHttpRequest();
         dbPlants.open("GET", `http://localhost:3000/plants/search/${searchText}`);
         dbPlants.send();
