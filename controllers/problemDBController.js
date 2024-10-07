@@ -1,5 +1,6 @@
 const Problem = "../models/Problems";
-let locationURL, filterElement, parentDiv, obj;
+let locationURL, filterElement, parentDiv, obj, rootURL;
+const reURL = RegExp(/localhost/);
 
 if(document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
@@ -9,6 +10,7 @@ function ready() {
     filterElement = document.getElementById("filters-overlay");
     parentDiv = document.getElementById("database-results");
     locationURL = document.URL;
+    rootURL = reURL.test(locationURL) ? "http://localhost:3000" : "https://begoneia.onrender.com";
     clearFilters();
     loadAllProblems();
 }
@@ -33,13 +35,13 @@ function loadAllProblems() {
     clearProblemEntries();
     const dbRequest = new XMLHttpRequest();
     if((locationURL.match(/\/care-database(.html)?$/)) != null ) {
-        dbRequest.open("GET", `http://localhost:3000/problems/care`); }
+        dbRequest.open("GET", `${rootURL}/problems/care`); }
     else if((locationURL.match(/\/pest-database(.html)?$/)) != null) {
-        dbRequest.open("GET", `http://localhost:3000/problems/pest`);
+        dbRequest.open("GET", `${rootURL}/problems/pest`);
     }
     else if((locationURL.match(/\/disease-database(.html)?$/)) != null) {
-        dbRequest.open("GET", `http://localhost:3000/problems/disease`);
-    } else { dbRequest.open("GET", `http://localhost:3000/problems`); }
+        dbRequest.open("GET", `${rootURL}/problems/disease`);
+    } else { dbRequest.open("GET", `${rootURL}/problems`); }
     dbRequest.send();
     dbRequest.responseType = "json";
     dbRequest.onload = () => { loadProblemEntries(dbRequest); }
@@ -59,7 +61,7 @@ function loadProblemSearch() {
     if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAllProblems(); }
     else {
         let dbRequest = new XMLHttpRequest();
-        dbRequest.open("GET", `http://localhost:3000/problems/search/${categoryName}%25${searchText}`);
+        dbRequest.open("GET", `${rootURL}/problems/search/${categoryName}%25${searchText}`);
         dbRequest.send();
         dbRequest.responseType = "json";
         dbRequest.onload = () => { loadProblemEntries(dbRequest); }

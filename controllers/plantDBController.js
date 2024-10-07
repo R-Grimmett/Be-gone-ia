@@ -1,12 +1,14 @@
 const parentDivName = "database-results";
 const Plant = "../models/plant";
-let filterMenu;
+let filterMenu, rootURL;
+const reURL = RegExp(/localhost/);
 
 if(document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else { ready(); }
 
 function ready() {
+    rootURL = reURL.test(document.URL) ? "http://localhost:3000" : "https://begoneia.onrender.com";
     filterMenu = document.getElementById("filters-overlay");
     loadAll();
     createFilters();
@@ -32,7 +34,7 @@ function loadEntries(dbPlants) {
 function loadAll() {
     clearEntries();
     const dbPlants = new XMLHttpRequest();
-    dbPlants.open("GET", `http://localhost:3000/plants`);
+    dbPlants.open("GET", `${rootURL}/plants`);
     dbPlants.send();
     dbPlants.responseType = "json";
     dbPlants.onload = () => { loadEntries(dbPlants); }
@@ -47,7 +49,7 @@ function loadSearch() {
         const plantName = searchValue !== "" ? searchValue.replace(/\s/g, "%20") : '';
         const searchText = `common=${plantName}%25botanical=${plantName}`;
         let dbPlants = new XMLHttpRequest();
-        dbPlants.open("GET", `http://localhost:3000/plants/search/${searchText}`);
+        dbPlants.open("GET", `${rootURL}/plants/search/${searchText}`);
         dbPlants.send();
         dbPlants.responseType = "json";
         dbPlants.onload = () => { loadEntries(dbPlants); }
@@ -124,7 +126,7 @@ function createFilters() {
     let options = null;
 
     const dbRequest = new XMLHttpRequest();
-    dbRequest.open("GET", `http://localhost:3000/db/family`);
+    dbRequest.open("GET", `${rootURL}/db/family`);
     dbRequest.send();
     dbRequest.responseType = "json";
     dbRequest.onload = () => {

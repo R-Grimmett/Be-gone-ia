@@ -1,5 +1,6 @@
 const survey = new Survey.Model(surveyJson);
-let resultPlant, resultProblem;
+let resultPlant, resultProblem, rootURL;
+const reURL = RegExp(/localhost/);
 
 survey.applyTheme(coffeeTheme);
 
@@ -7,7 +8,9 @@ survey.onComplete.add((sender, options) => {
     calculatePlant(sender.data);
 })
 
-document.addEventListener("DOMContentLoaded", function () { survey.render(document.getElementById("surveyContainer")); });
+document.addEventListener("DOMContentLoaded", function () {
+    rootURL = reURL.test(document.URL) ? "http://localhost:3000" : "https://begoneia.onrender.com";
+    survey.render(document.getElementById("surveyContainer")); });
 
 function calculatePlant(result) {
     let dbPlantRequest = new XMLHttpRequest();
@@ -15,7 +18,7 @@ function calculatePlant(result) {
     if (result.commonKnow === true || result.botanicalKnow === true) {
         const commonName = result.commonKnow ? result.commonName.replace(/\s/g, "%20") : '';
         let botanicalName = result.botanicalKnow ? `${result.botanicalName.genus !== undefined ? result.botanicalName.genus : ''}%20${result.botanicalName.species !== undefined ? result.botanicalName.species : ''}` : '';
-        dbPlantRequest.open("GET", `http://localhost:3000/plants/search/common=${commonName}%25botanical=${botanicalName}`);
+        dbPlantRequest.open("GET", `${rootURL}/plants/search/common=${commonName}%25botanical=${botanicalName}`);
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
         dbPlantRequest.onload = () => {
@@ -32,8 +35,8 @@ function calculatePlant(result) {
 function calculateProblem(plantString) {
     // TODO actually implement the logic
     let dbProblemRequest = new XMLHttpRequest();
-    // dbProblemRequest.open("GET", `http://localhost:3000/problems/search/category=all%25name=%25leaf=${leafTags}%25flower=${flowerTags}%25${stemTags}%25${rootTags}%25${wholeTags}%25${growthTags}`);
-    dbProblemRequest.open("GET", `http://localhost:3000/problems/id/66fe4e7d35a7baa560a90fde`);
+    // dbProblemRequest.open("GET", `${process.env.ROOT_URL}/search/category=all%25name=%25leaf=${leafTags}%25flower=${flowerTags}%25${stemTags}%25${rootTags}%25${wholeTags}%25${growthTags}`);
+    dbProblemRequest.open("GET", `${rootURL}/problems/id/66fe4e7d35a7baa560a90fde`);
     dbProblemRequest.send();
     dbProblemRequest.responseType = "json";
     dbProblemRequest.onload = () => {
