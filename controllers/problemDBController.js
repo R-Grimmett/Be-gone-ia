@@ -9,6 +9,7 @@ function ready() {
     filterElement = document.getElementById("filters-overlay");
     parentDiv = document.getElementById("database-results");
     locationURL = document.URL;
+    clearFilters();
     loadAllProblems();
 }
 
@@ -85,18 +86,18 @@ function addProblemEntry(imgSrc, commonName, scientificName, category) {
     if(scientificName != null && scientificName !== "") { name = `<div><h2>${commonName}</h2><p>${scientificName}</p></div>`; }
     else { name = `<div><h2>${commonName}</h2></div>`;}
 
-    problemEntry.innerHTML = `${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
+    problemEntry.innerHTML = `${img}<div class="db-text">${name}<i class="fa-solid fa-arrow-right"></i></div>`;
 
     parentDiv.append(problemEntry);
 }
 
 function clearProblemEntries() { parentDiv.innerHTML = ""; }
 
-// function clearFilters() {
-//     const filterBar = document.getElementById("filters");
-//     filterBar.innerHTML = `<li id="filter-none">Filters ...</li>`;
-// }
-//
+function clearFilters() {
+     const filterBar = document.getElementById("filters");
+     filterBar.innerHTML = `<li id="filter-none">Filters ...</li>`;
+}
+
 // function removeFilter(filterName) {
 //     document.getElementById(filterName).remove();
 //     if (document.getElementById("filters").innerHTML.length === 0) {

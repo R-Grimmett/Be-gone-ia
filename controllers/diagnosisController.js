@@ -73,7 +73,17 @@ function displayResult(plantData, problemData) {
     resultHero.innerHTML = `<div><h2>Your Plant is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
 
     let resultInformation = document.createElement("div");
-    resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${resultProblem.information}</p></div>
+    resultInformation.classList.add('result-information');
+    let informationText = '';
+    let informationSplit = resultProblem.information.split(new RegExp(/<br><br>/, 'g'));
+    if(informationSplit.length === 1) { informationText = informationSplit[0]; }
+    else {
+        for(let i = 0; i < informationSplit.length - 1; i++) {
+            if(i === 0) { informationText = informationSplit[i]; }
+            else { informationText = informationText + `<br><br>` + informationSplit[i];}
+        }
+    }
+    resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${informationText}</p></div>
         <div><h3>Treatment Options:</h3>${resultProblem.treatment}</div>`;
 
     let resultLinks = document.createElement('div');
@@ -89,7 +99,7 @@ function displayResult(plantData, problemData) {
     linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
     let linkAgain = document.createElement('a');
     linkAgain.href = 'help-my-plant.html';
-    linkAgain.innerHTML = `<i class="fa-solid fa-plant-wilt"></i> Help Another Plant?`;
+    linkAgain.innerHTML = `<i class="fa-solid fa-rotate"></i> Help Another Plant?`;
 
     resultLinks.appendChild(linkProblem);
     resultLinks.appendChild(linkAgain);

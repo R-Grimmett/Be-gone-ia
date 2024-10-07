@@ -64,7 +64,7 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
     if(commonName != null && commonName !== "") { name = `<div><h2>${commonName}</h2><p>${botanicalName}</p></div>`; }
     else { name = `<div><h2>${botanicalName}</h2></div>`;}
 
-    plantEntry.innerHTML = `${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
+    plantEntry.innerHTML = `${img}<div class="db-text">${name}<i class="fa-solid fa-arrow-right"></i></div>`;
 
     databaseResults.append(plantEntry);
 }
