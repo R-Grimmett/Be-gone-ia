@@ -33,13 +33,13 @@ function loadAllProblems() {
     clearProblemEntries();
     const dbRequest = new XMLHttpRequest();
     if((locationURL.match(/\/care-database(.html)?$/)) != null ) {
-        dbRequest.open("GET", `http://localhost:3000/problems/care`); }
+        dbRequest.open("GET", `${process.env.ROOT_URL}/problems/care`); }
     else if((locationURL.match(/\/pest-database(.html)?$/)) != null) {
-        dbRequest.open("GET", `http://localhost:3000/problems/pest`);
+        dbRequest.open("GET", `${process.env.ROOT_URL}/problems/pest`);
     }
     else if((locationURL.match(/\/disease-database(.html)?$/)) != null) {
-        dbRequest.open("GET", `http://localhost:3000/problems/disease`);
-    } else { dbRequest.open("GET", `http://localhost:3000/problems`); }
+        dbRequest.open("GET", `${process.env.ROOT_URL}/problems/disease`);
+    } else { dbRequest.open("GET", `${process.env.ROOT_URL}/problems`); }
     dbRequest.send();
     dbRequest.responseType = "json";
     dbRequest.onload = () => { loadProblemEntries(dbRequest); }
@@ -59,7 +59,7 @@ function loadProblemSearch() {
     if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAllProblems(); }
     else {
         let dbRequest = new XMLHttpRequest();
-        dbRequest.open("GET", `http://localhost:3000/problems/search/${categoryName}%25${searchText}`);
+        dbRequest.open("GET", `${process.env.ROOT_URL}/problems/search/${categoryName}%25${searchText}`);
         dbRequest.send();
         dbRequest.responseType = "json";
         dbRequest.onload = () => { loadProblemEntries(dbRequest); }
