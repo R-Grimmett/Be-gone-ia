@@ -40,10 +40,12 @@ function loadAll() {
 
 function loadSearch() {
     clearEntries();
-    const searchText = document.getElementById("search").value;
+    const searchValue = document.getElementById("search").value;
     const filterBar = document.getElementById("filters");
-    if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
+    if(searchValue === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
     else {
+        const plantName = searchValue !== "" ? searchValue.replace(/\s/g, "%20") : '';
+        const searchText = `common=${plantName}%25botanical=${plantName}`;
         let dbPlants = new XMLHttpRequest();
         dbPlants.open("GET", `http://localhost:3000/plants/search/${searchText}`);
         dbPlants.send();
@@ -64,7 +66,7 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
     if(commonName != null && commonName !== "") { name = `<div><h2>${commonName}</h2><p>${botanicalName}</p></div>`; }
     else { name = `<div><h2>${botanicalName}</h2></div>`;}
 
-    plantEntry.innerHTML = `${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
+    plantEntry.innerHTML = `${img}<div class="db-text">${name}<i class="fa-solid fa-arrow-right"></i></div>`;
 
     databaseResults.append(plantEntry);
 }

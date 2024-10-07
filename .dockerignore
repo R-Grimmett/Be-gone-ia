@@ -1,0 +1,8 @@
+.vs/
+Be-gone-ia/.vs
+/node_modules/
+/logs/
+/.env
+/Tests/
+/README.md
+/.github/

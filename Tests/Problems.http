@@ -29,7 +29,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "id": "66f8a8e0f921bc1e21e7d264"
+  "id": "66fe4e7d35a7baa560a90fde",
+  "information": "There are over 5000 different species of aphids across the world, and they are typically 1-7mm in length. They gather predominately on the tips of the stems and new growth of the plant.<br>All life stages of the Aphid secrete honeydew, a sticky substance which can lead to Sooty Mould.<br><br>Image from:<a href='https://commons.wikimedia.org/wiki/File:Aphids_May_2010-2.jpg' class='reference'>Alvesgaspar. (2010). Aphids May 2010-2.jpg [Photograph]. Wikimedia Commons. https://commons.wikimedia.org/wiki/File:Aphids_May_2010-2.jpg</a>"
 }
 
 ### DELETE request
@@ -42,13 +43,9 @@ Content-Type: application/json
 }
 
 ### GET a single Problem
-GET http://localhost:3000/problems/id/
+GET http://localhost:3000/problems/id/66fe4e7d35a7baa560a90fde
 Accept: application/json
 Content-Type: application/json
-
-{
-  "_id": "66f756622d158ddbe8849c42"
-}
 
 ### GET all category
 GET http://localhost:3000/problems/pest

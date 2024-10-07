@@ -1,5 +1,5 @@
 const coffeeTheme = {
-    "themeName": "coffee",
+    "themeName": "default",
     "colorPalette": "light",
     "isPanelless": false,
     "backgroundImage": "",
@@ -8,13 +8,12 @@ const coffeeTheme = {
     "backgroundImageFit": "cover",
     "cssVariables": {
         "--sjs-editorpanel-backcolor": "rgba(242, 174, 114, 1)",
-        "--sjs-editorpanel-hovercolor": "rgba(220, 83, 4, 1)",
+        "--sjs-editorpanel-hovercolor": "rgba(137, 140, 55, 1)",
         "--sjs-questionpanel-backcolor": "rgba(229, 221, 210, 1)",
         "--sjs-questionpanel-hovercolor": "rgba(242, 174, 114, 0.5)",
-        "--sjs-questionpanel-cornerRadius": "10px",
         "--sjs-corner-radius": "10px",
         "--sjs-base-unit": "8px",
-        "--sjs-font-pagetitle-family": "Brush Script MT, cursive",
+        "--sjs-font-pagetitle-family": "Mali, cursive",
         "--sjs-font-pagetitle-color": "rgba(92, 37, 19, 1)",
         "--sjs-font-pagedescription-color": "rgba(18, 18, 6, 1)",
         "--sjs-shadow-small": "0px 0px 0px 3px rgba(92, 37, 19, 1),-5px 5px 0px 5px rgba(191, 73, 4, 0.8)",
@@ -22,14 +21,15 @@ const coffeeTheme = {
         "--sjs-font-questiondescription-size": "12px",
         "--sjs-font-questiondescription-color": "rgba(18, 18, 6, 1)",
         "--sjs-shadow-inner": "0px 0px 0px 2px rgba(92, 37, 19, 1),0px -2px 0px 2px rgba(92, 37, 19, 1)",
+        "--sjs-font-editorfont-family": "Atkinson Hyperlegible, sans-serif",
         "--sjs-font-editorfont-color": "rgba(18, 18, 6, 1)",
         "--sjs-font-editorfont-placeholdercolor": "rgba(18, 18, 6, 1)",
         "--sjs-border-default": "rgba(0, 0, 0, 1)",
         "--sjs-border-light": "rgba(0, 0, 0, 0.2)",
-        "--sjs-general-backcolor": "rgba(255, 255, 255, 1)",
-        "--sjs-general-backcolor-dark": "rgba(255, 216, 77, 1)",
-        "--sjs-general-backcolor-dim-light": "rgba(255, 216, 77, 1)",
-        "--sjs-general-backcolor-dim-dark": "rgba(255, 216, 77, 1)",
+        "--sjs-general-backcolor": "rgba(229, 221, 210, 1)",
+        "--sjs-general-backcolor-dark": "rgba(194, 199, 117, 1)",
+        "--sjs-general-backcolor-dim-light": "rgba(194, 199, 117, 1)",
+        "--sjs-general-backcolor-dim-dark": "rgba(194, 199, 117, 1)",
         "--sjs-general-forecolor": "rgba(0, 0, 0, 1)",
         "--sjs-general-forecolor-light": "rgba(0, 0, 0, 1)",
         "--sjs-general-dim-forecolor": "rgba(0, 0, 0, 1)",
@@ -37,23 +37,23 @@ const coffeeTheme = {
         "--sjs-secondary-backcolor": "rgba(255, 152, 20, 1)",
         "--sjs-secondary-backcolor-light": "rgba(255, 152, 20, 0.1)",
         "--sjs-secondary-backcolor-semi-light": "rgba(255, 152, 20, 0.25)",
-        "--sjs-secondary-forecolor": "rgba(255, 255, 255, 1)",
+        "--sjs-secondary-forecolor": "rgba(229, 221, 210, 1)",
         "--sjs-secondary-forecolor-light": "rgba(255, 255, 255, 0.25)",
         "--sjs-shadow-small-reset": "0px 0px 0px 0px rgba(92, 37, 19, 1),0px 0px 0px 0px rgba(191, 73, 4, 0.8)",
         "--sjs-shadow-medium": "0px 0px 0px 2px rgba(0, 0, 0, 1)",
         "--sjs-shadow-large": "0px 6px 0px 0px rgba(0, 0, 0, 1)",
         "--sjs-shadow-inner-reset": "0px 0px 0px 0px rgba(92, 37, 19, 1),0px 0px 0px 0px rgba(92, 37, 19, 1)",
         "--sjs-border-inside": "rgba(0, 0, 0, 0.16)",
-        "--sjs-special-red-forecolor": "rgba(255, 255, 255, 1)",
+        "--sjs-special-red-forecolor": "rgba(229, 221, 210, 1)",
         "--sjs-special-green": "rgba(25, 179, 148, 1)",
         "--sjs-special-green-light": "rgba(25, 179, 148, 0.1)",
-        "--sjs-special-green-forecolor": "rgba(255, 255, 255, 1)",
+        "--sjs-special-green-forecolor": "rgba(229, 221, 210, 1)",
         "--sjs-special-blue": "rgba(67, 127, 217, 1)",
         "--sjs-special-blue-light": "rgba(67, 127, 217, 0.1)",
-        "--sjs-special-blue-forecolor": "rgba(255, 255, 255, 1)",
+        "--sjs-special-blue-forecolor": "rgba(229, 221, 210, 1)",
         "--sjs-special-yellow": "rgba(255, 152, 20, 1)",
         "--sjs-special-yellow-light": "rgba(255, 152, 20, 0.1)",
-        "--sjs-special-yellow-forecolor": "rgba(255, 255, 255, 1)",
+        "--sjs-special-yellow-forecolor": "rgba(229, 221, 210, 1)",
         "--sjs-article-font-xx-large-textDecoration": "none",
         "--sjs-article-font-xx-large-fontWeight": "700",
         "--sjs-article-font-xx-large-fontStyle": "normal",
@@ -98,11 +98,11 @@ const coffeeTheme = {
         "--sjs-primary-backcolor": "#5C2513",
         "--sjs-primary-backcolor-dark": "rgba(175, 70, 36, 1)",
         "--sjs-primary-backcolor-light": "rgba(347, 140, 72, 1)",
-        "--sjs-primary-forecolor": "rgba(255, 255, 255, 1)",
-        "--sjs-primary-forecolor-light": "rgba(255, 255, 255, 0.25)",
-        "--sjs-special-red": "rgba(229, 221, 210, 1)",
-        "--sjs-special-red-light": "rgba(191, 73, 4, 0.8)",
-        "--sjs-font-headertitle-family": "Brush Script MT, cursive",
+        "--sjs-primary-forecolor": "rgba(229, 221, 210, 1)",
+        "--sjs-primary-forecolor-light": "rgba(229, 221, 210, 0.25)",
+        "--sjs-special-red": "rgba(191, 73, 4, 1)",
+        "--sjs-special-red-light": "rgba(191, 73, 4, 0.2)",
+        "--sjs-font-headertitle-family": "Mali, cursive",
         "--sjs-font-headertitle-weight": "600",
         "--sjs-font-headertitle-color": "rgba(18, 18, 6, 1)",
         "--sjs-font-headerdescription-color": "rgba(18, 18, 6, 1)",
@@ -114,7 +114,7 @@ const coffeeTheme = {
         "descriptionPositionX": "center"
     },
     "headerView": "basic"
-}
+};
 
 const tropicalTheme = {
     "themeName": "coffee",
@@ -232,6 +232,4 @@ const tropicalTheme = {
         "descriptionPositionX": "center"
     },
     "headerView": "basic"
-}
-
-export { coffeeTheme, tropicalTheme};
+};

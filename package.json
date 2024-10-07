@@ -2,7 +2,7 @@
   "name": "be-gone-ia",
   "version": "1.0.0",
   "description": "Houseplant Diagnosis Website and Utility",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"

@@ -1,5 +1,6 @@
 const Plant = require('../model/Plants');
 const dbController = require('./dbController');
+const splitter = new RegExp(/%/, 'g');
 
 const createPlant = async (req, res) => {
     if (!req?.body?.genus || !req?.body?.species) {
@@ -92,11 +93,21 @@ const getPlant = async (req, res) => {
 }
 
 const searchPlant = async (req, res) => {
-    if (!req?.params?.name) return res.status(400).json({ 'message': 'A query is required.'});
-    const searchTerm = req.params.name;
-    const plants = await Plant.find().or([{genus: new RegExp(searchTerm, 'i')},
-        {species: new RegExp(searchTerm, 'i')},
-        {common: new RegExp(searchTerm, 'i')}]);
+    if (!req?.params?.searchTerm) return res.status(400).json({ 'message': 'A query is required.'});
+    let terms = req.params.searchTerm.split(splitter);
+    let orArray = [];
+
+    const common = terms[0] !== undefined ? terms[0].match(/(?<==).+$/) : null;
+    if(common !== null) orArray.push({common: new RegExp(common, 'i')});
+
+    let genus = terms[1] !== undefined ? terms[1].match(/(?<==)\S+/) : null;
+    let species = terms[1] !== undefined ? terms[1].match(/(?<=\s)[^_]+/) : null;
+    if( species === null && genus !== null) { species = genus; }
+    if( genus === null && species !== null) { genus = species;}
+    if( genus !== null) orArray.push({genus: new RegExp(genus, 'i')});
+    if( species !== null) orArray.push({species: new RegExp(species, 'i')});
+
+    const plants = await Plant.find().or(orArray);
     if (!plants) return res.status(204).json({ 'message': 'No plants found.'});
     res.json(plants);
 }

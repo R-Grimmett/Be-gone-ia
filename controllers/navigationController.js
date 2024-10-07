@@ -57,9 +57,9 @@ function createMenuOverlay() {
     let problem = document.createElement("li");
     if((/\/problem-database(.html)?$/.exec(location)) != null) {
         problem.classList.add('active');
-        problem.innerHTML = `<a href="problem-database.html" aria-current="page"><i class="fa-solid fa-bug"></i> Ailment Database</a>`;
+        problem.innerHTML = `<a href="problem-database.html" aria-current="page"><i class="fa-solid fa-bug"></i> Problem Database</a>`;
     } else {
-        problem.innerHTML = `<a href="problem-database.html"><i class="fa-solid fa-bug"></i> Ailment Database</a>`;
+        problem.innerHTML = `<a href="problem-database.html"><i class="fa-solid fa-bug"></i> Problem Database</a>`;
     }
 
     // ABOUT

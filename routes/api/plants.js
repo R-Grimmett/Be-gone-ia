@@ -9,7 +9,7 @@ router.route('/')
     .put(controller.updatePlant)
     .delete(controller.deletePlant);
 
-router.route('/search/:name')
+router.route('/search/:searchTerm')
     .get(controller.searchPlantName);
 
 router.route('/id/:id')
