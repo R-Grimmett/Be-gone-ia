@@ -38,8 +38,9 @@ router.get('/about(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', 'about.html'));
 });
 
-router.get('/view-plant(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'plant-view.html'));
+router.get('/plant_id=:id', (req, res) => {
+    if(!req?.params?.id) res.status(404).sendFile(path.join(__dirname, '..', 'views', '404.html'));
+    else res.sendFile(path.join(__dirname, '..', 'views', 'plant-view.html'));
 });
 
 module.exports = router;

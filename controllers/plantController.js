@@ -112,6 +112,8 @@ const searchPlant = async (req, res) => {
     res.json(plants);
 }
 
+
+
 module.exports =    {createPlant,
                     deletePlant,
                     updatePlant,

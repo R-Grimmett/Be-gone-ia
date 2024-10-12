@@ -695,33 +695,26 @@ main {
 
 
 /* ----- ITEM VIEW PAGES ----- */
-#plant-img {
-    max-height: 60vh;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 0 0 10px 10px;
-    border-bottom: 10px solid var(--deepOlive);
-}
-
-#view-hero {
-    position: absolute;
+#view-back {
     display: flex;
-    flex-direction: column;
-    top: 15vh;
+    background-color: var(--deepOlive);
 }
-
-    #view-hero a {
+    #view-back a{
         text-decoration: none;
         color: var(--offWhite);
-        background-color: var(--deepOlive);
-        border: 5px solid var(--mutedGreen);
-        border-radius: 10px;
-        padding: 5%;
-        max-width: 50vw;
+        padding: 2%;
         font-size: 1rem;
-        margin-bottom: 20vh;
-        margin-left: 5%;
     }
+
+#view-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-position: center;
+    background-size: cover;
+    min-height: 50vh;
+    border-radius: 0 0 10px 10px;
+}
 
     #view-hero h1, #view-hero p {
         color: var(--offWhite);
@@ -733,12 +726,16 @@ main {
         font-size: 3rem;
         background-color: var(--overlayOlive);
         text-shadow: 2px 2px 0 var(--deepOlive);
+        border-radius: 10px 10px 0 0;
+        text-align: left;
+        padding: 0 1rem;
     }
 
     #view-hero p {
         padding: 0.5rem 1rem;
         font-style: italic;
         background-color: var(--deepOlive);
+        border-radius: 0 0 10px 10px;
     }
 
 .plant-stats {
