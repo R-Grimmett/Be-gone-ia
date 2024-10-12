@@ -246,6 +246,7 @@ main {
 /* Helper class to allow entire sections to act as a link. */
 .stretch-link:after {
     content: "";
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
@@ -610,7 +611,7 @@ main {
     color: var(--overlayOlive);
 }
 
-/* ID used for the ul holding the database results */
+/* ID used for the div holding the database results */
 #database-results {
     min-height: 50vh;
     display: flex;
@@ -624,39 +625,33 @@ main {
 
 .db-entry {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-evenly;
-    text-align: center;
     background-color: var(--offWhite);
     border-radius: 10px;
     border: 5px solid var(--salmon);
     box-shadow: -5px 3px 0 var(--terracotta);
     margin: 0.5rem;
     padding: 0.5rem;
-    list-style: none;
+    position: relative;
 }
 
     .db-entry img {
-        max-width: 100%;
-        max-height: 15vh;
+        min-width: 100%;
+        max-height: 20vh;
         object-fit: cover;
         border-radius: 10px;
         border: 5px solid var(--salmon);
     }
 
-    .db-entry .db-text {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .db-entry .db-text div {
+    .db-entry div {
         display: flex;
         flex-grow: 1;
         text-align: left;
         flex-direction: column;
-        margin: 0.5rem;
+        max-width: 70%;
     }
 
     .db-entry h2 {
@@ -670,9 +665,11 @@ main {
 
     .db-entry i {
         color: var(--terracotta);
-        font-size: 3rem;
-        margin: auto 1rem auto 0.5rem;
+        font-size: 2rem;
         justify-self: right;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 5%;
     }
 
 .db-notice {
