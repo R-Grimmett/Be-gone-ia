@@ -94,28 +94,28 @@ h3 {
 
 /* HEADER */
 header {
+    padding-top: 5vh;
     background: var(--warmBrown);
     z-index: 5;
 }
 
-    header nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        color: var(--offWhite);
-    }
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .logo {
     color: var(--offWhite);
     font-family: var(--titleFont);
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     transition: 0.5s;
     text-decoration: none;
     padding: 1rem 1.5rem;
     text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
+    margin-top: auto;
 }
 
 #menu-button {
@@ -802,13 +802,43 @@ main {
     flex-direction: column;
 }
 
-#reference p {
-    font-style: italic;
-    background-color: var(--salmon);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 0.5rem;
-}
+    #reference p {
+        font-style: italic;
+        background-color: var(--deepOlive);
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 0.5rem;
+        color: var(--offWhite);
+    }
+
+    #reference ul {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background-color: var(--mutedGreen);
+        border-radius: 10px 10px 0 0;
+        padding: 0.5rem;
+        border: 3px solid var(--deepOlive);
+    }
+
+        #reference ul li {
+            font-size: 1rem;
+            list-style: none;
+            margin: 0 5%;
+            background-color: var(--offWhite);
+            border-radius: 10px;
+            padding: 0.5rem;
+            border: 3px solid var(--deepOlive);
+            box-shadow: 3px -3px 0 var(--deepOlive);
+        }
+
+            #reference ul li a,
+            #reference ul li p {
+                text-decoration: none;
+                color: var(--offBlack);
+                background-color: transparent;
+                overflow-wrap: break-word;
+            }
 
 /* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {

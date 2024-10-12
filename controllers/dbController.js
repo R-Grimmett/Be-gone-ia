@@ -1,4 +1,5 @@
-const Family = require("../model/Families");
+const Family = require("../model/Families.js");
+const Reference = require("../model/References.js");
 
 const populateFamily = async (name) => {
     try {
@@ -18,5 +19,12 @@ const getFamilies = async (req, res) => {
     res.json(data);
 }
 
+const getReferences = async (req, res) => {
+    const data = await Reference.find();
+    if (!data) return res.status(204).json({ 'message': 'No references found.'});
+    res.json(data);
+}
+
 module.exports =    {populateFamily,
-                    getFamilies}
+                    getFamilies,
+                    getReferences}
