@@ -112,7 +112,45 @@ function displayResult(plantData, problemData) {
 function togglePlant() { console.log(resultPlant); }
 function toggleProblem() { console.log(resultProblem); }
 
-function probableLeaf(tagsArray) {}
+// May God have mercy on ye who travel here
+function probableLeaf(tagsArray) {
+    if(tagsArray.length === 1) {
+        switch (tagsArray[0]) {
+            case "blotch-brown":
+                return ["too cold", "downy mildew"];
+            case "blotch-downy":
+                return ["downy mildew"];
+            case "blotch-yellow":
+                return ["stem and bulb nematodes", "mealybug", "downy mildew"];
+            case "curled":
+                return ["too hot", "overwatering", "underwatering", "aphids", "spider mite", "glasshouse whitefly", "root aphids", "stem and bulb nematodes"];
+            case "dropped":
+                return ["underfeeding", "spider mite", "fungal leaf spot", "rust", "downy mildew"];
+            case "growth-mold":
+                return ["downy mildew"];
+            case "growth-rust":
+                return ["rust"];
+            case "leaf-black":
+                return ["bacterial leaf spot"];
+            case "leaf-brown":
+                return ["too hot", "too cold", "overwatering", "underwatering", "rust"];
+            case "leaf-mottled":
+                return ["spider mite", "leafhopper"];
+            case "leaf-pale":
+                return ["not enough light", "underfeeding", "root mealybugs"];
+            case "leaf-red":
+                return ["underwatering"];
+            case "leaf-silvery":
+                return ["thrips"];
+            case "leaf-skeleton":
+                return ["earwigs"];
+            case "leaf-translucent":
+                return ["bacterial leaf spot"];
+            case "mosaic":
+                return ["viruses"];
+        }
+    }
+}
 
 function probableFlower(tagsArray) {
     if (tagsArray.length === 1) {
@@ -145,7 +183,45 @@ function probableFlower(tagsArray) {
     else { return ["stem and bulb nematodes"]; }
 }
 
-function probableStem(tagsArray) {}
+function probableStem(tagsArray) {
+    if(tagsArray.length === 1) {
+        switch (tagsArray[0]) {
+            case "black":
+                return ["stem and bulb nematodes"];
+            case "etiolated":
+                return ["not enough light"];
+            case "insect":
+                return ["aphids"];
+            case "mark-brown":
+                return ["too cold"];
+            case "mark-wet":
+                return ["stem and crown rot"];
+            case "scale":
+                return ["glasshouse whitefly", "scale insects"];
+            case "scorch":
+                return ["too much light"];
+            case "substance-fluffy":
+                return ["mealybug"];
+            case "substance-sticky":
+                return ["aphids", "glasshouse whitefly", "mealybug", "scale insects"];
+            case "substance-web":
+                return ["spider-mite"];
+            default:
+                return null;
+        }
+    }
+    else if (tagsArray.includes("substance-web")) { return ["spider-mite"]; }
+    else if (tagsArray.includes("insect") && tagsArray.includes("substance-sticky")) { return ["aphids"]; }
+    else if (tagsArray.includes("substance-sticky") && tagsArray.includes("scale")) { return ["scale insects", "glasshouse whitefly"]; }
+    else if (tagsArray.includes("substance-fluffy")) { return ["mealybug"]; }
+    else if (tagsArray.includes("substance-sticky")) { return ["aphids", "glasshouse whitefly", "mealybug", "scale insects"]; }
+    else if (tagsArray.includes("scale")) { return ["glasshouse whitefly", "scale"]; }
+    else if (tagsArray.includes("etioltaed")) { return ["not enough light"]; }
+    else if (tagsArray.includes("mark-wet")) { return ["stem and crown rot"]; }
+    else if (tagsArray.includes("black")) { return ["stem and bulb nematodes"]; }
+    else if (tagsArray.includes("mark-brown")) { return ["too cold"]; }
+    else { return ["too much light"]; }
+}
 
 function probableRoot(tagsArray) {
     if(tagsArray.length === 1) {
