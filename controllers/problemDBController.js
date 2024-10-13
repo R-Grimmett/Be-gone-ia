@@ -21,9 +21,9 @@ function loadProblemEntries(dbProblems) {
             const stringData = JSON.stringify(dbProblems.response[obj]);
             const data = JSON.parse(stringData);
             if(data.scientific !== undefined && data.scientific !== "") {
-                addProblemEntry(data.imgSrc, data.common[0], data.scientific, data.category);
+                addProblemEntry(data.imgSrc, data.common[0], data.scientific, data.category, data._id);
             } else {
-                addProblemEntry(data.imgSrc, data.common[0],null, data.category);
+                addProblemEntry(data.imgSrc, data.common[0],null, data.category, data._id);
             }
         }
     }
@@ -68,27 +68,28 @@ function loadProblemSearch() {
     }
 }
 
-function addProblemEntry(imgSrc, commonName, scientificName, category) {
+function addProblemEntry(imgSrc, commonName, scientificName, category, id) {
     let img, name;
-    let problemEntry = document.createElement("li");
+    let problemEntry = document.createElement("article");
+    const pageURL = `${rootURL}/problem_id=${id}`;
     problemEntry.classList.add('db-entry');
 
     if(imgSrc != null && imgSrc !== "") { img = `<img src=${imgSrc} alt='Image of ${commonName}.'>`; }
     else {
         if (category === "care") {
-            img = `<i class="fa-solid fa-plant-wilt" aria-hidden="true"></i>`;
+            img = `<div class="db-placeholder"><i class="fa-solid fa-plant-wilt" aria-hidden="true"></i></div>`;
         }
         if (category === "disease") {
-            img = `<i class="fa-solid fa-virus" aria-hidden="true"></i>`;
+            img = `<div class="db-placeholder"><i class="fa-solid fa-virus" aria-hidden="true"></i></div>`;
         }
         if (category === "pest") {
-            img = `<i class="fa-solid fa-bugs" aria-hidden="true"></i>`;
+            img = `<div class="db-placeholder"><i class="fa-solid fa-bugs" aria-hidden="true"></i></div>`;
         }
     }
     if(scientificName != null && scientificName !== "") { name = `<div><h2>${commonName}</h2><p>${scientificName}</p></div>`; }
     else { name = `<div><h2>${commonName}</h2></div>`;}
 
-    problemEntry.innerHTML = `${img}<div class="db-text">${name}<i class="fa-solid fa-arrow-right"></i></div>`;
+    problemEntry.innerHTML = `<a href="${pageURL}" class="stretch-link"></a>${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
 
     parentDiv.append(problemEntry);
 }
