@@ -5,6 +5,7 @@ const reURL = RegExp(/localhost/);
 survey.applyTheme(coffeeTheme);
 
 survey.onComplete.add((sender, options) => {
+    console.log(sender.data);
     calculatePlant(sender.data);
 })
 
@@ -26,16 +27,21 @@ function calculatePlant(result) {
                 const plantJSONString = JSON.stringify(dbPlantRequest.response[0]);
                 calculateProblem(plantJSONString);
             }
+            else { calculateProblem(null); }
         }
     } else {
-        calculateProblem(null);
+        calculateProblem(null, result);
     }
 }
 
-function calculateProblem(plantString) {
-    // TODO actually implement the logic
+function calculateProblem(plantString, result) {
+    const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf) : null;
+    const resFlower = result.symptom.includes("flower") ? probableFlower(result.symptomFlower) : null;
+    const resStem = result.symptom.includes("stem") ? probableStem(result.symptomStem) : null;
+    const resRoot = result.symptom.includes("root") ? probableRoot(result.symptomRoot) : null;
+    const resGrowth = result.symptom.includes("growth") ? probableGrowth(result.symptomGrowth) : null;
+    const resWhole = result.symptom.includes("whole") ? probableWhole(result.symptomWhole) : null;
     let dbProblemRequest = new XMLHttpRequest();
-    // dbProblemRequest.open("GET", `${process.env.ROOT_URL}/search/category=all%25name=%25leaf=${leafTags}%25flower=${flowerTags}%25${stemTags}%25${rootTags}%25${wholeTags}%25${growthTags}`);
     dbProblemRequest.open("GET", `${rootURL}/problems/id/66fe4e7d35a7baa560a90fde`);
     dbProblemRequest.send();
     dbProblemRequest.responseType = "json";
@@ -106,3 +112,115 @@ function displayResult(plantData, problemData) {
 function togglePlant() { console.log(resultPlant); }
 function toggleProblem() { console.log(resultProblem); }
 
+function probableLeaf(tagsArray) {}
+
+function probableFlower(tagsArray) {
+    if (tagsArray.length === 1) {
+        switch (tagsArray[0]) {
+            case "black":
+                return ["stem and bulb nematodes"];
+            case "drop":
+                return ["too hot", "too cold", "overwatering", "underwatering"];
+            case "none":
+                return ["too hot", "overfeeding", "underfeeding"];
+            case "pale":
+                return ["root mealybugs"];
+            case "substance-sticky":
+                return ["aphids", "glasshouse whitefly"];
+            case "substance-white":
+                return ["powdery mildew"];
+            case "white":
+                return ["thrips", "viruses"];
+            default:
+                return null;
+        }
+    }
+    else if (tagsArray.includes("substance-sticky")) { return ["aphids", "glasshouse whitefly"]; }
+    else if (tagsArray.includes("substance-white")) { return ["powdery mildew"]; }
+    else if (tagsArray.includes("drop") && tagsArray.includes("none")) { return ["too hot"]; }
+    else if (tagsArray.includes("white")) { return ["thrips", "viruses"]; }
+    else if (tagsArray.includes("pale")) { return ["root mealybugs"]; }
+    else if (tagsArray.includes("drop")) { return ["too cold", "overwatering", "underwatering"]; }
+    else if (tagsArray.includes("none")) { return ["overfeeding", "underfeeding"]; }
+    else { return ["stem and bulb nematodes"]; }
+}
+
+function probableStem(tagsArray) {}
+
+function probableRoot(tagsArray) {
+    if(tagsArray.length === 1) {
+        switch (tagsArray[0]) {
+            case "rot":
+                return ["stem and crown rot", "root rot"];
+            case "insect":
+                return ["earwigs"];
+            case "maggot":
+                return ["fungus gnat"];
+            case "aphid":
+                return ["root aphid"];
+            case "wool":
+                return ["root mealybug"];
+            case "grub":
+                return ["vine weevils"];
+            default:
+                return null;
+        }
+    }
+    else if(tagsArray.includes("rot")) { return ["stem and crown rot", "root rot"]; }
+    else if(tagsArray.includes("wool")) { return ["root mealybug"]; }
+    else if(tagsArray.includes("aphid")) { return ["root aphid"]; }
+    else if(tagsArray.includes("maggot")) { return ["fungus gnat"]; }
+    else if(tagsArray.includes("grub")) { return ["vine weevils"]; }
+    else return ["earwigs"];
+}
+
+function probableGrowth(tagsArray) {
+    if(tagsArray.length === 1) {
+        switch(tagsArray[0]) {
+            case "slow":
+                return ["too hot", "too cold", "underfeeding", "underwatering", "aphids", "fungas gnats", "spider mite", "glasshouse whitefly", "mealybug", "viruses"];
+            case "etiolated":
+                return ["not enough light"];
+            case "fast":
+                return ["overfeeding"];
+            case "distorted":
+                return ["mealybug", "thrips", "viruses"];
+            default:
+                return null;
+        }
+    }
+    else if(tagsArray.includes("slow") && tagsArray.includes("distorted")) { return ["mealybug", "viruses"]; }
+    else if(tagsArray.includes("etiolated")) { return ["not enough light"]; }
+    else if(tagsArray.includes("distorted")) { return ["thrips", "mealybug", "viruses"]; }
+    else if(tagsArray.includes("fast")) { return ["overfeeding"]; }
+    else { return ["too hot", "too cold", "underfeeding", "underwatering", "aphids", "fungas gnats", "spider mite", "glasshouse whitefly", "mealybug", "viruses"]; }
+}
+
+function probableWhole(tagsArray) {
+    if(tagsArray.length === 1) {
+        switch(tagsArray[0]) {
+            case 'collapsed':
+                return ["vine weevils", "stem and crown rot", "root rot"];
+            case 'insect':
+                return ["fungas gnats"];
+            case 'mark-brown':
+                return ["too cold"];
+            case 'mark-white':
+                return ["spider mite"];
+            case `no-water`:
+                return ["root rot"];
+            case 'odor':
+                return ["stem and crown rot", "root rot"];
+            case 'wilt':
+                return ["too hot", "overwatering", "underwatering", "root aphids", "stem and crown rot", "root rot"];
+            default:
+                return null;
+        }
+    }
+    else if(tagsArray.includes("mark-white")) { return ["spider mite"]; }
+    else if(tagsArray.includes("collapsed") && !tagsArray.includes("odor") && !tagsArray.includes("no-water")) { return ["vine weevils"]; }
+    else if(tagsArray.includes("odor") || tagsArray.includes("no-water")) { return ["stem and crown rot", "root rot"]; }
+    else if(tagsArray.includes("insect")) {return ["fungas gnats"]; }
+    else if(tagsArray.includes("mark-brown")) { return ["too cold"]; }
+    else { return ["too hot", "overwatering", "underwatering", "root aphids"]; }
+}

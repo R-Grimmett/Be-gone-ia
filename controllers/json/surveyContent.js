@@ -64,7 +64,7 @@ const surveyJson = {
             },
             {
                 "type": "dropdown",
-                "name": "plant-type",
+                "name": "plantType",
                 "visibleIf": "{botanicalKnow} = false and {commonKnow} = false",
                 "title": "What kind of Plant is it?",
                 "requiredIf": "{botanicalKnow} = false and {commonKnow} = false",
@@ -105,7 +105,7 @@ const surveyJson = {
                 "elements": [
                     {
                         "type": "boolean",
-                        "name": "age-know",
+                        "name": "ageKnow",
                         "title": "Do you know how old the plant is?\n",
                         "isRequired": true,
                         "swapOrder": true
@@ -135,7 +135,7 @@ const surveyJson = {
                 "elements": [
                     {
                         "type": "multipletext",
-                        "name": "affected-time",
+                        "name": "affectedTime",
                         "title": "How long ago did the symptoms appear?",
                         "description": "If you don't know specifically that's ok, just enter your best guess.",
                         "items": [
@@ -194,7 +194,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-leaf",
+                        "name": "symptomLeaf",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'leaf'",
                         "title": "What do the symptoms on the plant's leaves look like?\n",
@@ -271,10 +271,6 @@ const surveyJson = {
                                 "text": "Mosaic pattern on the leaves"
                             },
                             {
-                                "value": "mold-grey",
-                                "text": "Fuzzy grey mold on the leaves"
-                            },
-                            {
                                 "value": "mush",
                                 "text": "Leaves are turning mushy in spots or blotches"
                             },
@@ -343,7 +339,7 @@ const surveyJson = {
                     },
                     {
                         "type": "dropdown",
-                        "name": "leaf-insect",
+                        "name": "leafInsect",
                         "state": "expanded",
                         "visibleIf": "{symptom-leaf} contains 'insect'",
                         "title": "We saw you mentioned seeing insects on the leaves, do they look like any of the following?",
@@ -379,7 +375,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-flower",
+                        "name": "symptomFlower",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'flower'",
                         "title": "What do the symptoms affecting the plant's flowers look like?",
@@ -421,7 +417,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-stem",
+                        "name": "symptomStem",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'stem'",
                         "title": "What do the Symptoms on the Plant's Stem Look Like?",
@@ -473,7 +469,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-root",
+                        "name": "symptomRoot",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'root'",
                         "title": "What do the symptoms affecting the roots of the plant look like?",
@@ -510,7 +506,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-growth",
+                        "name": "symptomGrowth",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'growth'",
                         "title": "What do the symptoms affecting the plant's new or overall growth look like?",
@@ -540,7 +536,7 @@ const surveyJson = {
                     },
                     {
                         "type": "checkbox",
-                        "name": "symptom-whole",
+                        "name": "symptomWhole",
                         "state": "expanded",
                         "visibleIf": "{symptom} contains 'whole'",
                         "title": "What do the symptoms affecting the whole plant look like?",
