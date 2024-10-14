@@ -773,7 +773,7 @@ main {
         color: var(--warmBrown);
     }
 
-#allCommon {
+#allCommon, #problem-treatment {
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
@@ -781,21 +781,25 @@ main {
     padding: 5%;
 }
 
-    #allCommon li {
+    #allCommon li, #problem-treatment li {
         margin-left: 5%;
+        font-size: 1.2rem;
     }
 
-    #allCommon .li-header {
-        list-style: none;
-        color: var(--warmBrown);
-    }
 
-#plant-info {
+#view-info {
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
     padding: 2%;
+    font-size: 1.2rem;
 }
+
+#problem-treatment h3, #view-info h3 {
+    color: var(--warmBrown);
+    font-size: 1.75rem;
+}
+
 /* ABOUT PAGE STYLING */
 #reference {
     display: flex;
