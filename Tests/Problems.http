@@ -55,7 +55,7 @@ Content-Type: application/json
 ###
 
 ### GET search
-GET http://localhost:3000/problems/search/all%25spot
+GET http://localhost:3000/problems/search/category=all%25name=root%20aphid
 Accept: application/json
 Content-Type: application/json
 

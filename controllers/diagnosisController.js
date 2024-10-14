@@ -35,19 +35,76 @@ function calculatePlant(result) {
 }
 
 function calculateProblem(plantString, result) {
+    let problemName, resCombined;
+
+    //get probable answers based on each group of symptoms
     const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf) : null;
     const resFlower = result.symptom.includes("flower") ? probableFlower(result.symptomFlower) : null;
     const resStem = result.symptom.includes("stem") ? probableStem(result.symptomStem) : null;
     const resRoot = result.symptom.includes("root") ? probableRoot(result.symptomRoot) : null;
     const resGrowth = result.symptom.includes("growth") ? probableGrowth(result.symptomGrowth) : null;
     const resWhole = result.symptom.includes("whole") ? probableWhole(result.symptomWhole) : null;
+    let resAll = [resLeaf, resFlower, resStem, resRoot, resGrowth, resWhole];
+
+    // check if the same result appears more than once
+    let resCompare = [];
+    for (let i = 0; i < resAll.length - 1; i++) {
+        if(resAll[i] !== null && resAll[i] !== undefined) {
+            for (let j = i + 1; j < resAll.length; j++) {
+                if (resAll[j] !== null && resAll[j] !== undefined) {
+                    const compare = resAll[i].filter((word) => resAll[j].includes(word));
+                    for (k in compare) {
+                        resCompare.push(compare[k]);
+                    }
+                }
+            }
+        }
+    }
+
+    if(resCompare.length === 1) { problemName = resCompare[0]; }
+    else if(resCompare.length > 1) { problemName = prioProblem(resCompare); }
+    else {
+        resCombined = [];
+        for(let i = 0; i < resAll.length; i++) {
+            if(resAll[i] !== null && resAll[i] !== undefined) {
+                for(j in resAll[i]) { resCombined.push(resAll[i][j]); }
+            }
+        }
+        problemName = prioProblem(resCombined);
+    }
+    console.log(problemName);
+
     let dbProblemRequest = new XMLHttpRequest();
-    dbProblemRequest.open("GET", `${rootURL}/problems/id/66fe4e7d35a7baa560a90fde`);
+    dbProblemRequest.open("GET", `${rootURL}/problems/search/category=all%25name=${problemName}`);
     dbProblemRequest.send();
     dbProblemRequest.responseType = "json";
     dbProblemRequest.onload = () => {
         if(dbProblemRequest.status === 200) {
-            const problemJSONString = JSON.stringify(dbProblemRequest.response);
+            let problemJSONString = null;
+            if(dbProblemRequest.response.length > 1) {
+                const spaceRE = new RegExp(/\s/);
+                if(!spaceRE.test(problemName)) {
+                    for(obj in dbProblemRequest.response) {
+                        for(name in dbProblemRequest.response[obj]) {
+                            if(!spaceRE.test(dbProblemRequest.response[obj].common[name]) && problemJSONString === null) {
+                                problemJSONString = JSON.stringify(dbProblemRequest.response[obj]);
+                            }
+                        }
+                    }
+                }
+                else {
+                    for(obj in dbProblemRequest.response) {
+                        for(name in dbProblemRequest.response[obj]) {
+                            if(spaceRE.test(dbProblemRequest.response[obj].common[name]) && problemJSONString === null) {
+                                problemJSONString = JSON.stringify(dbProblemRequest.response[obj]);
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                problemJSONString = JSON.stringify(dbProblemRequest.response[0]);
+            }
             displayResult(plantString, problemJSONString);
         }
         else { displayResult(plantString, null); }
@@ -60,14 +117,6 @@ function displayResult(plantData, problemData) {
     const resultDiv = document.getElementById('results-container');
 
     let resultHero = document.createElement("div");
-    // let img;
-    // if(resultPlant !== null) {
-    //     if(resultPlant.imgSrc !== "" && resultPlant.imgSrc !== null) {
-    //         img = `<img src='${resultPlant.imgSrc}' alt='Image of ${resultPlant.genus} ${resultPlant.species}.>`;
-    //     }
-    // }
-    // else { img = `<img src="./img/background/background-hero.jpg" alt="Image of foliage.">`; }
-    //TODO re-add images based on the plant. Not sure why its not working.
     resultHero.classList.add('result-hero');
     resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
         is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
@@ -112,7 +161,7 @@ function displayResult(plantData, problemData) {
 function togglePlant() { console.log(resultPlant); }
 function toggleProblem() { console.log(resultProblem); }
 
-// May God have mercy on ye who travel here
+// May God have mercy on ye who travel here to the land of if else statements
 function probableLeaf(tagsArray) {
     if(tagsArray.length === 1) {
         switch (tagsArray[0]) {
@@ -137,7 +186,7 @@ function probableLeaf(tagsArray) {
             case "leaf-mottled":
                 return ["spider mite", "leafhopper"];
             case "leaf-pale":
-                return ["not enough light", "underfeeding", "root mealybugs"];
+                return ["not enough light", "underfeeding", "root mealybug"];
             case "leaf-red":
                 return ["underwatering"];
             case "leaf-silvery":
@@ -150,6 +199,56 @@ function probableLeaf(tagsArray) {
                 return ["viruses"];
         }
     }
+    else if(tagsArray.includes("substance-web")) { return ["spider mite"]; }
+    else if(tagsArray.includes("substance-fluffy")) { return ["mealybug"]; }
+    else if(tagsArray.includes("scale")) {
+        return tagsArray.includes("curled") ? ["glasshouse whitefly"] : ["scale insect"]; }
+    else if(tagsArray.includes("mosaic") || tagsArray.includes("ring")
+        || tagsArray.includes("streak-pale")) { return ["viruses"]; }
+    else if(tagsArray.includes("substance-sticky")) { return ["aphids"]; }
+    else if(tagsArray.includes("leaf-pale")) {
+        return tagsArray.includes("dropped") ? ["underfeeding"] : ["not enough light", "root mealybug"]; }
+    else if(tagsArray.includes("spot-black") || tagsArray.includes("leaf-silvery")) { return ["thrips"]; }
+    else if(tagsArray.includes("blotch-downy")) { return ["downy mildew"]; }
+    else if(tagsArray.includes("blotch-brown") || tagsArray.includes("blotch-yellow") &&
+        !(tagsArray.includes("leaf-brown") || tagsArray.includes("speck") ||
+            tagsArray.includes("curled"))) { return ["downy mildew"]; }
+    else if(tagsArray.includes("blotch-yellow")) { return ["stem and bulb nematodes"]; }
+    else if(tagsArray.includes("growth-rust")) { return ["rust"]; }
+    else if(tagsArray.includes("scab")) { return ["corky scab"]; }
+    else if(tagsArray.includes("spot-brown")) {
+        if(tagsArray.includes("dropped")) { return ["fungal leaf spot"]; }
+        else if(tagsArray.includes("leaf-black") || tagsArray.includes("leaf-translucent")
+            || tagsArray.includes("mush")) { return ["bacterial leaf spot"]}
+        else { return ["sooty mold"]; }
+    }
+    else if(tagsArray.includes("leaf-black") || tagsArray.includes("leaf-translucent")
+        || tagsArray.includes("mush")) { return ["bacterial leaf spot"]; }
+    else if(tagsArray.includes("leaf-mottled")) {
+        return (tagsArray.includes("dropped") || tagsArray.includes("curled")) ? ["spider mite"] : ["leafhopper"];
+    }
+    else if(tagsArray.includes("scorch")) {
+        return (tagsArray.includes("curled") || tagsArray.includes("leaf-brown")) ? ["too hot"] : ["too much light"];
+    }
+    else if(tagsArray.includes("blotch-brown")) { return ["too cold"]; }
+    else if(tagsArray.includes("odema")) {
+        return (tagsArray.includes("speck") || tagsArray.includes("blotch-yellow")) ? ["stem and bulb nematodes"] : ["overwatering"];
+    }
+    else if(tagsArray.includes("growth-mold") || tagsArray.includes("substance-mold")) {
+        return (tagsArray.includes("dropped") || tagsArray.includes("blotch-yellow")) ? ["downy mildew"] : ["grey mold"];
+    }
+    else if(tagsArray.includes("substance-white")) { return ["powdery mildew"]; }
+    else if(tagsArray.includes("speck")) { return ["stem and bulb nematodes"]; }
+    else if(tagsArray.includes("notch")) { return ["vine weevils"]; }
+    else if(tagsArray.includes("leaf-skeleton")) { return ["earwigs"]; }
+    else if(tagsArray.includes("leaf-red")) { return ["underwatering"]; }
+    else if(tagsArray.includes("dropped")) {
+        return tagsArray.includes("leaf-brown") ? ["rust"] : ["underfeeding", "fungal leaf spot"];
+    }
+    else if(tagsArray.includes("leaf-brown")) {
+        return tagsArray.includes("curled") ? [ "too hot", "overwatering", "underwatering"] : ["too cold", "rust", "underwatering"];
+    }
+    else{ return ["root aphids", "too hot", "underwatering", "aphids"]; }
 }
 
 function probableFlower(tagsArray) {
@@ -162,7 +261,7 @@ function probableFlower(tagsArray) {
             case "none":
                 return ["too hot", "overfeeding", "underfeeding"];
             case "pale":
-                return ["root mealybugs"];
+                return ["root mealybug"];
             case "substance-sticky":
                 return ["aphids", "glasshouse whitefly"];
             case "substance-white":
@@ -177,7 +276,7 @@ function probableFlower(tagsArray) {
     else if (tagsArray.includes("substance-white")) { return ["powdery mildew"]; }
     else if (tagsArray.includes("drop") && tagsArray.includes("none")) { return ["too hot"]; }
     else if (tagsArray.includes("white")) { return ["thrips", "viruses"]; }
-    else if (tagsArray.includes("pale")) { return ["root mealybugs"]; }
+    else if (tagsArray.includes("pale")) { return ["root mealybug"]; }
     else if (tagsArray.includes("drop")) { return ["too cold", "overwatering", "underwatering"]; }
     else if (tagsArray.includes("none")) { return ["overfeeding", "underfeeding"]; }
     else { return ["stem and bulb nematodes"]; }
@@ -197,24 +296,24 @@ function probableStem(tagsArray) {
             case "mark-wet":
                 return ["stem and crown rot"];
             case "scale":
-                return ["glasshouse whitefly", "scale insects"];
+                return ["glasshouse whitefly", "scale insect"];
             case "scorch":
                 return ["too much light"];
             case "substance-fluffy":
                 return ["mealybug"];
             case "substance-sticky":
-                return ["aphids", "glasshouse whitefly", "mealybug", "scale insects"];
+                return ["aphids", "glasshouse whitefly", "mealybug", "scale insect"];
             case "substance-web":
-                return ["spider-mite"];
+                return ["spider mite"];
             default:
                 return null;
         }
     }
-    else if (tagsArray.includes("substance-web")) { return ["spider-mite"]; }
+    else if (tagsArray.includes("substance-web")) { return ["spider mite"]; }
     else if (tagsArray.includes("insect") && tagsArray.includes("substance-sticky")) { return ["aphids"]; }
-    else if (tagsArray.includes("substance-sticky") && tagsArray.includes("scale")) { return ["scale insects", "glasshouse whitefly"]; }
+    else if (tagsArray.includes("substance-sticky") && tagsArray.includes("scale")) { return ["scale insect", "glasshouse whitefly"]; }
     else if (tagsArray.includes("substance-fluffy")) { return ["mealybug"]; }
-    else if (tagsArray.includes("substance-sticky")) { return ["aphids", "glasshouse whitefly", "mealybug", "scale insects"]; }
+    else if (tagsArray.includes("substance-sticky")) { return ["aphids", "glasshouse whitefly", "mealybug", "scale insect"]; }
     else if (tagsArray.includes("scale")) { return ["glasshouse whitefly", "scale"]; }
     else if (tagsArray.includes("etioltaed")) { return ["not enough light"]; }
     else if (tagsArray.includes("mark-wet")) { return ["stem and crown rot"]; }
@@ -299,4 +398,18 @@ function probableWhole(tagsArray) {
     else if(tagsArray.includes("insect")) {return ["fungas gnats"]; }
     else if(tagsArray.includes("mark-brown")) { return ["too cold"]; }
     else { return ["too hot", "overwatering", "underwatering", "root aphids"]; }
+}
+
+function prioProblem(problemArray) {
+    const allProblemsArray = ["spider mite", "viruses", "root mealybug", "mealybug", "scale insect", "glasshouse whitefly",
+        "not enough light", "root rot", "stem and crown rot", "thrips", "fungus gnat", "downy mildew", "root aphid",
+        "aphid", "sooty mold", "powdery mildew", "fungal leaf spot", "bacterial leaf spot", "rust", "too hot",
+        "stem and bulb nematodes", "corky scab", "underfeeding", "overwatering", "grey mold", "underwatering",
+        "too much light", "vine weevils", "leafhopper", "earwigs", "too cold", "overfeeding"];
+
+    for(let i = 0; i < problemArray.length; i++) {
+        if(allProblemsArray.includes(problemArray[i])) { return problemArray[i]; }
+    }
+
+    return null;
 }
