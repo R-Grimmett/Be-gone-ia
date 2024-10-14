@@ -13,7 +13,7 @@ function init() {
                             <ul class="socials">
                                 <li><a href="https://github.com/R-Grimmett/Be-gone-ia"><i class="fa-brands fa-github"></i></a></li>
                             </ul>
-                            <a href="about.html">All attribution and references can be found on our 
+                            <a href="about.html" id="about">All attribution and references can be found on our 
                                 <i class="fa-solid fa-question" aria-hidden="true"></i> About page.</a>
                         </div>
                         <a href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Back to Top</a>`;

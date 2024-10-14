@@ -198,6 +198,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     background: var(--warmBrown);
     text-align: center;
     padding: 5% 13%;
@@ -205,19 +206,22 @@ footer {
     font-size: 1rem;
 }
 
+footer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
     footer a {
         color: var(--offWhite);
         text-decoration: none;
         transition: 0.2s;
+        margin: 0.5rem;
     }
 
     footer a:hover {
         font-size: 1.5rem;
-    }
-
-    footer div {
-        display: block;
-        margin: 1rem;
     }
 
     footer ul {
@@ -318,17 +322,6 @@ main {
             -webkit-text-stroke: 2px var(--deepOlive);
         }
 
-/* Class used to restrict the size of specific elements */
-.sidebar {
-    flex: 0 1 350px;
-    background-color: var(--offWhite);
-    text-align: center;
-}
-
-    .sidebar img {
-        max-width: 320px;
-    }
-
 /* .HERO STYLING  */
 /* Class used for the focal image on plant.html */
 .hero {
@@ -366,11 +359,20 @@ main {
 
     .hero a {
         border-radius: 10px;
+        border: 8px solid var(--mutedGreen);
+        box-shadow: -3px 3px 0 var(--deepOlive);
         background-color: var(--offWhite);
         color: var(--deepOlive);
         padding: 1rem;
         margin-top: 1vh;
         text-decoration: none;
+        transition: 0.5s;
+    }
+
+    .hero a:hover {
+        border: 8px solid var(--terracotta);
+        box-shadow: -3px 3px 0 var(--warmBrown);
+        color: var(--warmBrown);
     }
 
 /* ----- DIAGNOSIS SPECIFIC STYLING ----- */
@@ -404,6 +406,7 @@ main {
 #results-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
     #results-container .result-hero {
         padding: 1rem;
@@ -458,6 +461,7 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+
     }
 
     #results-container .result-links button,
@@ -473,6 +477,7 @@ main {
         padding: 5%;
         text-align: center;
         transition: 0.5s;
+        min-width: 100%;
     }
 
     /* TODO: figure out why this ain't rendering */
@@ -481,7 +486,6 @@ main {
         background-color: var(--warmBrown);
         border: 5px solid var(--terracotta);
         box-shadow: -5px 8px 0 var(--terracotta);
-        font-size: 2.25rem;
         transition: 0.5s;
     }
 
@@ -808,11 +812,10 @@ main {
 
     #reference p {
         font-style: italic;
-        background-color: var(--deepOlive);
+        background-color: var(--salmon);
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem;
-        color: var(--offWhite);
     }
 
     #reference ul {
@@ -821,7 +824,7 @@ main {
         flex-grow: 1;
         background-color: var(--mutedGreen);
         border-radius: 10px 10px 0 0;
-        padding: 0.5rem;
+        padding: 1.5rem 0.5rem 0.5rem;
         border: 3px solid var(--deepOlive);
     }
 
@@ -834,6 +837,7 @@ main {
             padding: 0.5rem;
             border: 3px solid var(--deepOlive);
             box-shadow: 3px -3px 0 var(--deepOlive);
+            transition: 0.5s;
         }
 
             #reference ul li a,
@@ -842,28 +846,14 @@ main {
                 color: var(--offBlack);
                 background-color: transparent;
                 overflow-wrap: break-word;
+                transition: 0.5s;
             }
 
-/* Class used to organize a gallery of img on the pages for each individual location. */
-.mason-gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-    .mason-gallery img {
-        display: block;
-        max-width: 80vw;
-        max-height: 30vh;
-        object-fit: cover;
-        padding: 10px;
-        margin: auto;
-    }
-
-        .mason-gallery img:hover,
-        .mason-gallery img:focus {
-            background-color: var(--salmon);
-        }
+            #reference ul li:hover {
+                background-color: var(--salmon);
+                border: 3px solid var(--terracotta);
+                box-shadow: 3px -3px var(--warmBrown);
+            }
 
 /* ----- OVERLAYS ----- */
 #overlayMenu, #filters-overlay {
@@ -993,84 +983,97 @@ main {
     padding-right: 1rem;
 }
 
-/* TODO: Restore these for final release */
-/*!* MEDIA QUERIES *!*/
-/*!* Tablet media query *!*/
-/*@media (min-width: 700px) {*/
-/*    header nav ul {*/
-/*        flex-grow: 1;*/
-/*        display: flex;*/
-/*        flex-direction: row;*/
-/*        justify-content: flex-end;*/
-/*        background-color: var(--terracotta);*/
-/*    }*/
+/* MEDIA QUERIES */
+/* Tablet media query */
+@media (min-width: 700px) {
+   header {
+       padding-top: 2vh;
+   }
+       header nav {
+           padding: 0 5vw;
+       }
 
-/*        header nav ul a {*/
-/*            padding: 10px 30px;*/
-/*            background-color: var(--warmBrown);*/
-/*        }*/
+   .logo {
+       font-size: 3rem;
+   }
 
-/*    header .logo {*/
-/*        font-size: 4rem;*/
-/*    }*/
+   footer {
+       padding: 5%;
+   }
 
-/*    #menu-button {*/
-/*        display: none;*/
-/*    }*/
+       footer div {
+           flex-direction: row;
+           margin-bottom: 5%;
+       }
+        footer #about {
+            display: block;
+            max-width: 50%;
+        }
 
-/*    footer {*/
-/*        flex-direction: row;*/
-/*        justify-content: space-around;*/
-/*        padding-top: 1rem;*/
-/*        padding-bottom: 1rem;*/
-/*    }*/
+   .categories ul {
+       flex-direction: row;
+       flex-wrap: wrap;
+   }
+   .categories li {
+       max-width: 30%;
+       margin: 0.5rem;
+   }
+   .categories li h2 {
+       font-size: 2rem;
+       -webkit-text-stroke: 1px var(--deepOlive);
+   }
+    .categories li h2 i{
+        display: block;
+        min-width: 100%;
+    }
+   .categories #all-category {
+       min-width: 100%;
+   }
+   .categories #all-category h2 {
+       font-size: 2.5rem;
+   }
+    .categories #all-category h2 i {
+        display: inline-block;
+        min-width: 0;
+    }
 
-/*        footer ul {*/
-/*            margin: 2%;*/
-/*        }*/
+   #results-container .result-information {
+       max-width: 80%;
+   }
 
-/*        footer a,*/
-/*        footer a i {*/
-/*            color: var(--offWhite);*/
-/*            padding: 2%;*/
-/*            transition: 0.5s;*/
-/*            vertical-align: middle;*/
-/*        }*/
+   #database-results {
+       flex-direction: row;
+       flex-wrap: wrap;
+       justify-content: space-evenly;
+   }
 
-/*            footer a:hover,*/
-/*            footer a:focus,*/
-/*            footer a i:hover,*/
-/*            footer a i:focus {*/
-/*                color: var(--offWhite);*/
-/*                font-size: 2.5rem;*/
-/*                text-shadow: 1px 1px 0px var(--offBlack);*/
-/*            }*/
+   .db-entry {
+       width: 45%
+   }
 
-/*    .mobile-hide {*/
-/*        display: block;*/
-/*    }*/
+   /* Would it be better code if i could combine the next two styles? yes. Does it cooperate? no. */
+   #view-hero h1 {
+       padding-left: 10vw;
+   }
 
-/*    .flex-container {*/
-/*        display: flex;*/
-/*        flex-wrap: wrap;*/
-/*        background-color: var(--offWhite);*/
-/*        justify-content: center;*/
-/*    }*/
+   #view-hero p {
+       padding-left: 10vw;
+   }
 
-/*    .content {*/
-/*        min-width: 60%;*/
-/*    }*/
+    .plant-stats {
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 5%;
+       max-width: 60%;
+   }
 
-/*    .hero {*/
-/*        padding-top: 25vh;*/
-/*    }*/
-
-/*    .mason-gallery img {*/
-/*        max-width: 60vw;*/
-/*        height: 300px;*/
-/*        object-fit: cover;*/
-/*    }*/
-/*}*/
+    #reference p {
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
 
 /*!* Desktop media query *!*/
 /*@media (min-width: 1200px) {*/
