@@ -16,4 +16,4 @@ const referenceSchema = new Schema({
     }
 });
 
-module.exports = referenceSchema;
+module.exports = mongoose.model('Reference', referenceSchema);

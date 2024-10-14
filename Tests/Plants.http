@@ -47,10 +47,6 @@ GET http://localhost:3000/plants/id/66fa4961a8f6f95cf46019d8
 Accept: application/json
 Content-Type: application/json
 
-{
-  "_id": "66f756622d158ddbe8849c42"
-}
-
 ### GET a plant search
 GET http://localhost:3000/plants/search/common=%25botanical=monstera%20
 Accept: application/json

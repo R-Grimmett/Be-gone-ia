@@ -94,28 +94,28 @@ h3 {
 
 /* HEADER */
 header {
+    padding-top: 5vh;
     background: var(--warmBrown);
     z-index: 5;
 }
 
-    header nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        color: var(--offWhite);
-    }
+header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .logo {
     color: var(--offWhite);
     font-family: var(--titleFont);
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     transition: 0.5s;
     text-decoration: none;
     padding: 1rem 1.5rem;
     text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
+    margin-top: auto;
 }
 
 #menu-button {
@@ -246,6 +246,7 @@ main {
 /* Helper class to allow entire sections to act as a link. */
 .stretch-link:after {
     content: "";
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
@@ -610,7 +611,7 @@ main {
     color: var(--overlayOlive);
 }
 
-/* ID used for the ul holding the database results */
+/* ID used for the div holding the database results */
 #database-results {
     min-height: 50vh;
     display: flex;
@@ -624,39 +625,33 @@ main {
 
 .db-entry {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-evenly;
-    text-align: center;
     background-color: var(--offWhite);
     border-radius: 10px;
     border: 5px solid var(--salmon);
     box-shadow: -5px 3px 0 var(--terracotta);
     margin: 0.5rem;
     padding: 0.5rem;
-    list-style: none;
+    position: relative;
 }
 
     .db-entry img {
-        max-width: 100%;
-        max-height: 15vh;
+        min-width: 100%;
+        max-height: 20vh;
         object-fit: cover;
         border-radius: 10px;
         border: 5px solid var(--salmon);
     }
 
-    .db-entry .db-text {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .db-entry .db-text div {
+    .db-entry div {
         display: flex;
         flex-grow: 1;
         text-align: left;
         flex-direction: column;
-        margin: 0.5rem;
+        max-width: 70%;
     }
 
     .db-entry h2 {
@@ -670,9 +665,17 @@ main {
 
     .db-entry i {
         color: var(--terracotta);
-        font-size: 3rem;
-        margin: auto 1rem auto 0.5rem;
+        font-size: 2rem;
         justify-self: right;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 5%;
+    }
+
+    .db-entry .db-placeholder {
+        text-align: center;
+        min-width: 100%;
+        padding: 1rem 0;
     }
 
 .db-notice {
@@ -695,33 +698,26 @@ main {
 
 
 /* ----- ITEM VIEW PAGES ----- */
-#plant-img {
-    max-height: 60vh;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 0 0 10px 10px;
-    border-bottom: 10px solid var(--deepOlive);
-}
-
-#view-hero {
-    position: absolute;
+#view-back {
     display: flex;
-    flex-direction: column;
-    top: 15vh;
+    background-color: var(--deepOlive);
 }
-
-    #view-hero a {
+    #view-back a{
         text-decoration: none;
         color: var(--offWhite);
-        background-color: var(--deepOlive);
-        border: 5px solid var(--mutedGreen);
-        border-radius: 10px;
-        padding: 5%;
-        max-width: 50vw;
+        padding: 2%;
         font-size: 1rem;
-        margin-bottom: 20vh;
-        margin-left: 5%;
     }
+
+#view-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-position: center;
+    background-size: cover;
+    min-height: 50vh;
+    border-radius: 0 0 10px 10px;
+}
 
     #view-hero h1, #view-hero p {
         color: var(--offWhite);
@@ -733,12 +729,16 @@ main {
         font-size: 3rem;
         background-color: var(--overlayOlive);
         text-shadow: 2px 2px 0 var(--deepOlive);
+        border-radius: 10px 10px 0 0;
+        text-align: left;
+        padding: 0 1rem;
     }
 
     #view-hero p {
         padding: 0.5rem 1rem;
         font-style: italic;
         background-color: var(--deepOlive);
+        border-radius: 0 0 10px 10px;
     }
 
 .plant-stats {
@@ -802,13 +802,43 @@ main {
     flex-direction: column;
 }
 
-#reference p {
-    font-style: italic;
-    background-color: var(--salmon);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 0.5rem;
-}
+    #reference p {
+        font-style: italic;
+        background-color: var(--deepOlive);
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 0.5rem;
+        color: var(--offWhite);
+    }
+
+    #reference ul {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background-color: var(--mutedGreen);
+        border-radius: 10px 10px 0 0;
+        padding: 0.5rem;
+        border: 3px solid var(--deepOlive);
+    }
+
+        #reference ul li {
+            font-size: 1rem;
+            list-style: none;
+            margin: 0 5%;
+            background-color: var(--offWhite);
+            border-radius: 10px;
+            padding: 0.5rem;
+            border: 3px solid var(--deepOlive);
+            box-shadow: 3px -3px 0 var(--deepOlive);
+        }
+
+            #reference ul li a,
+            #reference ul li p {
+                text-decoration: none;
+                color: var(--offBlack);
+                background-color: transparent;
+                overflow-wrap: break-word;
+            }
 
 /* Class used to organize a gallery of img on the pages for each individual location. */
 .mason-gallery {

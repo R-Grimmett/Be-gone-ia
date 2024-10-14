@@ -15,22 +15,6 @@ function ready() {
     clearFilters();
 }
 
-function loadEntries(dbPlants) {
-    if(dbPlants.status === 200 && dbPlants.response.length > 0) {
-        for(obj in dbPlants.response) {
-            const stringData = JSON.stringify(dbPlants.response[obj]);
-            const data = JSON.parse(stringData);
-            if(data.common[0] !== undefined && data.common[0] !== "") {
-                addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`);
-            } else {
-                addPlantEntry(data.imgSrc, null,`${data.genus} ${data.species}`);
-            }
-        }
-    }
-    else if(dbPlants.status === 200 && dbPlants.response.length === 0) { dbNotice(`<h2>Sorry!</h2><p>We couldn't find any plants.</p>`); }
-    else { dbNotice(`<h2>Sorry!</h2><p>We ran into an error with the database.</p>`); }
-}
-
 function loadAll() {
     clearEntries();
     const dbPlants = new XMLHttpRequest();
@@ -56,10 +40,26 @@ function loadSearch() {
     }
 }
 
-function addPlantEntry(imgSrc, commonName, botanicalName) {
-    let img, name;
+function loadEntries(dbPlants) {
+    if(dbPlants.status === 200 && dbPlants.response.length > 0) {
+        for(obj in dbPlants.response) {
+            const stringData = JSON.stringify(dbPlants.response[obj]);
+            const data = JSON.parse(stringData);
+            if(data.common[0] !== undefined && data.common[0] !== "") {
+                addPlantEntry(data.imgSrc, data.common[0],`${data.genus} ${data.species}`, data._id);
+            } else {
+                addPlantEntry(data.imgSrc, null,`${data.genus} ${data.species}`, data._id);
+            }
+        }
+    }
+    else if(dbPlants.status === 200 && dbPlants.response.length === 0) { dbNotice(`<h2>Sorry!</h2><p>We couldn't find any plants.</p>`); }
+    else { dbNotice(`<h2>Sorry!</h2><p>We ran into an error with the database.</p>`); }
+}
+
+function addPlantEntry(imgSrc, commonName, botanicalName, id) {
+    let img, name, pageURL;
     let databaseResults = document.getElementById(parentDivName);
-    let plantEntry = document.createElement("li");
+    let plantEntry = document.createElement("article");
     plantEntry.classList.add('db-entry');
 
     if(imgSrc != null && imgSrc !== "") { img = `<img src=${imgSrc} alt='Image of ${botanicalName}.'>`; }
@@ -68,7 +68,9 @@ function addPlantEntry(imgSrc, commonName, botanicalName) {
     if(commonName != null && commonName !== "") { name = `<div><h2>${commonName}</h2><p>${botanicalName}</p></div>`; }
     else { name = `<div><h2>${botanicalName}</h2></div>`;}
 
-    plantEntry.innerHTML = `${img}<div class="db-text">${name}<i class="fa-solid fa-arrow-right"></i></div>`;
+    pageURL = `${rootURL}/plant_id=${id}`
+
+    plantEntry.innerHTML = `<a href="${pageURL}" class="stretch-link"></a>${img}${name}<i class="fa-solid fa-arrow-right"></i>`;
 
     databaseResults.append(plantEntry);
 }

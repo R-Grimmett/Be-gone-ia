@@ -1,0 +1,3 @@
+### GET References
+GET http://localhost:3000/db/reference
+###
