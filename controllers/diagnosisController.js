@@ -23,11 +23,11 @@ function calculatePlant(result) {
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
         dbPlantRequest.onload = () => {
-            if (dbPlantRequest.status === 200) {
+            if (dbPlantRequest.status === 200 && dbPlantRequest.response.length > 0) {
                 const plantJSONString = JSON.stringify(dbPlantRequest.response[0]);
-                calculateProblem(plantJSONString);
+                calculateProblem(plantJSONString, result);
             }
-            else { calculateProblem(null); }
+            else { calculateProblem(null, result); }
         }
     } else {
         calculateProblem(null, result);
@@ -112,7 +112,8 @@ function calculateProblem(plantString, result) {
 }
 
 function displayResult(plantData, problemData) {
-    resultPlant = JSON.parse(plantData);
+    console.log(plantData);
+    resultPlant = plantData !== null ? JSON.parse(plantData) : null;
     resultProblem = JSON.parse(problemData);
     const resultDiv = document.getElementById('results-container');
 

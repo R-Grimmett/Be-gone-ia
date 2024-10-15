@@ -34,18 +34,10 @@
 
 body {
     font-family: var(--bodyFont);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--offBlack);
     background-color: var(--offWhite);
 }
-/* Helper class for sizing content on screens*/
-.wrapper {
-    /* TODO: Adjust these for final version */
-    margin: auto;
-    max-width: 700px; /* 700px would be the size for changing to tablet, we're focusing on mobile for now */
-    background-color: var(--offWhite);
-}
-
 
 /* Ensure everything is a block for viewing on a mobile as a stacked set of content */
 aside,
@@ -195,9 +187,11 @@ header nav {
 
 /* FOOTER STYLING */
 footer {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     background: var(--warmBrown);
     text-align: center;
     padding: 5% 13%;
@@ -205,19 +199,22 @@ footer {
     font-size: 1rem;
 }
 
+footer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
     footer a {
         color: var(--offWhite);
         text-decoration: none;
         transition: 0.2s;
+        margin: 0.5rem;
     }
 
     footer a:hover {
         font-size: 1.5rem;
-    }
-
-    footer div {
-        display: block;
-        margin: 1rem;
     }
 
     footer ul {
@@ -240,7 +237,13 @@ footer {
 /* MAIN CONTENT CSS */
 main {
     background-color: var(--offWhite);
-    /*background-image: url(../img/background/autumn.svg);*/
+    min-height: 80vh;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 1200px;
+    background-color: var(--offWhite);
 }
 
 /* Helper class to allow entire sections to act as a link. */
@@ -252,11 +255,6 @@ main {
     right: 0;
     bottom: 0;
     left: 0;
-}
-
-/* Helper class to hide specific content on mobile sized devices */
-.mobile-hide {
-    display: none;
 }
 
 .content {
@@ -318,17 +316,6 @@ main {
             -webkit-text-stroke: 2px var(--deepOlive);
         }
 
-/* Class used to restrict the size of specific elements */
-.sidebar {
-    flex: 0 1 350px;
-    background-color: var(--offWhite);
-    text-align: center;
-}
-
-    .sidebar img {
-        max-width: 320px;
-    }
-
 /* .HERO STYLING  */
 /* Class used for the focal image on plant.html */
 .hero {
@@ -366,11 +353,20 @@ main {
 
     .hero a {
         border-radius: 10px;
+        border: 8px solid var(--mutedGreen);
+        box-shadow: -3px 3px 0 var(--deepOlive);
         background-color: var(--offWhite);
         color: var(--deepOlive);
         padding: 1rem;
         margin-top: 1vh;
         text-decoration: none;
+        transition: 0.5s;
+    }
+
+    .hero a:hover {
+        border: 8px solid var(--terracotta);
+        box-shadow: -3px 3px 0 var(--warmBrown);
+        color: var(--warmBrown);
     }
 
 /* ----- DIAGNOSIS SPECIFIC STYLING ----- */
@@ -404,6 +400,7 @@ main {
 #results-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
     #results-container .result-hero {
         padding: 1rem;
@@ -458,6 +455,7 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+
     }
 
     #results-container .result-links button,
@@ -473,6 +471,7 @@ main {
         padding: 5%;
         text-align: center;
         transition: 0.5s;
+        min-width: 100%;
     }
 
     /* TODO: figure out why this ain't rendering */
@@ -481,7 +480,6 @@ main {
         background-color: var(--warmBrown);
         border: 5px solid var(--terracotta);
         box-shadow: -5px 8px 0 var(--terracotta);
-        font-size: 2.25rem;
         transition: 0.5s;
     }
 
@@ -773,7 +771,7 @@ main {
         color: var(--warmBrown);
     }
 
-#allCommon {
+#allCommon, #problem-treatment {
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
@@ -781,21 +779,25 @@ main {
     padding: 5%;
 }
 
-    #allCommon li {
+    #allCommon li, #problem-treatment li {
         margin-left: 5%;
+        font-size: 1.2rem;
     }
 
-    #allCommon .li-header {
-        list-style: none;
-        color: var(--warmBrown);
-    }
 
-#plant-info {
+#view-info {
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
     padding: 2%;
+    font-size: 1.2rem;
 }
+
+#problem-treatment h3, #view-info h3 {
+    color: var(--warmBrown);
+    font-size: 1.75rem;
+}
+
 /* ABOUT PAGE STYLING */
 #reference {
     display: flex;
@@ -804,11 +806,11 @@ main {
 
     #reference p {
         font-style: italic;
-        background-color: var(--deepOlive);
+        background-color: var(--salmon);
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem;
-        color: var(--offWhite);
+        text-align: center;
     }
 
     #reference ul {
@@ -816,8 +818,8 @@ main {
         flex-direction: column;
         flex-grow: 1;
         background-color: var(--mutedGreen);
-        border-radius: 10px 10px 0 0;
-        padding: 0.5rem;
+        border-radius: 10px;
+        padding: 1.5rem 0.5rem 0.5rem;
         border: 3px solid var(--deepOlive);
     }
 
@@ -830,6 +832,7 @@ main {
             padding: 0.5rem;
             border: 3px solid var(--deepOlive);
             box-shadow: 3px -3px 0 var(--deepOlive);
+            transition: 0.5s;
         }
 
             #reference ul li a,
@@ -838,28 +841,14 @@ main {
                 color: var(--offBlack);
                 background-color: transparent;
                 overflow-wrap: break-word;
+                transition: 0.5s;
             }
 
-/* Class used to organize a gallery of img on the pages for each individual location. */
-.mason-gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-    .mason-gallery img {
-        display: block;
-        max-width: 80vw;
-        max-height: 30vh;
-        object-fit: cover;
-        padding: 10px;
-        margin: auto;
-    }
-
-        .mason-gallery img:hover,
-        .mason-gallery img:focus {
-            background-color: var(--salmon);
-        }
+            #reference ul li:hover {
+                background-color: var(--salmon);
+                border: 3px solid var(--terracotta);
+                box-shadow: 3px -3px var(--warmBrown);
+            }
 
 /* ----- OVERLAYS ----- */
 #overlayMenu, #filters-overlay {
@@ -874,7 +863,7 @@ main {
     background: var(--overlayBackground);
     background-image: url(../img/background/background-leaf.svg);
     background-size: 100px;
-    z-index: 2; /* Ensuring that the overlay is OVER the content */
+    z-index: 10; /* Ensuring that the overlay is OVER the content */
 }
 #overlayMenu .close-button, #filters-overlay .close-button {
     font-size: 4rem;
@@ -989,118 +978,214 @@ main {
     padding-right: 1rem;
 }
 
-/* TODO: Restore these for final release */
-/*!* MEDIA QUERIES *!*/
-/*!* Tablet media query *!*/
-/*@media (min-width: 700px) {*/
-/*    header nav ul {*/
-/*        flex-grow: 1;*/
-/*        display: flex;*/
-/*        flex-direction: row;*/
-/*        justify-content: flex-end;*/
-/*        background-color: var(--terracotta);*/
-/*    }*/
+/* MEDIA QUERIES */
+/* Tablet media query */
+@media (min-width: 700px) {
+   header {
+       padding-top: 2vh;
+   }
+       header nav {
+           padding: 0 5vw;
+       }
 
-/*        header nav ul a {*/
-/*            padding: 10px 30px;*/
-/*            background-color: var(--warmBrown);*/
-/*        }*/
+   .logo {
+       font-size: 3rem;
+   }
 
-/*    header .logo {*/
-/*        font-size: 4rem;*/
-/*    }*/
+   footer {
+       padding: 2%;
+       position: sticky;
+       bottom: -5%;
+   }
 
-/*    #menu-button {*/
-/*        display: none;*/
-/*    }*/
+       footer div {
+           flex-direction: row;
+           margin-bottom: 2%;
+       }
+        footer #about {
+            display: block;
+            max-width: 50%;
+        }
 
-/*    footer {*/
-/*        flex-direction: row;*/
-/*        justify-content: space-around;*/
-/*        padding-top: 1rem;*/
-/*        padding-bottom: 1rem;*/
-/*    }*/
+   .categories ul {
+       flex-direction: row;
+       flex-wrap: wrap;
+   }
+   .categories li {
+       max-width: 30%;
+       margin: 0.5rem;
+   }
+   .categories li h2 {
+       font-size: 2rem;
+       -webkit-text-stroke: 1px var(--deepOlive);
+   }
+    .categories li h2 i{
+        display: block;
+        min-width: 100%;
+    }
+   .categories #all-category {
+       min-width: 100%;
+   }
+   .categories #all-category h2 {
+       font-size: 2.5rem;
+   }
+    .categories #all-category h2 i {
+        display: inline-block;
+        min-width: 0;
+    }
 
-/*        footer ul {*/
-/*            margin: 2%;*/
-/*        }*/
+   #results-container .result-information {
+       max-width: 80%;
+   }
 
-/*        footer a,*/
-/*        footer a i {*/
-/*            color: var(--offWhite);*/
-/*            padding: 2%;*/
-/*            transition: 0.5s;*/
-/*            vertical-align: middle;*/
-/*        }*/
+   #database-results {
+       flex-direction: row;
+       flex-wrap: wrap;
+       justify-content: space-evenly;
+   }
 
-/*            footer a:hover,*/
-/*            footer a:focus,*/
-/*            footer a i:hover,*/
-/*            footer a i:focus {*/
-/*                color: var(--offWhite);*/
-/*                font-size: 2.5rem;*/
-/*                text-shadow: 1px 1px 0px var(--offBlack);*/
-/*            }*/
+   .db-entry {
+       width: 45%
+   }
 
-/*    .mobile-hide {*/
-/*        display: block;*/
-/*    }*/
+   /* Would it be better code if i could combine the next two styles? yes. Does it cooperate? no. */
+   #view-hero h1 {
+       padding-left: 10vw;
+   }
 
-/*    .flex-container {*/
-/*        display: flex;*/
-/*        flex-wrap: wrap;*/
-/*        background-color: var(--offWhite);*/
-/*        justify-content: center;*/
-/*    }*/
+   #view-hero p {
+       padding-left: 10vw;
+   }
 
-/*    .content {*/
-/*        min-width: 60%;*/
-/*    }*/
+    .plant-stats {
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 5%;
+       max-width: 60%;
+   }
 
-/*    .hero {*/
-/*        padding-top: 25vh;*/
-/*    }*/
+    #reference p {
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 
-/*    .mason-gallery img {*/
-/*        max-width: 60vw;*/
-/*        height: 300px;*/
-/*        object-fit: cover;*/
-/*    }*/
-/*}*/
+    #reference ul {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-bottom: 5%;
+    }
+}
 
-/*!* Desktop media query *!*/
-/*@media (min-width: 1200px) {*/
-/*    header nav ul {*/
-/*        padding-right: 10%;*/
-/*    }*/
+/* Desktop media query */
+@media (min-width: 1200px) {
+    main {
+        background: var(--offWhite);
+        background-image: url(../img/background/autumn.svg); /* Fallback if the next line doesn't work*/
+        background-image: linear-gradient(90deg, rgba(229, 221, 210, 0) 0%, rgba(229, 221, 210, 1) 20%, rgba(229, 221, 210, 1) 80%, rgba(229, 221, 210, 0) 100%), url(../img/background/autumn.svg);
+    }
 
-/*    header .logo {*/
-/*        padding-left: 10%;*/
-/*        font-size: 3.5rem;*/
-/*    }*/
+    h1 {
+        font-size: 5rem;
+    }
 
-/*    footer {*/
-/*        justify-content: center;*/
-/*    }*/
+    header {
+        position: sticky;
+        top: -3%;
+    }
+    header nav {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
 
-/*    .wrapper {*/
-/*        background-color: var(--offWhite);*/
-/*        padding: 30px 60px;*/
-/*    }*/
+    .logo {
+        font-size: 3.5rem;
+    }
 
-/*    #header_banner h1 {*/
-/*        font-size: 4rem;*/
-/*        padding-left: 12vw;*/
-/*    }*/
+    footer {
+        bottom: -20%;
+        padding: 2%;
+    }
+    footer div {
+        margin-bottom: 2%;
+    }
 
-/*    .hero h1 {*/
-/*        font-size: 5rem;*/
-/*        max-width: 400px;*/
-/*    }*/
+    .categories ul {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 
-/*    .mason-gallery a img {*/
-/*        width: 500px;*/
-/*        max-height: 400px;*/
-/*        object-fit: cover;*/
-/*    }*/
-/*}*/
+    .categories li h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero {
+        min-height: 80vh;
+        justify-content: center;
+    }
+    .hero h1, .hero h2 {
+        max-width: 60%;
+    }
+
+    .hero h1 {
+        font-size: 6rem;
+    }
+
+    #quiz-hero p,
+    #results-container .result-hero h1,
+    #results-container .result-hero h2 {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #results-container .result-hero h1 {
+        font-size: 6rem;
+        -webkit-text-stroke: 1px var(--deepOlive);
+    }
+
+    #results-container .result-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #results-container .result-links a,
+    #results-container .result-links button {
+        min-width: 0;
+        padding: 0.5rem;
+    }
+
+    #results-container .result-links a {
+        width: 90%;
+    }
+
+    #results-container .result-links button {
+        width: 40%;
+    }
+
+    .db-search {
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .db-entry {
+        max-width: 22%;
+        align-content: flex-start;
+    }
+
+    #view-hero h1, #view-hero p {
+        max-width: 100%;
+    }
+
+    #allCommon, #problem-treatment, #view-info {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #overlayMenu li {
+        margin-left: 30vw;
+    }
+}

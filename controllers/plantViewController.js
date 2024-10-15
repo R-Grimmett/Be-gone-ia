@@ -71,7 +71,7 @@ function populateName(commonArray, genus, species) {
 function populateInfo(infoText) {
     if(infoText !== undefined && infoText !== null && infoText !== "") {
         const plantInfo = document.createElement('div');
-        plantInfo.id = 'plant-info';
+        plantInfo.id = 'view-info';
         plantInfo.innerHTML = infoText;
         mainContent.appendChild(plantInfo);
     }
