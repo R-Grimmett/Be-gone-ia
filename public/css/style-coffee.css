@@ -34,18 +34,10 @@
 
 body {
     font-family: var(--bodyFont);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--offBlack);
     background-color: var(--offWhite);
 }
-/* Helper class for sizing content on screens*/
-.wrapper {
-    /* TODO: Adjust these for final version */
-    margin: auto;
-    max-width: 700px; /* 700px would be the size for changing to tablet, we're focusing on mobile for now */
-    background-color: var(--offWhite);
-}
-
 
 /* Ensure everything is a block for viewing on a mobile as a stacked set of content */
 aside,
@@ -195,6 +187,7 @@ header nav {
 
 /* FOOTER STYLING */
 footer {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -244,7 +237,13 @@ footer div {
 /* MAIN CONTENT CSS */
 main {
     background-color: var(--offWhite);
-    /*background-image: url(../img/background/autumn.svg);*/
+    min-height: 80vh;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 1200px;
+    background-color: var(--offWhite);
 }
 
 /* Helper class to allow entire sections to act as a link. */
@@ -256,11 +255,6 @@ main {
     right: 0;
     bottom: 0;
     left: 0;
-}
-
-/* Helper class to hide specific content on mobile sized devices */
-.mobile-hide {
-    display: none;
 }
 
 .content {
@@ -816,6 +810,7 @@ main {
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem;
+        text-align: center;
     }
 
     #reference ul {
@@ -823,7 +818,7 @@ main {
         flex-direction: column;
         flex-grow: 1;
         background-color: var(--mutedGreen);
-        border-radius: 10px 10px 0 0;
+        border-radius: 10px;
         padding: 1.5rem 0.5rem 0.5rem;
         border: 3px solid var(--deepOlive);
     }
@@ -868,7 +863,7 @@ main {
     background: var(--overlayBackground);
     background-image: url(../img/background/background-leaf.svg);
     background-size: 100px;
-    z-index: 2; /* Ensuring that the overlay is OVER the content */
+    z-index: 10; /* Ensuring that the overlay is OVER the content */
 }
 #overlayMenu .close-button, #filters-overlay .close-button {
     font-size: 4rem;
@@ -998,12 +993,14 @@ main {
    }
 
    footer {
-       padding: 5%;
+       padding: 2%;
+       position: sticky;
+       bottom: -5%;
    }
 
        footer div {
            flex-direction: row;
-           margin-bottom: 5%;
+           margin-bottom: 2%;
        }
         footer #about {
             display: block;
@@ -1073,41 +1070,122 @@ main {
         margin-left: 5%;
         margin-right: 5%;
     }
+
+    #reference ul {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-bottom: 5%;
+    }
 }
 
-/*!* Desktop media query *!*/
-/*@media (min-width: 1200px) {*/
-/*    header nav ul {*/
-/*        padding-right: 10%;*/
-/*    }*/
+/* Desktop media query */
+@media (min-width: 1200px) {
+    main {
+        background: var(--offWhite);
+        background-image: url(../img/background/autumn.svg); /* Fallback if the next line doesn't work*/
+        background-image: linear-gradient(90deg, rgba(229, 221, 210, 0) 0%, rgba(229, 221, 210, 1) 20%, rgba(229, 221, 210, 1) 80%, rgba(229, 221, 210, 0) 100%), url(../img/background/autumn.svg);
+    }
 
-/*    header .logo {*/
-/*        padding-left: 10%;*/
-/*        font-size: 3.5rem;*/
-/*    }*/
+    h1 {
+        font-size: 5rem;
+    }
 
-/*    footer {*/
-/*        justify-content: center;*/
-/*    }*/
+    header {
+        position: sticky;
+        top: -3%;
+    }
+    header nav {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
 
-/*    .wrapper {*/
-/*        background-color: var(--offWhite);*/
-/*        padding: 30px 60px;*/
-/*    }*/
+    .logo {
+        font-size: 3.5rem;
+    }
 
-/*    #header_banner h1 {*/
-/*        font-size: 4rem;*/
-/*        padding-left: 12vw;*/
-/*    }*/
+    footer {
+        bottom: -20%;
+        padding: 2%;
+    }
+    footer div {
+        margin-bottom: 2%;
+    }
 
-/*    .hero h1 {*/
-/*        font-size: 5rem;*/
-/*        max-width: 400px;*/
-/*    }*/
+    .categories ul {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 
-/*    .mason-gallery a img {*/
-/*        width: 500px;*/
-/*        max-height: 400px;*/
-/*        object-fit: cover;*/
-/*    }*/
-/*}*/
+    .categories li h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero {
+        min-height: 80vh;
+        justify-content: center;
+    }
+    .hero h1, .hero h2 {
+        max-width: 60%;
+    }
+
+    .hero h1 {
+        font-size: 6rem;
+    }
+
+    #quiz-hero p,
+    #results-container .result-hero h1,
+    #results-container .result-hero h2 {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #results-container .result-hero h1 {
+        font-size: 6rem;
+        -webkit-text-stroke: 1px var(--deepOlive);
+    }
+
+    #results-container .result-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #results-container .result-links a,
+    #results-container .result-links button {
+        min-width: 0;
+        padding: 0.5rem;
+    }
+
+    #results-container .result-links a {
+        width: 90%;
+    }
+
+    #results-container .result-links button {
+        width: 40%;
+    }
+
+    .db-search {
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .db-entry {
+        max-width: 22%;
+        align-content: flex-start;
+    }
+
+    #view-hero h1, #view-hero p {
+        max-width: 100%;
+    }
+
+    #allCommon, #problem-treatment, #view-info {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #overlayMenu li {
+        margin-left: 30vw;
+    }
+}
