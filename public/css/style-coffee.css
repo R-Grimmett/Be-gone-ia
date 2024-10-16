@@ -1,26 +1,26 @@
 ﻿/*  FONTS: */
-@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-/* font-family: "Gamja Flower", sans-serif;
+/* font-family: "Sedgwick Ave Display", serif;
    font-family: "Mali", cursive;
    font-family: "Atkinson Hyperlegible", sans-serif;
  */
 
 :root {
     /* Colour Variables */
-    --deepOlive: #435229;
-    --overlayOlive: rgba(67, 82, 41, 0.6);
-    --mutedGreen: #898C37;
-    --offWhite: #E5DDD2;
-    --overlayWhite: rgba(229, 221, 210, 0.5);
-    --salmon: #F2AE72;
-    --terracotta: #BF4904;
-    --warmBrown: #5C2513;
-    --offBlack: #121206;
-    --overlayBackground: rgba(18, 18, 6, 0.8);
+    --deepGreen: #5A7324;
+    --overlayGreen: rgba(90, 115, 35, 0.6);
+    --lime: #D9D04E;
+    --cream: #F2EAD0;
+    --overlayCream: rgba(242, 234, 208, 0.5);
+    --mustard: #D9A84E;
+    --teal: #0E7490;
+    --deepPurple: #362C40;
+    --offBlack: #1A1420;
+    --overlayBackground: rgba(26, 20, 32, 0.8);
     /* Font Variables*/
-    --titleFont: "Gamja Flower", sans-serif;
+    --titleFont: "Sedgwick Ave Display", serif;
     --headerFont: "Mali", cursive;
     --bodyFont: "Atkinson Hyperlegible", sans-serif;
 }
@@ -36,7 +36,7 @@ body {
     font-family: var(--bodyFont);
     font-size: 1.2rem;
     color: var(--offBlack);
-    background-color: var(--offWhite);
+    background-color: var(--cream);
 }
 
 /* Ensure everything is a block for viewing on a mobile as a stacked set of content */
@@ -59,12 +59,14 @@ footer {
 h1,
 h2 {
     text-align: center;
-    color: var(--warmBrown);
+    color: var(--deepPurple);
     margin-top: 1rem;
 }
 
 h1 {
     font-family: var(--titleFont);
+    -webkit-text-stroke: 1px var(--teal);
+    text-shadow: -0.2rem 0.2rem 0 var(--teal);
     margin-bottom: 2rem;
     font-size: 4rem;
 }
@@ -87,7 +89,7 @@ h3 {
 /* HEADER */
 header {
     padding-top: 5vh;
-    background: var(--warmBrown);
+    background: var(--deepPurple);
     z-index: 5;
 }
 
@@ -98,7 +100,7 @@ header nav {
 }
 
 .logo {
-    color: var(--offWhite);
+    color: var(--cream);
     font-family: var(--titleFont);
     font-weight: bold;
     letter-spacing: 2px;
@@ -106,14 +108,15 @@ header nav {
     transition: 0.5s;
     text-decoration: none;
     padding: 1rem 1.5rem;
-    text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
+    text-shadow: -0.3rem 0.3rem 0 var(--deepGreen);
     margin-top: auto;
+    -webkit-text-stroke: 1px var(--deepGreen);
 }
 
 #menu-button {
     font-size: 3rem;
     border: none;
-    color: var(--offWhite);
+    color: var(--cream);
     background: none;
     border-radius: 50%;
     padding: 1rem 1.5rem;
@@ -122,16 +125,16 @@ header nav {
 }
 
 #menu-button:hover {
-    background: var(--offWhite);
-    color: var(--warmBrown);
-    text-shadow: -0.2rem 0.1rem 0 var(--terracotta);
+    background: var(--cream);
+    color: var(--deepPurple);
+    text-shadow: -0.2rem 0.1rem 0 var(--teal);
     border-radius: 15px;
 }
 
 /* BREADCRUMBS */
 .breadcrumb {
     color: var(--offBlack);
-    background-color: var(--salmon);
+    background-color: var(--mustard);
     font-size: 1rem;
 }
 
@@ -173,8 +176,8 @@ header nav {
     width: 1px;
     height: 1px;
     overflow: hidden;
-    background-color: var(--warmBrown);
-    color: var(--offWhite);
+    background-color: var(--deepPurple);
+    color: var(--cream);
     padding: 0.5rem;
     margin-left: 10vw;
 }
@@ -192,7 +195,7 @@ footer {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: var(--warmBrown);
+    background: var(--deepPurple);
     text-align: center;
     padding: 5% 13%;
     font-style: italic;
@@ -207,7 +210,7 @@ footer div {
 }
 
     footer a {
-        color: var(--offWhite);
+        color: var(--cream);
         text-decoration: none;
         transition: 0.2s;
         margin: 0.5rem;
@@ -218,7 +221,7 @@ footer div {
     }
 
     footer ul {
-        color: var(--offWhite);
+        color: var(--cream);
         font-size: 2rem;
         list-style: none;
         display: flex;
@@ -227,23 +230,23 @@ footer div {
 
         footer ul li { margin: 2%; }
 
-        footer ul li a { color: var(--salmon); }
+        footer ul li a { color: var(--mustard); }
 
         footer ul li a:hover {
             font-size: 2.5rem;
-            color: var(--offWhite);
+            color: var(--cream);
         }
 
 /* MAIN CONTENT CSS */
 main {
-    background-color: var(--offWhite);
+    background-color: var(--cream);
     min-height: 80vh;
 }
 
 .wrapper {
     margin: auto;
     max-width: 1200px;
-    background-color: var(--offWhite);
+    background-color: var(--cream);
 }
 
 /* Helper class to allow entire sections to act as a link. */
@@ -259,7 +262,7 @@ main {
 
 .content {
     flex: 1 1 0;
-    background: var(--offWhite);
+    background: var(--cream);
 }
 
     .content p {
@@ -293,17 +296,17 @@ main {
 
     .categories li {
         list-style: none;
-        background-color: var(--mutedGreen);
-        border: 5px solid var(--deepOlive);
+        background-color: var(--deepGreen);
+        border: 5px solid var(--lime);
         border-radius: 10px;
-        box-shadow: -5px 8px 0 var(--deepOlive);
+        box-shadow: -5px 8px 0 var(--lime);
         margin: 1rem;
         transition: 0.5s;
     }
         .categories li:hover {
-            background-color: var(--deepOlive);
-            border: 5px solid var(--mutedGreen);
-            box-shadow: -5px 8px 0 var(--mutedGreen);
+            background-color: var(--teal);
+            border: 5px solid var(--deepPurple);
+            box-shadow: -5px 8px 0 var(--deepPurple);
         }
 
     .categories a {
@@ -312,8 +315,8 @@ main {
     }
 
         .categories a h2 {
-            color: var(--offWhite);
-            -webkit-text-stroke: 2px var(--deepOlive);
+            color: var(--cream);
+            -webkit-text-stroke: 1px var(--offBlack);
         }
 
 /* .HERO STYLING  */
@@ -333,14 +336,12 @@ main {
 
     .hero h1, .hero h2 {
         max-width: 300px;
-        color: var(--offWhite);
+        color: var(--cream);
         margin-left: auto;
         margin-right: auto;
         /* Simulating a stroke with text-shadow to have it appear outside the text. */
-        text-shadow: 2px 2px 0 var(--deepOlive),
-                     -2px 2px 0 var(--deepOlive),
-                     2px -2px 0 var(--deepOlive),
-                     -2px -2px 0 var(--deepOlive);
+        text-shadow: -0.2rem 0.2rem 0 var(--deepPurple);
+        -webkit-text-stroke: 1px var(--teal);
     }
 
     .hero h1{
@@ -353,10 +354,10 @@ main {
 
     .hero a {
         border-radius: 10px;
-        border: 8px solid var(--mutedGreen);
-        box-shadow: -3px 3px 0 var(--deepOlive);
-        background-color: var(--offWhite);
-        color: var(--deepOlive);
+        border: 8px solid var(--lime);
+        box-shadow: -3px 3px 0 var(--deepGreen);
+        background-color: var(--cream);
+        color: var(--offBlack);
         padding: 1rem;
         margin-top: 1vh;
         text-decoration: none;
@@ -364,9 +365,9 @@ main {
     }
 
     .hero a:hover {
-        border: 8px solid var(--terracotta);
-        box-shadow: -3px 3px 0 var(--warmBrown);
-        color: var(--warmBrown);
+        border: 8px solid var(--teal);
+        box-shadow: -3px 3px 0 var(--deepPurple);
+        color: var(--deepPurple);
     }
 
 /* ----- DIAGNOSIS SPECIFIC STYLING ----- */
@@ -374,7 +375,7 @@ main {
 #quiz-hero {
     padding-top: 10vh;
     padding-bottom: 5vh;
-    background-image: url(../img/background/gradient-orange.jpg);
+    background-image: url(../img/background/gradient-yellow.jpg);
     background-size: cover;
     margin-bottom: 5vh;
     border-radius: 0 0 10px 10px;
@@ -383,15 +384,13 @@ main {
 }
 
     #quiz-hero h1 {
-        color: var(--offWhite);
-        text-shadow: 1px 1px 0 var(--warmBrown),
-                     -1px -1px 0 var(--warmBrown),
-                     -1px 1px 0 var(--warmBrown),
-                     1px -1px 0 var(--warmBrown);
+        color: var(--cream);
+        -webkit-text-stroke: 2px var(--offBlack);
+        text-shadow: -0.2rem 0.2rem 0 var(--deepPurple);
     }
 
     #quiz-hero p {
-        background-color: var(--overlayWhite);
+        background-color: var(--overlayCream);
         padding: 1vw;
         border-radius: 10px;
         text-align: center;
@@ -412,25 +411,25 @@ main {
 
     #results-container .result-hero h1,
     #results-container .result-hero h2{
-        color: var(--offWhite);
-        -webkit-text-stroke: 2px var(--deepOlive);
+        color: var(--cream);
+        -webkit-text-stroke: 2px var(--deepPurple);
         z-index: 2;
     }
     #results-container .result-hero h1 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     #results-container .result-information{
         display: flex;
         flex-direction: column;
-        background-color: var(--salmon);
+        background-color: var(--mustard);
         padding: 1rem;
         margin: 2vh 1vh;
         border-radius: 10px;
     }
 
     #results-container .result-information div{
-        background-color: var(--offWhite);
+        background-color: var(--cream);
         padding: 1rem;
         border-radius: 10px;
         font-size: 1.2rem;
@@ -438,7 +437,7 @@ main {
     }
 
     #results-container .result-information div h3{
-        color: var(--warmBrown);
+        color: var(--deepPurple);
         font-size: 1.75rem;
     }
 
@@ -460,13 +459,14 @@ main {
 
     #results-container .result-links button,
     #results-container .result-links a {
-        color: var(--offWhite);
+        color: var(--cream);
         text-decoration: none;
         font-size: 2rem;
-        background-color: var(--deepOlive);
-        border: 5px solid var(--mutedGreen);
+        background-color: var(--deepGreen);
+        border: 5px solid var(--lime);
         border-radius: 10px;
-        box-shadow: -5px 8px 0 var(--mutedGreen);
+        box-shadow: -5px 8px 0 var(--lime),
+                    -3px 4px 0 var(--lime);
         margin: 1rem;
         padding: 5%;
         text-align: center;
@@ -477,9 +477,10 @@ main {
     /* TODO: figure out why this ain't rendering */
     #results-container .result-links button:hover,
     #results-container .result-links a:hover {
-        background-color: var(--warmBrown);
-        border: 5px solid var(--terracotta);
-        box-shadow: -5px 8px 0 var(--terracotta);
+        background-color: var(--deepPurple);
+        border: 5px solid var(--teal);
+        box-shadow: -5px 8px 0 var(--teal),
+                    -3px 4px 0 var(--teal);
         transition: 0.5s;
     }
 
@@ -498,15 +499,15 @@ main {
     #database-hero h1 {
         padding-top: 2vh;
         font-size: 5rem;
-        color: var(--offWhite);
-        text-shadow: 1px 1px 0 var(--deepOlive),
-        -1px -1px 0 var(--deepOlive),
-        -1px 1px 0 var(--deepOlive),
-        1px -1px 0 var(--deepOlive);
+        color: var(--cream);
+        text-shadow: 1px 1px 0 var(--deepGreen),
+        -1px -1px 0 var(--deepGreen),
+        -1px 1px 0 var(--deepGreen),
+        1px -1px 0 var(--deepGreen);
     }
 
     #database-hero p {
-        background-color: var(--overlayWhite);
+        background-color: var(--overlayCream);
         padding: 1vw;
         margin-left: 5vw;
         margin-right: 5vw;
@@ -516,10 +517,10 @@ main {
 
     #database-hero .back {
         font-size: 1rem;
-        color: var(--offWhite);
-        background-color: var(--deepOlive);
-        border: 5px solid var(--mutedGreen);
-        box-shadow: -5px 5px 0 var(--mutedGreen);
+        color: var(--cream);
+        background-color: var(--deepGreen);
+        border: 5px solid var(--lime);
+        box-shadow: -5px 5px 0 var(--lime);
         border-radius: 10px;
         padding: 0.5rem;
         margin-left: 1rem;
@@ -530,8 +531,8 @@ main {
 
         #database-hero .back:hover {
             font-size: 1.5rem;
-            border-color: var(--offWhite);
-            box-shadow: -5px 5px 0 var(--offWhite);
+            border-color: var(--cream);
+            box-shadow: -5px 5px 0 var(--cream);
         }
 
 /* Styling the search and filter bars */
@@ -544,8 +545,8 @@ main {
     display: flex;
     flex-direction: row;
     background-color: white;
-    border: 5px solid var(--mutedGreen);
-    box-shadow: -5px 8px 0 var(--deepOlive);
+    border: 5px solid var(--lime);
+    box-shadow: -5px 8px 0 var(--deepGreen);
     border-radius: 15px;
     margin: 2%
 }
@@ -558,7 +559,7 @@ main {
     border: none;
     flex-grow: 1;
     font-size: 1rem;
-    color: var(--deepOlive);
+    color: var(--deepGreen);
 }
     .db-search label input:focus {
         outline: none;
@@ -568,12 +569,12 @@ main {
     background-color: white;
     border: 0 none;
     font-size: 2rem;
-    color: var(--deepOlive);
+    color: var(--deepGreen);
 }
 
 .db-search button:hover {
-    color: var(--warmBrown);
-    text-shadow: -2px 2px 0 var(--salmon);
+    color: var(--deepPurple);
+    text-shadow: -2px 2px 0 var(--mustard);
 }
 
 #filters {
@@ -589,7 +590,7 @@ main {
 
 #filters li button {
     font-size: 1rem;
-    background-color: var(--deepOlive);
+    background-color: var(--deepGreen);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 10px;
@@ -599,14 +600,14 @@ main {
 #filters li button:hover {
     transition: 0.3s;
     text-shadow: none;
-    background-color: var(--warmBrown);
-    border: 3px solid var(--salmon);
-    box-shadow: -1px 3px 0 var(--salmon);
+    background-color: var(--deepPurple);
+    border: 3px solid var(--mustard);
+    box-shadow: -1px 3px 0 var(--mustard);
 }
 
 #filter-none {
     font-size: 1rem;
-    color: var(--overlayOlive);
+    color: var(--overlayGreen);
 }
 
 /* ID used for the div holding the database results */
@@ -617,7 +618,7 @@ main {
     justify-content: flex-start;
     margin: 1vh;
     padding: 1vh;
-    background-color: var(--mutedGreen);
+    background-color: var(--lime);
     border-radius: 10px;
 }
 
@@ -627,10 +628,10 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-evenly;
-    background-color: var(--offWhite);
+    background-color: var(--cream);
     border-radius: 10px;
-    border: 5px solid var(--salmon);
-    box-shadow: -5px 3px 0 var(--terracotta);
+    border: 5px solid var(--mustard);
+    box-shadow: -5px 3px 0 var(--teal);
     margin: 0.5rem;
     padding: 0.5rem;
     position: relative;
@@ -641,7 +642,7 @@ main {
         max-height: 20vh;
         object-fit: cover;
         border-radius: 10px;
-        border: 5px solid var(--salmon);
+        border: 5px solid var(--mustard);
     }
 
     .db-entry div {
@@ -662,7 +663,7 @@ main {
     }
 
     .db-entry i {
-        color: var(--terracotta);
+        color: var(--teal);
         font-size: 2rem;
         justify-self: right;
         margin-top: auto;
@@ -680,14 +681,14 @@ main {
     list-style: none;
     margin: 0.5rem;
     padding: 0.5rem;
-    background-color: var(--deepOlive);
+    background-color: var(--deepGreen);
     border-radius: 10px;
-    color: var(--offWhite);
+    color: var(--cream);
     text-align: center;
 }
 
     .db-notice h2 {
-        color: var(--offWhite);
+        color: var(--cream);
     }
 
     .db-notice p {
@@ -698,11 +699,11 @@ main {
 /* ----- ITEM VIEW PAGES ----- */
 #view-back {
     display: flex;
-    background-color: var(--deepOlive);
+    background-color: var(--deepGreen);
 }
     #view-back a{
         text-decoration: none;
-        color: var(--offWhite);
+        color: var(--cream);
         padding: 2%;
         font-size: 1rem;
     }
@@ -718,15 +719,15 @@ main {
 }
 
     #view-hero h1, #view-hero p {
-        color: var(--offWhite);
+        color: var(--cream);
         margin: 0;
         width: 100vw;
     }
 
     #view-hero h1 {
         font-size: 3rem;
-        background-color: var(--overlayOlive);
-        text-shadow: 2px 2px 0 var(--deepOlive);
+        background-color: var(--overlayGreen);
+        text-shadow: 2px 2px 0 var(--deepGreen);
         border-radius: 10px 10px 0 0;
         text-align: left;
         padding: 0 1rem;
@@ -735,7 +736,7 @@ main {
     #view-hero p {
         padding: 0.5rem 1rem;
         font-style: italic;
-        background-color: var(--deepOlive);
+        background-color: var(--deepGreen);
         border-radius: 0 0 10px 10px;
     }
 
@@ -746,35 +747,35 @@ main {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: stretch;
-    background-color: var(--salmon);
+    background-color: var(--mustard);
     padding: 5%;
-    border: 10px solid var(--terracotta);
+    border: 10px solid var(--teal);
     border-radius: 10px;
-    box-shadow: -8px 8px 0 var(--warmBrown);
+    box-shadow: -8px 8px 0 var(--deepPurple);
 }
 
     .plant-stats li {
         list-style: none;
         text-align: center;
-        background-color: var(--offWhite);
+        background-color: var(--cream);
         border-radius: 10px;
-        border: 5px solid var(--terracotta);
+        border: 5px solid var(--teal);
         width: 40%;
         margin: 2.5%;
         font-size: 1rem;
         padding: 1rem 0.5rem;
-        box-shadow: 3px -3px 0 var(--terracotta);
+        box-shadow: 3px -3px 0 var(--teal);
     }
 
     .plant-stats li i {
         font-size: 3rem;
-        color: var(--warmBrown);
+        color: var(--deepPurple);
     }
 
 #allCommon, #problem-treatment {
     border-radius: 10px;
-    border: 5px solid var(--terracotta);
-    box-shadow: -3px 5px 0 var(--warmBrown);
+    border: 5px solid var(--teal);
+    box-shadow: -3px 5px 0 var(--deepPurple);
     margin: 5% 0;
     padding: 5%;
 }
@@ -787,14 +788,14 @@ main {
 
 #view-info {
     border-radius: 10px;
-    border: 5px solid var(--terracotta);
-    box-shadow: -3px 5px 0 var(--warmBrown);
+    border: 5px solid var(--teal);
+    box-shadow: -3px 5px 0 var(--deepPurple);
     padding: 2%;
     font-size: 1.2rem;
 }
 
 #problem-treatment h3, #view-info h3 {
-    color: var(--warmBrown);
+    color: var(--deepPurple);
     font-size: 1.75rem;
 }
 
@@ -806,7 +807,7 @@ main {
 
     #reference p {
         font-style: italic;
-        background-color: var(--salmon);
+        background-color: var(--mustard);
         border-radius: 10px;
         padding: 1rem;
         margin: 0.5rem;
@@ -817,21 +818,21 @@ main {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        background-color: var(--mutedGreen);
+        background-color: var(--lime);
         border-radius: 10px;
         padding: 1.5rem 0.5rem 0.5rem;
-        border: 3px solid var(--deepOlive);
+        border: 3px solid var(--deepGreen);
     }
 
         #reference ul li {
             font-size: 1rem;
             list-style: none;
             margin: 0 5%;
-            background-color: var(--offWhite);
+            background-color: var(--cream);
             border-radius: 10px;
             padding: 0.5rem;
-            border: 3px solid var(--deepOlive);
-            box-shadow: 3px -3px 0 var(--deepOlive);
+            border: 3px solid var(--deepGreen);
+            box-shadow: 3px -3px 0 var(--deepGreen);
             transition: 0.5s;
         }
 
@@ -845,9 +846,9 @@ main {
             }
 
             #reference ul li:hover {
-                background-color: var(--salmon);
-                border: 3px solid var(--terracotta);
-                box-shadow: 3px -3px var(--warmBrown);
+                background-color: var(--mustard);
+                border: 3px solid var(--teal);
+                box-shadow: 3px -3px var(--deepPurple);
             }
 
 /* ----- OVERLAYS ----- */
@@ -868,7 +869,7 @@ main {
 #overlayMenu .close-button, #filters-overlay .close-button {
     font-size: 4rem;
     border: none;
-    color: var(--offWhite);
+    color: var(--cream);
     border-radius: 15%;
     margin-left: 75vw;
     margin-top: 3vh;
@@ -877,8 +878,8 @@ main {
 }
 #overlayMenu .close-button:hover, #filters-overlay .close-button:hover {
     font-size: 5rem;
-    color: var(--terracotta);
-    text-shadow: -0.2rem 0.1rem 0 var(--warmBrown);
+    color: var(--teal);
+    text-shadow: -0.2rem 0.1rem 0 var(--deepPurple);
     border-radius: 15px;
 }
 #overlayMenu ul, #filters-overlay ul {
@@ -893,12 +894,12 @@ main {
 /* Overlay navigation */
 #overlayMenu li {
     font-size: 1.5rem;
-    background: var(--deepOlive);
-    border: solid var(--mutedGreen);
+    background: var(--deepGreen);
+    border: solid var(--lime);
     border-width: 0.25rem 0 0.25rem 0.25rem;
     border-radius: 2.5rem 0 0 2.5rem;
-    box-shadow: -0.5vw 1vh 0 var(--mutedGreen),
-    0.5vw 1vh 0 var(--mutedGreen);
+    box-shadow: -0.5vw 1vh 0 var(--lime),
+    0.5vw 1vh 0 var(--lime);
     display: block;
     padding: 1rem 1rem 1rem 5vw;
     margin-top: 1rem;
@@ -908,28 +909,28 @@ main {
 }
 #overlayMenu li:hover {
     font-size: 2rem;
-    background: var(--warmBrown);
-    border: solid var(--terracotta);
+    background: var(--deepPurple);
+    border: solid var(--teal);
     border-width: 0.25rem 0 0.25rem 0.25rem;
-    box-shadow: -0.5vw 1vh 0 var(--terracotta),
-    0.5vw 1vh 0 var(--terracotta);
+    box-shadow: -0.5vw 1vh 0 var(--teal),
+    0.5vw 1vh 0 var(--teal);
 }
 #overlayMenu a {
     text-decoration: none;
-    color: var(--offWhite);
+    color: var(--cream);
 }
 #overlayMenu .active {
-    background: var(--mutedGreen);
-    border: solid var(--deepOlive);
+    background: var(--lime);
+    border: solid var(--deepGreen);
     border-width: 0.25rem 0 0.25rem 0.25rem;
-    box-shadow: -0.5vw 1vh 0 var(--deepOlive),
-    0.5vw 1vh 0 var(--deepOlive);
+    box-shadow: -0.5vw 1vh 0 var(--deepGreen),
+    0.5vw 1vh 0 var(--deepGreen);
 }
 #overlayMenu .active a {
-    text-shadow: 1px 1px 0 var(--deepOlive),
-    -1px 1px 0 var(--deepOlive),
-    1px -1px 0 var(--deepOlive),
-    -1px -1px 0 var(--deepOlive);
+    text-shadow: 1px 1px 0 var(--deepGreen),
+    -1px 1px 0 var(--deepGreen),
+    1px -1px 0 var(--deepGreen),
+    -1px -1px 0 var(--deepGreen);
 }
 
 /* Overlay Filters */
@@ -937,11 +938,11 @@ main {
     margin: 0.5rem 5vw;
     display: flex;
     flex-direction: column;
-    background-color: var(--deepOlive);
-    color: var(--offWhite);
+    background-color: var(--deepGreen);
+    color: var(--cream);
     border-radius: 10px;
-    border: 5px solid var(--mutedGreen);
-    box-shadow: -3px 4px 0 var(--mutedGreen);
+    border: 5px solid var(--lime);
+    box-shadow: -3px 4px 0 var(--lime);
 }
 
 #filters-overlay label {
@@ -968,7 +969,7 @@ main {
 #filters-overlay .select::after {
     font-weight: bold;
     font-size: 2rem;
-    color: var(--deepOlive);
+    color: var(--deepGreen);
     content: '\2935';
     pointer-events: none;
     position: absolute;
@@ -1017,7 +1018,7 @@ main {
    }
    .categories li h2 {
        font-size: 2rem;
-       -webkit-text-stroke: 1px var(--deepOlive);
+       -webkit-text-stroke: 1px var(--deepGreen);
    }
     .categories li h2 i{
         display: block;
@@ -1046,6 +1047,10 @@ main {
 
    .db-entry {
        width: 45%
+   }
+
+   .db-notice {
+       width: 80%;
    }
 
    /* Would it be better code if i could combine the next two styles? yes. Does it cooperate? no. */
@@ -1081,7 +1086,7 @@ main {
 /* Desktop media query */
 @media (min-width: 1200px) {
     main {
-        background: var(--offWhite);
+        background: var(--cream);
         background-image: url(../img/background/autumn.svg); /* Fallback if the next line doesn't work*/
         background-image: linear-gradient(90deg, rgba(229, 221, 210, 0) 0%, rgba(229, 221, 210, 1) 20%, rgba(229, 221, 210, 1) 80%, rgba(229, 221, 210, 0) 100%), url(../img/background/autumn.svg);
     }
@@ -1142,7 +1147,7 @@ main {
 
     #results-container .result-hero h1 {
         font-size: 6rem;
-        -webkit-text-stroke: 1px var(--deepOlive);
+        -webkit-text-stroke: 1px var(--deepGreen);
     }
 
     #results-container .result-links {
