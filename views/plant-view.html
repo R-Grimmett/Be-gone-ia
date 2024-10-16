@@ -11,17 +11,17 @@
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
     <script src="./controllers/navigationController.js" async></script>
+    <script src="./controllers/plantViewController.js" async></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../img/favicon/site.webmanifest">
 
     <title>BeGONEia - Plant Details</title>
 
 </head>
 <body>
-<div class="wrapper">
     <div id="overlayMenu"></div>
     <div id="filters-overlay"></div>
     <header>
@@ -34,12 +34,9 @@
         </nav>
     </header>
     <main>
-        <img id="plant-img" src="img/background/gradient-green.jpg">
-        <div id="view-hero">
-            <a href="plant-database.html">Back to Database</a>
-            <h1 id="commonName">Common Name of Plant</h1>
-            <p id="botanicalName">Botanical Name of Plant</p>
-        </div>
+        <div class="wrapper">
+        <div id="view-back"><a href="plant-database.html">Back to Database</a></div>
+        <div id="view-hero"></div>
         <section id="main-content">
             <ul class="plant-stats">
                 <li><i class="fa-solid fa-sun"></i><p id="plant-light">Light</p></li>
@@ -47,11 +44,9 @@
                 <li><i class="fa-solid fa-temperature-half"></i><p id="plant-temp">Temperature</p></li>
                 <li><i class="fa-solid fa-cloud-rain"></i><p id="plant-humid">Humidity</p></li>
             </ul>
-            <ul id="allCommon"></ul>
-            <div id="plant-info"></div>
         </section>
+        </div>
     </main>
     <footer id="footer"></footer>
-</div>
 </body>
 </html>

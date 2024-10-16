@@ -1,9 +1,4 @@
-// Cross-Origin Resource Sharing
-// TODO: Remove dev whitelist options for release
-const whitelist = ['https://begoneia.onrender.com',
-    'http://127.0.0.1:5500',
-    'http://localhost:3000',
-    'http://localhost:8080'];
+const whitelist = [`${process.env.ROOT_URL}`];
 
 const corsOptions = {
     origin: (origin, callback) => {

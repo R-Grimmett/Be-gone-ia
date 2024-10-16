@@ -96,18 +96,21 @@ const getProblem = async (req, res) => {
 
 const searchProblem = async (req, res) => {
     if(!req.params?.searchTerm) return res.status(400).json({ 'message' : 'A query is required.'});
-    console.log(req.params.searchTerm);
     const terms = req.params.searchTerm.split(splitter);
     let problems;
-    if(terms[0] === 'all') {
+    const category = terms[0] !== undefined ? terms[0].match(/(?<==).+$/) : null;
+    const name = terms[1] !== undefined ? terms[1].match(/(?<==)[^_]+/) : null;
+
+    if(category.toString() === 'all') {
         problems = await Problem.find()
-            .or([{common: new RegExp(terms[1], 'i')}, {scientific: new RegExp(terms[1], 'i')}]);
+            .or([{common: new RegExp(name, 'i')}, {scientific: new RegExp(name, 'i')}]);
     } else {
-        problems = await Problem.find().where({ category: terms[0] })
-            .or([{common: new RegExp(terms[1], 'i')}, {scientific: new RegExp(terms[1], 'i')}]);
+        problems = await Problem.find().where({ category: category })
+            .or([{common: new RegExp(name, 'i')}, {scientific: new RegExp(name, 'i')}]);
     }
 
     if(!problems) return res.status(204).json({ 'message': 'No problems found matching search'});
+    console.log(problems);
     res.json(problems);
 }
 

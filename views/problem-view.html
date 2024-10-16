@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
 
@@ -12,35 +11,34 @@
     <script src="https://kit.fontawesome.com/ba95519acb.js" crossorigin="anonymous"></script>
 
     <script src="./controllers/navigationController.js" async></script>
+    <script src="./controllers/problemViewController.js" async></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../img/favicon/site.webmanifest">
 
-    <title>BeGONEia - 404</title>
+    <title>BeGONEia - Problem Details</title>
 
 </head>
 <body>
-    <div id="overlayMenu">
-    </div>
+    <div id="overlayMenu"></div>
+    <div id="filters-overlay"></div>
     <header>
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">
             <a href="index.html" class="logo" id="top">BeGONEia</a>
             <button type="button" id="menu-button" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars" aria-label="Menu Button"></i>
+                <i class="fa fa-bars" aria-label="Menu Button"></i>
             </button>
         </nav>
     </header>
-    <main id="main-content">
-        <section class="content">
-<!--            TODO: Implement False Button class and add it to plant.html as well -->
-            <h1>Error 404</h1>
-            <p>Sorry!<br>We couldn't find the page you are after.</p>
-            <a class="falseButton" href="index.html">
-                <i class="fa-solid fa-house"></i> Return Home</a>
-        </section>
+    <main>
+        <div class="wrapper">
+        <div id="view-back"><a href="problem-database.html">Back to Database Home</a></div>
+        <div id="view-hero"></div>
+        <section id="main-content"></section>
+        </div>
     </main>
     <footer id="footer"></footer>
 </body>
