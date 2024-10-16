@@ -56,12 +56,16 @@ function loadProblemSearch() {
     else if((locationURL.match(/\/disease-database(.html)?$/)) != null) { categoryName = 'disease'; }
     else { categoryName = 'all'}
 
-    const searchText = document.getElementById("search").value;
+    let searchValue = document.getElementById("search").value;
+    searchValue = searchValue !== "" ? searchValue.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : '';
+    searchValue = searchValue !== "" ? searchValue.replace(new RegExp(/^\s+/, 'gmi'), '') : '';
     const filterBar = document.getElementById("filters");
-    if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAllProblems(); }
+    if(searchValue === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAllProblems(); }
     else {
+        searchValue = searchValue !== "" ? searchValue.replace(/\s/, '%20') : '';
+        const searchText = `category=${categoryName}%25name=${searchValue}`;
         let dbRequest = new XMLHttpRequest();
-        dbRequest.open("GET", `${rootURL}/problems/search/${categoryName}%25${searchText}`);
+        dbRequest.open("GET", `${rootURL}/problems/search/${searchText}`);
         dbRequest.send();
         dbRequest.responseType = "json";
         dbRequest.onload = () => { loadProblemEntries(dbRequest); }

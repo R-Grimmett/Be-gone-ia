@@ -26,7 +26,11 @@ function loadAll() {
 
 function loadSearch() {
     clearEntries();
-    const searchValue = document.getElementById("search").value;
+    let searchValue = document.getElementById("search").value;
+    // Search Value sanetisation.
+    searchValue = searchValue !== "" ? searchValue.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : '';
+    searchValue = searchValue !== "" ? searchValue.replace(new RegExp(/^\s+/, 'gmi'), '') : '';
+
     const filterBar = document.getElementById("filters");
     if(searchValue === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAll(); }
     else {
