@@ -32,7 +32,21 @@ function loadPlantData(plantData) {
 
 function loadNoPlant() {}
 
-function populateStats(water, light, humidity, tempLow, tempHigh) {}
+function populateStats(water, light, humidity, tempLow, tempHigh) {
+    const statWater = document.getElementById("plant-water");
+    statWater.innerHTML = (water !== null && water !== "" && water !== undefined) ? water : "<i>No Data</i>";
+
+    const statLight = document.getElementById("plant-light");
+    statLight.innerHTML = (light !== null && light !== "" && light !== undefined) ? light : "<i>No Data</i>";
+
+    const statHumid = document.getElementById("plant-humid");
+    statHumid.innerHTML = (humidity !== null && humidity !== "" && humidity !== undefined) ? humidity : "<i>No Data</i>";
+
+    const statTemp = document.getElementById("plant-temp");
+    if(tempLow !== null && tempLow !== undefined && tempHigh !== null && tempHigh !== undefined) {
+        statTemp.innerHTML = `${tempLow} - ${tempHigh}&degC`;
+    } else { statTemp.innerHTML = `<i>No Data</i>`; }
+}
 
 function populateName(commonArray, genus, species) {
     const plantCommon = document.createElement("div");
