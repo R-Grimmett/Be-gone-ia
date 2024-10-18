@@ -96,6 +96,8 @@ const searchPlant = async (req, res) => {
     if (!req?.params?.searchTerm) return res.status(400).json({ 'message': 'A query is required.'});
     let terms = req.params.searchTerm.split(splitter);
     let orArray = [];
+    let whereArray = [];
+    let plants;
 
     const common = terms[0] !== undefined ? terms[0].match(/(?<==).+$/) : null;
     if(common !== null) orArray.push({common: new RegExp(common, 'i')});
@@ -109,28 +111,39 @@ const searchPlant = async (req, res) => {
 
     if(terms.length > 2) {
         let family = terms[2] !== undefined ? terms[2].match(/(?<==).+$/) : null;
-        if(family !== null) orArray.push({family: new RegExp(family, 'i')});
+        if(family !== null) whereArray.push(`"family": "${family}"`);
 
         let water = terms[3] !== undefined ? terms[3].match(/(?<==).+$/) : null;
-        if(water !== null) orArray.push({water: new RegExp(water, 'i')});
+        if(water !== null) whereArray.push(`"water": "${water}"`);
 
         let light = terms[4] !== undefined ? terms[4].match(/(?<==).+$/) : null;
-        if(light !== null) orArray.push({light: new RegExp(light, 'i')});
+        if(light !== null) whereArray.push(`"light": "${light}"`);
 
         let humidity = terms[5] !== undefined ? terms[5].match(/(?<==).+$/) : null;
-        if(humidity !== null) orArray.push({humidity: new RegExp(humidity, 'i')});
+        if(humidity !== null) whereArray.push(`"humidity": "${humidity}"`);
 
         let tempLow = terms[6] !== undefined ? terms[6].match(/(?<==).+$/) : null;
-        if(tempLow !== null && !isNaN(parseInt(tempLow))) orArray.push({tempLow: parseInt(tempLow)});
+        if(tempLow !== null && !isNaN(parseInt(tempLow))) whereArray.push(`"tempLow": ${tempLow}`);
 
         let tempHigh = terms[7] !== undefined ? terms[7].match(/(?<==).+$/) : null;
-        if(tempHigh !== null && !isNaN(parseInt(tempHigh))) orArray.push({tempHigh: parseInt(tempHigh)});
+        if(tempHigh !== null && !isNaN(parseInt(tempHigh))) whereArray.push(`"tempHigh": ${tempHigh}`);
 
         let tags = terms[8] !== undefined ? terms[8].match(/(?<==).+$/) : null;
-        if(tags !== null) orArray.push({tags: new RegExp(tags, 'i')});
+        if(tags !== null) whereArray.push(`"tags": "${tags.toString().toLowerCase()}"`);
     }
 
-    const plants = orArray.length > 0 ? await Plant.find().or(orArray).sort({genus: 1, species: 1}) : await Plant.find().sort({genus: 1, species: 1});
+    let whereString = "{";
+    for(let i = 0; i < whereArray.length; i++) {
+        if(i !== 0) { whereString += ','}
+        whereString += whereArray[i];
+    }
+    whereString += `}`;
+
+    if(whereString !== '{}') {
+        if(orArray.length > 0) { plants = await Plant.find().where(JSON.parse(whereString)).or(orArray).sort({genus: 1, species: 1}); }
+        else { plants = await Plant.find().where(JSON.parse(whereString)).sort({genus: 1, species: 1}); }
+    } else if ( orArray.length > 0) { plants = await Plant.find().or(orArray).sort({genus: 1, species: 1}); }
+    else { plants = await Plant.find().sort({genus: 1, species: 1}); }
     if (!plants) return res.status(204).json({ 'message': 'No plants found.'});
     res.json(plants);
 }

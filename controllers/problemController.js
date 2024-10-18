@@ -136,6 +136,7 @@ const searchProblem = async (req, res) => {
         if(orArray.length > 0) { problems = await Problem.find().where(JSON.parse(whereString)).or(orArray).sort({common: 1}); }
         else { problems = await Problem.find().where(JSON.parse(whereString)).sort({common: 1}); }
     } else if(orArray.length > 0) { problems = await Problem.find().or(orArray).sort({common: 1}); }
+    else { problems = await Problem.find().sort({common: 1}); }
 
     if(!problems) return res.status(204).json({ 'message': 'No problems found matching search'});
     res.json(problems);
