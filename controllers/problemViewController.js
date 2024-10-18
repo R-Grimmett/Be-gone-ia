@@ -59,14 +59,45 @@ function populateName(commonName, scientificName) {
     }
 }
 
-//TODO add in the descriptions
 function populateSymptoms(leafTags, flowerTags, stemTags, rootTags, growthTags, wholeTags) {
-    console.log(leafTags);
-    console.log(flowerTags);
-    console.log(stemTags);
-    console.log(rootTags);
-    console.log(growthTags);
-    console.log(wholeTags);
+    const preface = document.createElement('div');
+    preface.id = 'allSymptoms';
+    preface.innerHTML = "<h3>Symptoms:</h3>";
+    const symptomList = document.createElement('ul');
+
+    for(let i = 0; i < leafTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("leaf", leafTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+    for(let i = 0; i < flowerTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("flower", flowerTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+    for(let i = 0; i < stemTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("stem", stemTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+    for(let i = 0; i < rootTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("root", rootTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+    for(let i = 0; i < growthTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("growth", growthTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+    for(let i = 0; i < wholeTags.length; i++){
+        let entry = document.createElement("li");
+        entry.innerHTML = fetchDescription("whole", wholeTags[i]);
+        if(entry.innerHTML !== "") { symptomList.appendChild(entry); }
+    }
+
+    preface.appendChild(symptomList);
+    mainContent.appendChild(preface);
 }
 
 function populateInfo(treatmentData, infoData) {
@@ -76,7 +107,6 @@ function populateInfo(treatmentData, infoData) {
         treatDiv.innerHTML = `<h3>Treatment Options:</h3>${treatmentData}`;
         mainContent.appendChild(treatDiv);
     }
-
 
     if(infoData !== "" && infoData !== null && infoData !== undefined) {
         const infoDiv = document.createElement('div');

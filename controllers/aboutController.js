@@ -34,6 +34,6 @@ function loadAllReferences(data) {
 
 function appendReference(urlString, referenceString, parentElement) {
     let referenceEntry = document.createElement("li");
-    referenceEntry.innerHTML = urlString !== '' || null ? `<a href="${urlString}">${referenceString}</a>`:`<p>${referenceString}</p>`;
+    referenceEntry.innerHTML = `<a href="${urlString !== null ? urlString : "#"}">${referenceString}</a>`;
     parentElement.appendChild(referenceEntry);
 }

@@ -23,15 +23,15 @@ const plantSchema = new Schema({
         required: false
     },
     water: {
-        type: Number,
+        type: String,
         required: false
     },
     light: {
-        type: Number,
+        type: String,
         required: false
     },
     humidity: {
-        type: Number,
+        type: String,
         required: false
     },
     tempLow: {
