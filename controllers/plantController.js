@@ -76,7 +76,7 @@ const updatePlant = async (req, res) => {
 }
 
 const getAllPlants = async (req, res) => {
-    const plants = await Plant.find();
+    const plants = await Plant.find().sort({genus: 1, species: 1});
     if (!plants) return res.status(204).json({ 'message': 'No plants found.'});
     res.json(plants);
 }
@@ -107,7 +107,30 @@ const searchPlant = async (req, res) => {
     if( genus !== null) orArray.push({genus: new RegExp(genus, 'i')});
     if( species !== null) orArray.push({species: new RegExp(species, 'i')});
 
-    const plants = await Plant.find().or(orArray);
+    if(terms.length > 2) {
+        let family = terms[2] !== undefined ? terms[2].match(/(?<==).+$/) : null;
+        if(family !== null) orArray.push({family: new RegExp(family, 'i')});
+
+        let water = terms[3] !== undefined ? terms[3].match(/(?<==).+$/) : null;
+        if(water !== null) orArray.push({water: new RegExp(water, 'i')});
+
+        let light = terms[4] !== undefined ? terms[4].match(/(?<==).+$/) : null;
+        if(light !== null) orArray.push({light: new RegExp(light, 'i')});
+
+        let humidity = terms[5] !== undefined ? terms[5].match(/(?<==).+$/) : null;
+        if(humidity !== null) orArray.push({humidity: new RegExp(humidity, 'i')});
+
+        let tempLow = terms[6] !== undefined ? terms[6].match(/(?<==).+$/) : null;
+        if(tempLow !== null && !isNaN(parseInt(tempLow))) orArray.push({tempLow: parseInt(tempLow)});
+
+        let tempHigh = terms[7] !== undefined ? terms[7].match(/(?<==).+$/) : null;
+        if(tempHigh !== null && !isNaN(parseInt(tempHigh))) orArray.push({tempHigh: parseInt(tempHigh)});
+
+        let tags = terms[8] !== undefined ? terms[8].match(/(?<==).+$/) : null;
+        if(tags !== null) orArray.push({tags: new RegExp(tags, 'i')});
+    }
+
+    const plants = orArray.length > 0 ? await Plant.find().or(orArray).sort({genus: 1, species: 1}) : await Plant.find().sort({genus: 1, species: 1});
     if (!plants) return res.status(204).json({ 'message': 'No plants found.'});
     res.json(plants);
 }

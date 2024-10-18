@@ -54,7 +54,7 @@ Accept: application/json
 Content-Type: application/json
 
 ### GET a plant search
-GET http://localhost:3000/plants/search/common=%25botanical=monstera%20
+GET http://localhost:3000/plants/search/common=%25botanical=%25family=%25water=%25light=%25humidity=Low
 Accept: application/json
 Content-Type: application/json
 
