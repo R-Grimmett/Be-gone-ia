@@ -165,6 +165,25 @@ function clearFilters() {
 
 function removeFilter(filterName) {
     document.getElementById(filterName).remove();
+    switch (filterName) {
+        case "tagsFilter":
+            document.getElementById("tag").value = null;
+            break;
+        case "waterFilter":
+            document.getElementById("water").value = null;
+            break;
+        case "humidFilter":
+            document.getElementById("humid").value = null;
+            break;
+        case "lightFilter":
+            document.getElementById("light").value = null;
+            break;
+        case "familyFilter":
+            document.getElementById("family").value = null;
+            break;
+        default:
+            break;
+    }
     if (document.getElementById("filters").innerHTML.length === 0) {
         clearFilters();
     }

@@ -98,19 +98,46 @@ const searchProblem = async (req, res) => {
     if(!req.params?.searchTerm) return res.status(400).json({ 'message' : 'A query is required.'});
     const terms = req.params.searchTerm.split(splitter);
     let problems;
-    const category = terms[0] !== undefined ? terms[0].match(/(?<==).+$/) : null;
-    const name = terms[1] !== undefined ? terms[1].match(/(?<==)[^_]+/) : null;
+    let orArray = [];
+    let whereArray = [];
 
-    if(category.toString() === 'all') {
-        problems = await Problem.find()
-            .or([{common: new RegExp(name, 'i')}, {scientific: new RegExp(name, 'i')}]);
-    } else {
-        problems = await Problem.find().where({ category: category })
-            .or([{common: new RegExp(name, 'i')}, {scientific: new RegExp(name, 'i')}]);
+    const category = terms[0] !== undefined ? terms[0].match(/(?<==).+$/) : null;
+    if(category !== null && category.toString() !== 'all') whereArray.push(`"category": "${category}"`);
+
+    const name = terms[1] !== undefined ? terms[1].match(/(?<==)[^_]+/) : null;
+    if (name !== null) orArray.push({common: new RegExp(name, 'i')}, {scientific: new RegExp(name, 'i')});
+
+    const leaf = terms[2] !== undefined ? terms[2].match(/(?<==).+$/) : null;
+    if(leaf !== null) whereArray.push(`"leafTags": "${leaf}"`);
+
+    const flower = terms[3] !== undefined ? terms[3].match(/(?<==).+$/) : null;
+    if(flower !== null) whereArray.push(`"flowerTags": "${flower}"`);
+
+    const stem = terms[4] !== undefined ? terms[4].match(/(?<==).+$/) : null;
+    if(stem !== null) whereArray.push(`"stemTags": "${stem}"`);
+
+    const root = terms[5] !== undefined ? terms[5].match(/(?<==).+$/) : null;
+    if(root !== null) whereArray.push(`"rootTags": "${root}"`);
+
+    const growth = terms[6] !== undefined ? terms[6].match(/(?<==).+$/) : null;
+    if(growth !== null) whereArray.push(`"growthTags": "${growth.toString()}"`);
+
+    const whole = terms[7] !== undefined ? terms[7].match(/(?<==).+$/) : null;
+    if(whole !== null) whereArray.push(`"wholeTags": "${whole.toString()}"`);
+
+    let whereString = "{";
+    for(let i = 0; i < whereArray.length; i++) {
+        if(i !== 0) { whereString += ','}
+        whereString += whereArray[i];
     }
+    whereString += `}`;
+
+    if(whereString !== '{}') {
+        if(orArray.length > 0) { problems = await Problem.find().where(JSON.parse(whereString)).or(orArray).sort({common: 1}); }
+        else { problems = await Problem.find().where(JSON.parse(whereString)).sort({common: 1}); }
+    } else if(orArray.length > 0) { problems = await Problem.find().or(orArray).sort({common: 1}); }
 
     if(!problems) return res.status(204).json({ 'message': 'No problems found matching search'});
-    console.log(problems);
     res.json(problems);
 }
 

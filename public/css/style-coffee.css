@@ -821,18 +821,20 @@ main {
         border-radius: 10px;
         padding: 1.5rem 0.5rem 0.5rem;
         border: 3px solid var(--deepOlive);
+        margin-bottom: 5%;
     }
 
         #reference ul li {
             font-size: 1rem;
             list-style: none;
-            margin: 0 5%;
+            margin: 2% 5%;
             background-color: var(--offWhite);
             border-radius: 10px;
             padding: 0.5rem;
             border: 3px solid var(--deepOlive);
             box-shadow: 3px -3px 0 var(--deepOlive);
             transition: 0.5s;
+            text-align: left;
         }
 
             #reference ul li a,
@@ -944,9 +946,9 @@ main {
     box-shadow: -3px 4px 0 var(--mutedGreen);
 }
 
-#filters-overlay label {
+#filters-overlay label, #filters-overlay li label {
     font-family: var(--headerFont);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     margin: 0.5rem auto;
 }
 #filters-overlay select {
@@ -1187,5 +1189,12 @@ main {
 
     #overlayMenu li {
         margin-left: 30vw;
+    }
+
+    #filters-overlay li{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5rem;
     }
 }
