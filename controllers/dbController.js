@@ -14,7 +14,7 @@ const populateFamily = async (name) => {
 }
 
 const getFamilies = async (req, res) => {
-    const data = await Family.find();
+    const data = await Family.find().sort({ name: "asc"});
     if (!data) return res.status(204).json({ 'message': 'No plant botanical family names found.'});
     res.json(data);
 }

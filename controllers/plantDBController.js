@@ -10,6 +10,13 @@ if(document.readyState === 'loading') {
 function ready() {
     rootURL = reURL.test(document.URL) ? "http://localhost:3000" : "https://begoneia.onrender.com";
     filterMenu = document.getElementById("filters-overlay");
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    })
     loadAll();
     createFilters();
     clearFilters();

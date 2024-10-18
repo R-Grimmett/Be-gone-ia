@@ -28,7 +28,15 @@ Content-Type: application/json
 
 {
   "id": "66f8a8e0f921bc1e21e7d264",
-  "text": "<p>Image Reference:<br><a href='https://commons.wikimedia.org/wiki/File:Money_Plant_(Epipremnum_aureum)_4.jpg'>Mokkie. (2014). <i>Money Plant (Epipremnum aureum) 4.jpg</i> [Photograph]. Wikimedia Commons. https://commons.wikimedia.org/wiki/File:Money_Plant_(Epipremnum_aureum)_4.jpg</a></p>"
+  "water": "Allow Time to Dry Inbetween",
+  "light": "Light Shade",
+  "humidity": "Low",
+  "tempLow":15,
+  "tempHigh":24,
+  "tags": [
+    "foliage",
+    "hanging"
+  ]
 }
 
 ### DELETE request

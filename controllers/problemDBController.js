@@ -11,6 +11,13 @@ function ready() {
     parentDiv = document.getElementById("database-results");
     locationURL = document.URL;
     rootURL = reURL.test(locationURL) ? "http://localhost:3000" : "https://begoneia.onrender.com";
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    })
     clearFilters();
     loadAllProblems();
 }
@@ -61,7 +68,7 @@ function loadProblemSearch() {
     if(searchText === "" && filterBar.innerHTML === "<li id=\"filter-none\">Filters ...</li>") { loadAllProblems(); }
     else {
         let dbRequest = new XMLHttpRequest();
-        dbRequest.open("GET", `${rootURL}/problems/search/${categoryName}%25${searchText}`);
+        dbRequest.open("GET", `${rootURL}/problems/search/category=${categoryName}%25name=${searchText}`);
         dbRequest.send();
         dbRequest.responseType = "json";
         dbRequest.onload = () => { loadProblemEntries(dbRequest); }
