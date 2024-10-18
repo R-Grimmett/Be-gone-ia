@@ -17,8 +17,20 @@ function calculatePlant(result) {
     let dbPlantRequest = new XMLHttpRequest();
 
     if (result.commonKnow === true || result.botanicalKnow === true) {
-        const commonName = result.commonKnow ? result.commonName.replace(/\s/g, "%20") : '';
-        let botanicalName = result.botanicalKnow ? `${result.botanicalName.genus !== undefined ? result.botanicalName.genus : ''}%20${result.botanicalName.species !== undefined ? result.botanicalName.species : ''}` : '';
+        // Common name sanitization
+        let commonName = result.commonKnow ? result.commonName.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : '';
+        commonName = result.commonKnow ? commonName.replace(new RegExp(/^\s+/, 'gmi'), '') : '';
+        commonName = result.commonKnow ? commonName.replace(/\s/g, "%20") : '';
+
+        let genusName = result.botanicalKnow && result.botanicalName.genus !== undefined ? result.botanicalName.genus.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
+        genusName = result.botanicalKnow && genusName !== undefined ? genusName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
+        genusName = result.botanicalKnow && genusName !== undefined ? genusName.genus.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+
+        let speciesName = result.botanicalKnow && result.botanicalName.species !== undefined ? result.botanicalName.species.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
+        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
+        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+
+        const botanicalName = result.botanicalKnow ? `${genusName !== undefined ? genusName : ''}%20${speciesName !== undefined ? speciesName : ''}` : '';
         dbPlantRequest.open("GET", `${rootURL}/plants/search/common=${commonName}%25botanical=${botanicalName}`);
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
