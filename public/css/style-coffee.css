@@ -771,7 +771,7 @@ main {
         color: var(--warmBrown);
     }
 
-#allCommon, #problem-treatment {
+#allCommon, #problem-treatment, #allSymptoms {
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
@@ -779,7 +779,7 @@ main {
     padding: 5%;
 }
 
-    #allCommon li, #problem-treatment li {
+    #allCommon li, #problem-treatment li, #allSymptoms li {
         margin-left: 5%;
         font-size: 1.2rem;
     }
@@ -1179,8 +1179,8 @@ main {
         max-width: 100%;
     }
 
-    #allCommon, #problem-treatment, #view-info {
-        max-width: 60%;
+    #allCommon, #problem-treatment, #view-info, #allSymptoms {
+        max-width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
