@@ -707,7 +707,8 @@ main {
         font-size: 1rem;
     }
 
-#view-hero {
+#view-hero, #view-plant {
+    background-color: var(--offWhite);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -717,13 +718,14 @@ main {
     border-radius: 0 0 10px 10px;
 }
 
-    #view-hero h1, #view-hero p {
+    #view-hero h1, #view-hero p,
+    #view-plant h1, #view-plant p{
         color: var(--offWhite);
         margin: 0;
         width: 100vw;
     }
 
-    #view-hero h1 {
+    #view-hero h1, #view-plant h1 {
         font-size: 3rem;
         background-color: var(--overlayOlive);
         text-shadow: 2px 2px 0 var(--deepOlive);
@@ -732,7 +734,7 @@ main {
         padding: 0 1rem;
     }
 
-    #view-hero p {
+    #view-hero p, #view-plant p {
         padding: 0.5rem 1rem;
         font-style: italic;
         background-color: var(--deepOlive);
@@ -772,6 +774,7 @@ main {
     }
 
 #allCommon, #problem-treatment, #allSymptoms {
+    background-color: var(--offWhite);
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
@@ -786,6 +789,7 @@ main {
 
 
 #view-info {
+    background-color: var(--offWhite);
     border-radius: 10px;
     border: 5px solid var(--terracotta);
     box-shadow: -3px 5px 0 var(--warmBrown);
@@ -853,7 +857,8 @@ main {
             }
 
 /* ----- OVERLAYS ----- */
-#overlayMenu, #filters-overlay {
+#overlayMenu, #filters-overlay,
+#overlayPlant, #overlayProblem {
     display: none;
     position: fixed;
     width: 100%;
@@ -866,8 +871,10 @@ main {
     background-image: url(../img/background/background-leaf.svg);
     background-size: 100px;
     z-index: 10; /* Ensuring that the overlay is OVER the content */
+    overflow-y: scroll;
 }
-#overlayMenu .close-button, #filters-overlay .close-button {
+#overlayMenu .close-button, #filters-overlay .close-button,
+#overlayPlant .close-button, #overlayProblem .close-button {
     font-size: 4rem;
     border: none;
     color: var(--offWhite);
@@ -877,7 +884,8 @@ main {
     transition: 0.5s;
     background-color: transparent;
 }
-#overlayMenu .close-button:hover, #filters-overlay .close-button:hover {
+#overlayMenu .close-button:hover, #filters-overlay .close-button:hover,
+#overlayPlant .close-button:hover, #overlayProblem .close-button:hover{
     font-size: 5rem;
     color: var(--terracotta);
     text-shadow: -0.2rem 0.1rem 0 var(--warmBrown);

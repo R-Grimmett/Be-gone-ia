@@ -15,6 +15,9 @@
     <script type="text/javascript" src="https://unpkg.com/survey-core/survey.core.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/survey-js-ui/survey-js-ui.min.js"></script>
 
+    <script src="./controllers/displayPlant.js"></script>
+    <script src="./controllers/problemDescriptionController.js"></script>
+    <script src="./controllers/displayProblem.js"></script>
     <script src="./controllers/json/surveyContent.js"></script>
     <script src="./controllers/json/surveyTheme.js"></script>
     <script type="text/javascript" src="./controllers/diagnosisController.js"></script>
@@ -30,6 +33,23 @@
 </head>
 <body>
     <div id="overlayMenu"></div>
+    <div id="overlayPlant">
+        <button type="button" class="close-button" onclick="toggleVisible('overlayPlant')"><i class="fa-solid fa-circle-xmark"></i></button>
+        <div id="view-plant"></div>
+        <section id="plant-content">
+            <ul class="plant-stats">
+                <li><i class="fa-solid fa-sun"></i><p id="plant-light">Light</p></li>
+                <li><i class="fa-solid fa-droplet"></i><p id="plant-water">Water</p></li>
+                <li><i class="fa-solid fa-temperature-half"></i><p id="plant-temp">Temperature</p></li>
+                <li><i class="fa-solid fa-cloud-rain"></i><p id="plant-humid">Humidity</p></li>
+            </ul>
+        </section>
+    </div>
+    <div id="overlayProblem">
+        <button type="button" class="close-button" onclick="toggleVisible('overlayProblem')"><i class="fa-solid fa-circle-xmark"></i></button>
+        <div id="view-problem"></div>
+        <section id="problem-content"></section>
+    </div>
     <header>
         <div id="skip"><a href="#main-content">Skip to Main Content</a></div>
         <nav aria-label="Main">

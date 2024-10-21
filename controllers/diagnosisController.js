@@ -22,15 +22,15 @@ function calculatePlant(result) {
         commonName = result.commonKnow ? commonName.replace(new RegExp(/^\s+/, 'gmi'), '') : '';
         commonName = result.commonKnow ? commonName.replace(/\s/g, "%20") : '';
 
-        let genusName = result.botanicalKnow && result.botanicalName.genus !== undefined ? result.botanicalName.genus.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
-        genusName = result.botanicalKnow && genusName !== undefined ? genusName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
-        genusName = result.botanicalKnow && genusName !== undefined ? genusName.genus.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+        let genusName = result.botanicalKnow !== false && result.botanicalName.genus !== undefined ? result.botanicalName.genus.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : null;
+        genusName = result.botanicalKnow !== false && genusName !== null ? genusName.replace(new RegExp(/^\s+/, 'gmi'), '') : null;
+        genusName = result.botanicalKnow !== false && genusName !== null ? genusName.replace(new RegExp(/\s/, 'gmi'), '%20') : null;
 
-        let speciesName = result.botanicalKnow && result.botanicalName.species !== undefined ? result.botanicalName.species.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
-        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
-        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+        let speciesName = result.botanicalKnow !== false && result.botanicalName.species !== undefined ? result.botanicalName.species.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : null;
+        speciesName = result.botanicalKnow !== false && speciesName !== null ? speciesName.replace(new RegExp(/^\s+/, 'gmi'), '') : null;
+        speciesName = result.botanicalKnow !== false && speciesName !== null ? speciesName.replace(new RegExp(/\s/, 'gmi'), '%20') : null;
 
-        const botanicalName = result.botanicalKnow ? `${genusName !== undefined ? genusName : ''}%20${speciesName !== undefined ? speciesName : ''}` : '';
+        const botanicalName = result.botanicalKnow ? `${genusName !== null ? genusName : ''}%20${speciesName !== null ? speciesName : ''}` : '';
         dbPlantRequest.open("GET", `${rootURL}/plants/search/common=${commonName}%25botanical=${botanicalName}`);
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
@@ -75,7 +75,7 @@ function calculateProblem(plantString, result) {
         }
     }
 
-    if(resLeaf.includes("insect")) {problemName = resLeaf[1]; }
+    if(resLeaf != null && resLeaf.includes("insect")) {problemName = resLeaf[1]; }
     else if(resCompare.length === 1) { problemName = resCompare[0]; }
     else if(resCompare.length > 1) { problemName = prioProblem(resCompare); }
     else {
@@ -127,12 +127,19 @@ function calculateProblem(plantString, result) {
 }
 
 function displayResult(plantData, problemData) {
-    console.log(plantData);
-    resultPlant = plantData !== null ? JSON.parse(plantData) : null;
-    resultProblem = problemData !== null ? JSON.parse(problemData) : null;
+    if(plantData !== null) {
+        createPlantOverlay(plantData);
+        resultPlant =JSON.parse(plantData);
+    } else {resultPlant = null; }
+
+    if(problemData !== null) {
+        createProblemOverlay(problemData);
+        resultProblem = JSON.parse(problemData);
+    } else { resultProblem = null; }
+
     const resultDiv = document.getElementById('results-container');
 
-    if (problemData === null) {
+    if (resultProblem === null) {
         displayError(resultDiv);
     } else {
         let resultHero = document.createElement("div");
@@ -163,14 +170,14 @@ function displayResult(plantData, problemData) {
         if (resultPlant !== null) {
             let linkPlant = document.createElement('button');
             linkPlant.onclick = function () {
-                togglePlant();
+                toggleVisible("overlayPlant");
             };
             linkPlant.innerHTML = (`<i class="fa-solid fa-seedling"></i> More about ${resultPlant.genus} ${resultPlant.species}`);
             resultLinks.appendChild(linkPlant);
         }
         let linkProblem = document.createElement('button');
         linkProblem.onclick = function () {
-            toggleProblem();
+            toggleVisible("overlayProblem");
         };
         linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
         let linkAgain = document.createElement('a');
@@ -200,8 +207,33 @@ function displayError(resultHolder) {
     resultHolder.appendChild(errorDiv);
 }
 
-function togglePlant() { console.log(resultPlant); }
-function toggleProblem() { console.log(resultProblem); }
+function toggleVisible(container) {
+    const overContainer = document.getElementById(container);
+    if(overContainer.style.display === "block") { overContainer.style.display = "none"; }
+    else { overContainer.style.display = "block"; }
+}
+
+function createPlantOverlay(plantData) {
+    const hero = document.getElementById("view-plant");
+    const main = document.getElementById("plant-content");
+    const plant = JSON.parse(plantData);
+
+    hero.style.backgroundImage = plant.imgSrc !== "" ? `url('${plant.imgSrc}')`: "url('../img/background/gradient-green.jpg')";
+    populateStats(plant.water, plant.light, plant.humidity, plant.tempLow, plant.tempHigh);
+    populateName(plant.common, plant.genus, plant.species, main, hero);
+    populateInfo(plant.text, main);
+}
+
+function createProblemOverlay(problemData) {
+    const problem = JSON.parse(problemData);
+    const hero = document.getElementById("view-problem");
+    const main = document.getElementById("problem-content");
+
+    hero.style.backgroundImage = problem.imgSrc !== "" ? `url(${problem.imgSrc})` : "url('../img/background/gradient-green.jpg')";
+    populateProblemName(problem.common, problem.scientific, hero, main);
+    populateSymptoms(problem.leafTags, problem.flowerTags, problem.stemTags, problem.rootTags, problem.growthTags, problem.wholeTags, main);
+    populateProblemInfo(problem.treatment, problem.information, main);
+}
 
 // May God have mercy on ye who travel here to the land of if else statements
 function probableLeaf(tagsArray, insectTag) {
