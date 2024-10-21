@@ -126,49 +126,75 @@ function calculateProblem(plantString, result) {
 function displayResult(plantData, problemData) {
     console.log(plantData);
     resultPlant = plantData !== null ? JSON.parse(plantData) : null;
-    resultProblem = JSON.parse(problemData);
+    resultProblem = problemData !== null ? JSON.parse(problemData) : null;
     const resultDiv = document.getElementById('results-container');
 
-    let resultHero = document.createElement("div");
-    resultHero.classList.add('result-hero');
-    resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
+    if (problemData === null) {
+        displayError(resultDiv);
+    } else {
+        let resultHero = document.createElement("div");
+        resultHero.classList.add('result-hero');
+        resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
         is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
 
-    let resultInformation = document.createElement("div");
-    resultInformation.classList.add('result-information');
-    let informationText = '';
-    let informationSplit = resultProblem.information.split(new RegExp(/<br><br>/, 'g'));
-    if(informationSplit.length === 1) { informationText = informationSplit[0]; }
-    else {
-        for(let i = 0; i < informationSplit.length - 1; i++) {
-            if(i === 0) { informationText = informationSplit[i]; }
-            else { informationText = informationText + `<br><br>` + informationSplit[i];}
+        let resultInformation = document.createElement("div");
+        resultInformation.classList.add('result-information');
+        let informationText = '';
+        let informationSplit = resultProblem.information.split(new RegExp(/<br><br>/, 'g'));
+        if (informationSplit.length === 1) {
+            informationText = informationSplit[0];
+        } else {
+            for (let i = 0; i < informationSplit.length - 1; i++) {
+                if (i === 0) {
+                    informationText = informationSplit[i];
+                } else {
+                    informationText = informationText + `<br><br>` + informationSplit[i];
+                }
+            }
         }
-    }
-    resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${informationText}</p></div>
+        resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${informationText}</p></div>
         <div><h3>Treatment Options:</h3>${resultProblem.treatment}</div>`;
 
-    let resultLinks = document.createElement('div');
-    resultLinks.classList.add('result-links');
-    if(resultPlant !== null) {
-        let linkPlant = document.createElement('button');
-        linkPlant.onclick = function() { togglePlant(); };
-        linkPlant.innerHTML = (`<i class="fa-solid fa-seedling"></i> More about ${resultPlant.genus} ${resultPlant.species}`);
-        resultLinks.appendChild(linkPlant);
+        let resultLinks = document.createElement('div');
+        resultLinks.classList.add('result-links');
+        if (resultPlant !== null) {
+            let linkPlant = document.createElement('button');
+            linkPlant.onclick = function () {
+                togglePlant();
+            };
+            linkPlant.innerHTML = (`<i class="fa-solid fa-seedling"></i> More about ${resultPlant.genus} ${resultPlant.species}`);
+            resultLinks.appendChild(linkPlant);
+        }
+        let linkProblem = document.createElement('button');
+        linkProblem.onclick = function () {
+            toggleProblem();
+        };
+        linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
+        let linkAgain = document.createElement('a');
+        linkAgain.href = 'help-my-plant.html';
+        linkAgain.innerHTML = `<i class="fa-solid fa-rotate"></i> Help Another Plant?`;
+
+        resultLinks.appendChild(linkProblem);
+        resultLinks.appendChild(linkAgain);
+
+        resultDiv.append(resultHero);
+        resultDiv.append(resultInformation);
+        resultDiv.append(resultLinks);
     }
-    let linkProblem = document.createElement('button');
-    linkProblem.onclick = function() { toggleProblem(); };
-    linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
-    let linkAgain = document.createElement('a');
-    linkAgain.href = 'help-my-plant.html';
-    linkAgain.innerHTML = `<i class="fa-solid fa-rotate"></i> Help Another Plant?`;
+}
 
-    resultLinks.appendChild(linkProblem);
-    resultLinks.appendChild(linkAgain);
+function displayError(resultHolder) {
+    const errorDiv = document.createElement("div");
+    const header = document.createElement("h2");
+    header.innerHTML = `Sorry!`;
+    const text = document.createElement("p");
+    text.innerHTML = "We ran into an issue on our side. Please refresh the page.";
 
-    resultDiv.append(resultHero);
-    resultDiv.append(resultInformation);
-    resultDiv.append(resultLinks);
+    errorDiv.appendChild(header);
+    errorDiv.appendChild(text);
+    errorDiv.classList.add('result-information');
+
+    resultHolder.appendChild(errorDiv);
 }
 
 function togglePlant() { console.log(resultPlant); }
