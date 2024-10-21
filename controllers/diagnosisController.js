@@ -49,8 +49,10 @@ function calculatePlant(result) {
 function calculateProblem(plantString, result) {
     let problemName, resCombined;
 
+    console.log(result.leafInsect);
+
     //get probable answers based on each group of symptoms
-    const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf) : null;
+    const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf, result.leafInsect !== null ? result.leafInsect : null) : null;
     const resFlower = result.symptom.includes("flower") ? probableFlower(result.symptomFlower) : null;
     const resStem = result.symptom.includes("stem") ? probableStem(result.symptomStem) : null;
     const resRoot = result.symptom.includes("root") ? probableRoot(result.symptomRoot) : null;
@@ -73,7 +75,8 @@ function calculateProblem(plantString, result) {
         }
     }
 
-    if(resCompare.length === 1) { problemName = resCompare[0]; }
+    if(resLeaf.includes("insect")) {problemName = resLeaf[1]; }
+    else if(resCompare.length === 1) { problemName = resCompare[0]; }
     else if(resCompare.length > 1) { problemName = prioProblem(resCompare); }
     else {
         resCombined = [];
@@ -201,7 +204,7 @@ function togglePlant() { console.log(resultPlant); }
 function toggleProblem() { console.log(resultProblem); }
 
 // May God have mercy on ye who travel here to the land of if else statements
-function probableLeaf(tagsArray) {
+function probableLeaf(tagsArray, insectTag) {
     if(tagsArray.length === 1) {
         switch (tagsArray[0]) {
             case "blotch-brown":
@@ -236,8 +239,11 @@ function probableLeaf(tagsArray) {
                 return ["bacterial leaf spot"];
             case "mosaic":
                 return ["viruses"];
+            case "insect":
+                return probableInsect(insectTag);
         }
     }
+    else if(tagsArray.includes("insect")) { return probableInsect(insectTag); }
     else if(tagsArray.includes("substance-web")) { return ["spider mite"]; }
     else if(tagsArray.includes("substance-fluffy")) { return ["mealybug"]; }
     else if(tagsArray.includes("scale")) {
@@ -439,9 +445,26 @@ function probableWhole(tagsArray) {
     else { return ["too hot", "overwatering", "underwatering", "root aphids"]; }
 }
 
+function probableInsect(insectTag) {
+    switch(insectTag) {
+        case "aphid":
+            return ["insect", "aphid"];
+        case "pale-green":
+            return ["insect", "leafhopper"];
+        case "cloud":
+            return ["glasshouse whitefly", "fungas gnats"];
+        case "night":
+            return ["insect", "earwig"];
+        case "black":
+            return ["insect", "vine weevils"];
+        default:
+            return null;
+    }
+}
+
 function prioProblem(problemArray) {
-    const allProblemsArray = ["spider mite", "viruses", "root mealybug", "mealybug", "scale insect", "glasshouse whitefly",
-        "not enough light", "root rot", "stem and crown rot", "thrips", "fungus gnat", "downy mildew", "root aphid",
+    const allProblemsArray = ["spider mite", "viruses", "root mealybug", "mealybug", "root rot", "stem and crown rot",
+        "scale insect", "glasshouse whitefly", "not enough light", "thrips", "fungus gnat", "downy mildew", "root aphid",
         "aphid", "sooty mold", "powdery mildew", "fungal leaf spot", "bacterial leaf spot", "rust", "too hot",
         "stem and bulb nematodes", "corky scab", "underfeeding", "overwatering", "grey mold", "underwatering",
         "too much light", "vine weevils", "leafhopper", "earwigs", "too cold", "overfeeding"];
