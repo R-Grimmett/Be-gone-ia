@@ -341,10 +341,10 @@ const surveyJson = {
                         "type": "dropdown",
                         "name": "leafInsect",
                         "state": "expanded",
-                        "visibleIf": "{symptom-leaf} contains 'insect'",
+                        "visibleIf": "{symptomLeaf} contains 'insect'",
                         "title": "We saw you mentioned seeing insects on the leaves, do they look like any of the following?",
                         "hideNumber": true,
-                        "requiredIf": "{symptom-leaf} contains 'insect'",
+                        "requiredIf": "{symptomLeaf} contains 'insect'",
                         "choices": [
                             {
                                 "value": "aphid",

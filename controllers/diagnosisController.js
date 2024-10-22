@@ -22,15 +22,15 @@ function calculatePlant(result) {
         commonName = result.commonKnow ? commonName.replace(new RegExp(/^\s+/, 'gmi'), '') : '';
         commonName = result.commonKnow ? commonName.replace(/\s/g, "%20") : '';
 
-        let genusName = result.botanicalKnow && result.botanicalName.genus !== undefined ? result.botanicalName.genus.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
-        genusName = result.botanicalKnow && genusName !== undefined ? genusName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
-        genusName = result.botanicalKnow && genusName !== undefined ? genusName.genus.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+        let genusName = result.botanicalKnow !== false && result.botanicalName.genus !== undefined ? result.botanicalName.genus.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : null;
+        genusName = result.botanicalKnow !== false && genusName !== null ? genusName.replace(new RegExp(/^\s+/, 'gmi'), '') : null;
+        genusName = result.botanicalKnow !== false && genusName !== null ? genusName.replace(new RegExp(/\s/, 'gmi'), '%20') : null;
 
-        let speciesName = result.botanicalKnow && result.botanicalName.species !== undefined ? result.botanicalName.species.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : undefined;
-        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/^\s+/, 'gmi'), '') : undefined;
-        speciesName = result.botanicalKnow && speciesName !== undefined ? speciesName.replace(new RegExp(/\s/, 'gmi'), '%20') : undefined;
+        let speciesName = result.botanicalKnow !== false && result.botanicalName.species !== undefined ? result.botanicalName.species.replace(new RegExp(/[^a-z\s]/, 'gmi'), '') : null;
+        speciesName = result.botanicalKnow !== false && speciesName !== null ? speciesName.replace(new RegExp(/^\s+/, 'gmi'), '') : null;
+        speciesName = result.botanicalKnow !== false && speciesName !== null ? speciesName.replace(new RegExp(/\s/, 'gmi'), '%20') : null;
 
-        const botanicalName = result.botanicalKnow ? `${genusName !== undefined ? genusName : ''}%20${speciesName !== undefined ? speciesName : ''}` : '';
+        const botanicalName = result.botanicalKnow ? `${genusName !== null ? genusName : ''}%20${speciesName !== null ? speciesName : ''}` : '';
         dbPlantRequest.open("GET", `${rootURL}/plants/search/common=${commonName}%25botanical=${botanicalName}`);
         dbPlantRequest.send();
         dbPlantRequest.responseType = "json";
@@ -49,8 +49,10 @@ function calculatePlant(result) {
 function calculateProblem(plantString, result) {
     let problemName, resCombined;
 
+    console.log(result.leafInsect);
+
     //get probable answers based on each group of symptoms
-    const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf) : null;
+    const resLeaf = result.symptom.includes("leaf") ? probableLeaf(result.symptomLeaf, result.leafInsect !== null ? result.leafInsect : null) : null;
     const resFlower = result.symptom.includes("flower") ? probableFlower(result.symptomFlower) : null;
     const resStem = result.symptom.includes("stem") ? probableStem(result.symptomStem) : null;
     const resRoot = result.symptom.includes("root") ? probableRoot(result.symptomRoot) : null;
@@ -73,7 +75,8 @@ function calculateProblem(plantString, result) {
         }
     }
 
-    if(resCompare.length === 1) { problemName = resCompare[0]; }
+    if(resLeaf != null && resLeaf.includes("insect")) {problemName = resLeaf[1]; }
+    else if(resCompare.length === 1) { problemName = resCompare[0]; }
     else if(resCompare.length > 1) { problemName = prioProblem(resCompare); }
     else {
         resCombined = [];
@@ -124,58 +127,116 @@ function calculateProblem(plantString, result) {
 }
 
 function displayResult(plantData, problemData) {
-    console.log(plantData);
-    resultPlant = plantData !== null ? JSON.parse(plantData) : null;
-    resultProblem = JSON.parse(problemData);
+    if(plantData !== null) {
+        createPlantOverlay(plantData);
+        resultPlant =JSON.parse(plantData);
+    } else {resultPlant = null; }
+
+    if(problemData !== null) {
+        createProblemOverlay(problemData);
+        resultProblem = JSON.parse(problemData);
+    } else { resultProblem = null; }
+
     const resultDiv = document.getElementById('results-container');
 
-    let resultHero = document.createElement("div");
-    resultHero.classList.add('result-hero');
-    resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
+    if (resultProblem === null) {
+        displayError(resultDiv);
+    } else {
+        let resultHero = document.createElement("div");
+        resultHero.classList.add('result-hero');
+        resultHero.innerHTML = `<div><h2>Your ${resultPlant !== null ? `${resultPlant.genus} ${resultPlant.species}` : `Plant`}
         is likely affected by:</h2><h1>${resultProblem.common[0]}</h1></div>`;
 
-    let resultInformation = document.createElement("div");
-    resultInformation.classList.add('result-information');
-    let informationText = '';
-    let informationSplit = resultProblem.information.split(new RegExp(/<br><br>/, 'g'));
-    if(informationSplit.length === 1) { informationText = informationSplit[0]; }
-    else {
-        for(let i = 0; i < informationSplit.length - 1; i++) {
-            if(i === 0) { informationText = informationSplit[i]; }
-            else { informationText = informationText + `<br><br>` + informationSplit[i];}
+        let resultInformation = document.createElement("div");
+        resultInformation.classList.add('result-information');
+        let informationText = '';
+        let informationSplit = resultProblem.information.split(new RegExp(/<br><br>/, 'g'));
+        if (informationSplit.length === 1) {
+            informationText = informationSplit[0];
+        } else {
+            for (let i = 0; i < informationSplit.length - 1; i++) {
+                if (i === 0) {
+                    informationText = informationSplit[i];
+                } else {
+                    informationText = informationText + `<br><br>` + informationSplit[i];
+                }
+            }
         }
-    }
-    resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${informationText}</p></div>
+        resultInformation.innerHTML = `<div><h3>Information about ${resultProblem.common[0]}:</h3><p>${informationText}</p></div>
         <div><h3>Treatment Options:</h3>${resultProblem.treatment}</div>`;
 
-    let resultLinks = document.createElement('div');
-    resultLinks.classList.add('result-links');
-    if(resultPlant !== null) {
-        let linkPlant = document.createElement('button');
-        linkPlant.onclick = function() { togglePlant(); };
-        linkPlant.innerHTML = (`<i class="fa-solid fa-seedling"></i> More about ${resultPlant.genus} ${resultPlant.species}`);
-        resultLinks.appendChild(linkPlant);
+        let resultLinks = document.createElement('div');
+        resultLinks.classList.add('result-links');
+        if (resultPlant !== null) {
+            let linkPlant = document.createElement('button');
+            linkPlant.onclick = function () {
+                toggleVisible("overlayPlant");
+            };
+            linkPlant.innerHTML = (`<i class="fa-solid fa-seedling"></i> More about ${resultPlant.genus} ${resultPlant.species}`);
+            resultLinks.appendChild(linkPlant);
+        }
+        let linkProblem = document.createElement('button');
+        linkProblem.onclick = function () {
+            toggleVisible("overlayProblem");
+        };
+        linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
+        let linkAgain = document.createElement('a');
+        linkAgain.href = 'help-my-plant.html';
+        linkAgain.innerHTML = `<i class="fa-solid fa-rotate"></i> Help Another Plant?`;
+
+        resultLinks.appendChild(linkProblem);
+        resultLinks.appendChild(linkAgain);
+
+        resultDiv.append(resultHero);
+        resultDiv.append(resultInformation);
+        resultDiv.append(resultLinks);
     }
-    let linkProblem = document.createElement('button');
-    linkProblem.onclick = function() { toggleProblem(); };
-    linkProblem.innerHTML = `<i class="fa-solid fa-bug"></i> More about ${resultProblem.common[0]}`;
-    let linkAgain = document.createElement('a');
-    linkAgain.href = 'help-my-plant.html';
-    linkAgain.innerHTML = `<i class="fa-solid fa-rotate"></i> Help Another Plant?`;
-
-    resultLinks.appendChild(linkProblem);
-    resultLinks.appendChild(linkAgain);
-
-    resultDiv.append(resultHero);
-    resultDiv.append(resultInformation);
-    resultDiv.append(resultLinks);
 }
 
-function togglePlant() { console.log(resultPlant); }
-function toggleProblem() { console.log(resultProblem); }
+function displayError(resultHolder) {
+    const errorDiv = document.createElement("div");
+    const header = document.createElement("h2");
+    header.innerHTML = `Sorry!`;
+    const text = document.createElement("p");
+    text.innerHTML = "We ran into an issue on our side. Please refresh the page.";
+
+    errorDiv.appendChild(header);
+    errorDiv.appendChild(text);
+    errorDiv.classList.add('result-information');
+
+    resultHolder.appendChild(errorDiv);
+}
+
+function toggleVisible(container) {
+    const overContainer = document.getElementById(container);
+    if(overContainer.style.display === "block") { overContainer.style.display = "none"; }
+    else { overContainer.style.display = "block"; }
+}
+
+function createPlantOverlay(plantData) {
+    const hero = document.getElementById("view-plant");
+    const main = document.getElementById("plant-content");
+    const plant = JSON.parse(plantData);
+
+    hero.style.backgroundImage = plant.imgSrc !== "" ? `url('${plant.imgSrc}')`: "url('../img/background/gradient-green.jpg')";
+    populateStats(plant.water, plant.light, plant.humidity, plant.tempLow, plant.tempHigh);
+    populateName(plant.common, plant.genus, plant.species, main, hero);
+    populateInfo(plant.text, main);
+}
+
+function createProblemOverlay(problemData) {
+    const problem = JSON.parse(problemData);
+    const hero = document.getElementById("view-problem");
+    const main = document.getElementById("problem-content");
+
+    hero.style.backgroundImage = problem.imgSrc !== "" ? `url(${problem.imgSrc})` : "url('../img/background/gradient-green.jpg')";
+    populateProblemName(problem.common, problem.scientific, hero, main);
+    populateSymptoms(problem.leafTags, problem.flowerTags, problem.stemTags, problem.rootTags, problem.growthTags, problem.wholeTags, main);
+    populateProblemInfo(problem.treatment, problem.information, main);
+}
 
 // May God have mercy on ye who travel here to the land of if else statements
-function probableLeaf(tagsArray) {
+function probableLeaf(tagsArray, insectTag) {
     if(tagsArray.length === 1) {
         switch (tagsArray[0]) {
             case "blotch-brown":
@@ -210,8 +271,11 @@ function probableLeaf(tagsArray) {
                 return ["bacterial leaf spot"];
             case "mosaic":
                 return ["viruses"];
+            case "insect":
+                return probableInsect(insectTag);
         }
     }
+    else if(tagsArray.includes("insect")) { return probableInsect(insectTag); }
     else if(tagsArray.includes("substance-web")) { return ["spider mite"]; }
     else if(tagsArray.includes("substance-fluffy")) { return ["mealybug"]; }
     else if(tagsArray.includes("scale")) {
@@ -413,9 +477,26 @@ function probableWhole(tagsArray) {
     else { return ["too hot", "overwatering", "underwatering", "root aphids"]; }
 }
 
+function probableInsect(insectTag) {
+    switch(insectTag) {
+        case "aphid":
+            return ["insect", "aphid"];
+        case "pale-green":
+            return ["insect", "leafhopper"];
+        case "cloud":
+            return ["glasshouse whitefly", "fungas gnats"];
+        case "night":
+            return ["insect", "earwig"];
+        case "black":
+            return ["insect", "vine weevils"];
+        default:
+            return null;
+    }
+}
+
 function prioProblem(problemArray) {
-    const allProblemsArray = ["spider mite", "viruses", "root mealybug", "mealybug", "scale insect", "glasshouse whitefly",
-        "not enough light", "root rot", "stem and crown rot", "thrips", "fungus gnat", "downy mildew", "root aphid",
+    const allProblemsArray = ["spider mite", "viruses", "root mealybug", "mealybug", "root rot", "stem and crown rot",
+        "scale insect", "glasshouse whitefly", "not enough light", "thrips", "fungus gnat", "downy mildew", "root aphid",
         "aphid", "sooty mold", "powdery mildew", "fungal leaf spot", "bacterial leaf spot", "rust", "too hot",
         "stem and bulb nematodes", "corky scab", "underfeeding", "overwatering", "grey mold", "underwatering",
         "too much light", "vine weevils", "leafhopper", "earwigs", "too cold", "overfeeding"];
