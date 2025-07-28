@@ -2,7 +2,7 @@ const survey = new Survey.Model(surveyJson);
 let resultPlant, resultProblem, rootURL;
 const reURL = RegExp(/localhost/);
 
-survey.applyTheme(coffeeTheme);
+//survey.applyTheme(coffeeTheme);
 
 survey.onComplete.add((sender, options) => {
     console.log(sender.data);
